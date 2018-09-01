@@ -1,7 +1,7 @@
 line 1:
 line 2:
 line 3:missing ;
-line 4:undeclard variable
+line 4:type name missing from variable declaration
 line 5:
 line 6:
 line 7:

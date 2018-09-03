@@ -5,5 +5,4 @@ a * i + b = 10
 a * i + b = 13
 a * i + b = 16
 a * i + b = 19
-a * i + b = 22
 a is 4

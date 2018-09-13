@@ -1,0 +1,68 @@
+Grading at 09/13/2018:15:16:06.286674
+For commit ID c677ddafe1b997c576e639c11955f2d0990f95db
+-------------------------------------
+**Testing correct implementation **
+x = 2, y = 3, ans = 8
+x = 2, y = 0, ans = 1
+x = -1, y = 1, ans = -1
+x = 2, y = 2, ans = 4
+x = 0, y = 0, ans = 1
+
+-------------------------------------
+**Testing broken implementation 10 **
+x = 2, y = 3, ans = 2
+
+-------------------------------------
+**Testing broken implementation 11 **
+x = 2, y = 3, ans = 8
+x = 2, y = 0, ans = 1
+x = -1, y = 1, ans = 7
+
+-------------------------------------
+**Testing broken implementation 1 **
+x = 2, y = 3, ans = 2
+
+-------------------------------------
+**Testing broken implementation 2 **
+x = 2, y = 3, ans = 9
+
+-------------------------------------
+**Testing broken implementation 3 **
+x = 2, y = 3, ans = 8
+x = 2, y = 0, ans = 1
+x = -1, y = 1, ans = -1
+x = 2, y = 2, ans = 4
+x = 0, y = 0, ans = 0
+
+-------------------------------------
+**Testing broken implementation 4 **
+x = 2, y = 3, ans = 8
+x = 2, y = 0, ans = 1
+x = -1, y = 1, ans = 65535
+
+-------------------------------------
+**Testing broken implementation 5 **
+x = 2, y = 3, ans = 0
+
+-------------------------------------
+**Testing broken implementation 6 **
+x = 2, y = 3, ans = 8
+x = 2, y = 0, ans = 1
+x = -1, y = 1, ans = 2
+
+-------------------------------------
+**Testing broken implementation 7 **
+x = 2, y = 3, ans = 27
+
+-------------------------------------
+**Testing broken implementation 8 **
+x = 2, y = 3, ans = 6
+
+-------------------------------------
+**Testing broken implementation 9 **
+x = 2, y = 3, ans = 0
+
+All tests were correct.
+
+
+Overall Grade: PASSED

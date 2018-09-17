@@ -2,7 +2,18 @@
 #include <stdlib.h>
 
 int * arrayMax(int * array, int n) {
-  return NULL;
+  int * temp = malloc(sizeof(int));
+  temp = array;
+  if (n != 0) {
+    for (int i = 0; i < n; ++i) {
+      if (*(array + i) > *temp)
+        temp = array + i;
+    }
+    return temp;
+  }
+  else {
+    return NULL;
+  }
 }
 
 void doTest(int * array, int n) {

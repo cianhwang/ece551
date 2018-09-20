@@ -1,0 +1,105 @@
+Grading at 09/20/2018:01:06:51.894990
+For commit ID 59cbf7fcc6fad2b25805fd514f56ae646421289c
+-------------------------------------
+**Testing correct implementation**
+temp = 1
+temp = 0
+temp = 6
+temp = 4
+temp = 4
+temp = 5
+temp = 1
+temp = 1
+temp = 0
+temp = 6
+temp = 4
+temp = 4
+temp = 5
+temp = 1
+
+-------------------------------------
+**Testing broken implementation 10**
+temp = 1
+temp = 0
+temp = 5
+temp = 1
+temp = 0
+temp = 5
+
+-------------------------------------
+**Testing broken implementation 11**
+temp = 2
+temp = 2
+
+-------------------------------------
+**Testing broken implementation 1**
+temp = 1
+temp = 0
+temp = 6
+temp = 5
+temp = 1
+temp = 0
+temp = 6
+temp = 5
+
+-------------------------------------
+**Testing broken implementation 2**
+temp = 1
+temp = 1
+temp = 1
+temp = 1
+
+-------------------------------------
+**Testing broken implementation 3**
+temp = 2
+temp = 2
+
+-------------------------------------
+**Testing broken implementation 4**
+temp = 1
+temp = 1
+temp = 1
+temp = 1
+
+-------------------------------------
+**Testing broken implementation 5**
+temp = 1
+temp = 0
+temp = 11
+temp = 1
+temp = 0
+temp = 11
+
+-------------------------------------
+**Testing broken implementation 6**
+temp = 0
+temp = 0
+
+-------------------------------------
+**Testing broken implementation 7**
+temp = 0
+temp = 0
+
+-------------------------------------
+**Testing broken implementation 8**
+temp = 1
+temp = 0
+temp = 1
+temp = 1
+temp = 0
+temp = 1
+
+-------------------------------------
+**Testing broken implementation 9**
+temp = 1
+temp = 0
+temp = 6
+temp = 1
+temp = 1
+temp = 0
+temp = 6
+temp = 1
+
+All test programs were handled correctly
+
+Overall Grade: PASSED

@@ -14,10 +14,10 @@ int seq3(int x, int y) {
   return (15 - 3 * y) + (y - 3) * (x + 5);
 }
 
-int countEvenInSeq3Range(int xLow, int xHi, int ylow, int yHi) {
+int countEvenInSeq3Range(int xLow, int xHi, int yLow, int yHi) {
   int counter = 0;
   for (int i = xLow; i < xHi; ++i) {
-    for (int j = ylow; j < yHi; ++j) {
+    for (int j = yLow; j < yHi; ++j) {
       counter += (seq3(i, j) % 2 == 0);
     }
   }

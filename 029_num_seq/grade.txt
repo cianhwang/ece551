@@ -1,5 +1,5 @@
-Grading at 09/21/2018:02:57:15.811279
-For commit ID bb68036ffc3291a17e6984a19989e1cb9b25930a
+Grading at 09/21/2018:03:02:48.025959
+For commit ID b4f9882dba3b25ddbcff8a5db208f379d362968c
 [32mSuccessfully compiled ['step1.c'].[0m
 Checking for 'int seq1(int x)'
 [32mfound 'int seq1(int x)' in your source code 'step1.c'[0m
@@ -16,7 +16,6 @@ Checking for 'int sumSeq2(int low, int high)'
 Checking for 'int seq3(int x, int y)'
 [32mfound 'int seq3(int x, int y)' in your source code 'step3.c'[0m
 Checking for 'int countEvenInSeq3Range(int xLow, int xHi, int yLow, int yHi)'
-[31mERROR: there is no function 'int countEvenInSeq3Range(int xLow, int xHi, int yLow, int yHi)'
-in your source code 'step3.c'[0m
+[32mfound 'int countEvenInSeq3Range(int xLow, int xHi, int yLow, int yHi)' in your source code 'step3.c'[0m
 [32mno spurious debug output in step3.c[0m
 Overall Grade: NO GRADE YET

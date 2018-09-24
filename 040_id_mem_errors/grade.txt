@@ -1,7 +1,6 @@
-Grading at 09/24/2018:18:13:22.925545
-For commit ID ebbc46f9bce2f1008d3a6a7c2dd6110ca9362580
+Grading at 09/24/2018:18:17:04.291351
+For commit ID 6d466d4cb919d47de0c693ba4969417a76f4eb92
 Line_1_did_not_match
-Line_5_did_not_match
 Line_6_did_not_match
 Your file did not match the expected ouput
 Your output did not match what we expected.

@@ -1,5 +1,7 @@
-Grading at 09/24/2018:18:42:44.332448
-For commit ID acccb17e24b4738b746a97f07db7d41b8bd7de60
+Grading at 09/24/2018:19:17:06.219770
+For commit ID 44d43c5556c1fce704da74cbf7bc1a2ae42a5fec
+Line_3_did_not_match
+Line_4_did_not_match
 Your file did not match the expected ouput
 Your output did not match what we expected.
 

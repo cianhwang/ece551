@@ -1,4 +1,6 @@
 #include "election.h"
+
+#include <stdio.h>
 //include any other headers you need here...
 
 state_t parseLine(const char * line) {
@@ -55,14 +57,25 @@ state_t parseLine(const char * line) {
 }
 
 unsigned int countElectoralVotes(state_t * stateData, uint64_t * voteCounts, size_t nStates) {
-  //STEP 2: write me
-  return 0;
+  uint64_t voteTemp = 0;
+  for (size_t i = 0; i < nStates; ++i) {
+    if (voteCounts[i] * 2 > stateData[i].population) {
+      voteTemp += stateData[i].electoralVotes;
+    }
+  }
+  return voteTemp;
 }
 
 void printRecounts(state_t * stateData, uint64_t * voteCounts, size_t nStates) {
-  //STEP 3: write me
+  for (size_t i = 0; i < nStates; ++i) {
+    double ratio = (double)(voteCounts[i]) / (double)(stateData[i].population);
+    if (ratio < 0.505 && ratio > 0.495) {
+      printf("%s requires a recount (Candidate A has %.2f%% of the vote)\n",
+             stateData[i].name,
+             ratio * 100);
+    }
+  }
+  return;
 }
 
-void printLargestWin(state_t * stateData, uint64_t * voteCounts, size_t nStates) {
-  //STEP 4: write me
-}
+void printLargestWin(state_t * stateData, uint64_t * voteCounts, size_t nStates) {}

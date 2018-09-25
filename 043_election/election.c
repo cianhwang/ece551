@@ -78,4 +78,16 @@ void printRecounts(state_t * stateData, uint64_t * voteCounts, size_t nStates) {
   return;
 }
 
-void printLargestWin(state_t * stateData, uint64_t * voteCounts, size_t nStates) {}
+void printLargestWin(state_t * stateData, uint64_t * voteCounts, size_t nStates) {
+  size_t maxIdx = 0;
+  double maxRatio = 0.0;
+  for (size_t i = 0; i < nStates; ++i) {
+    double ratio = (double)(voteCounts[i]) / (double)(stateData[i].population);
+    if (ratio > maxRatio) {
+      maxRatio = ratio;
+      maxIdx = i;
+    }
+  }
+  printf("Candidate A won %s with %.2f%% of the vote\n", stateData[maxIdx].name, maxRatio * 100);
+  return;
+}

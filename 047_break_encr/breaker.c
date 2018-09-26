@@ -21,7 +21,7 @@ int count_maxfreq(FILE * f) {
       maxTemp = arr[i];
     }
   }
-  return (maxIdx - 4) % 26;
+  return (maxIdx + 22) % 26;
 }
 
 int main(int argc, char ** argv) {

@@ -1,9 +1,10 @@
-Grading at 09/26/2018:01:22:16.602755
-For commit ID a804bbb26c5d88cbe84b161d5dc25a5d82e894b6
+Grading at 09/26/2018:01:24:27.017537
+For commit ID cd5ffa99955dfb1f7cec5acc3fdc4df78c55e2bc
 running passed-in stu_imp ./breaker
 [33mWarning: fail to run make clean[0m
-make: *** No targets specified and no makefile found.  Stop.
-
-[31mError: fail to run makefile[0m
+[32mSuccessfully compiled .[0m
+********************test case 1********************
+Exit status of your code: 135
+[31mtestcase error: return code not defined pelase contact TA
 [31mCannot continue testing[0m
 Overall Grade: F

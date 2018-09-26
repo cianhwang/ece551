@@ -1,0 +1,9 @@
+Grading at 09/26/2018:01:22:16.602755
+For commit ID a804bbb26c5d88cbe84b161d5dc25a5d82e894b6
+running passed-in stu_imp ./breaker
+[33mWarning: fail to run make clean[0m
+make: *** No targets specified and no makefile found.  Stop.
+
+[31mError: fail to run makefile[0m
+[31mCannot continue testing[0m
+Overall Grade: F

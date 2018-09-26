@@ -1,3 +1,4 @@
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -6,8 +7,11 @@ int count_maxfreq(FILE * f) {
   int c;
   int idx = 0;
   while ((c = fgetc(f)) != EOF) {
-    idx = c - 'a';
-    ++arr[idx];
+    if (isalpha(c)) {
+      c = tolower(c);
+      idx = c - 'a';
+      ++arr[idx];
+    }
   }
   int maxIdx = 0;
   int maxTemp = 0;

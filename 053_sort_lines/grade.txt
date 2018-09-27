@@ -1,5 +1,5 @@
-Grading at 09/27/2018:21:43:49.209896
-For commit ID af55bdbd6daadfa1de407337e736d2e6251008ca
+Grading at 09/27/2018:23:44:25.280558
+For commit ID 9c57f912f6b7231de67b905e17a3fbaeca704d10
 [32mSuccessfully compiled ['sortLines.c'].[0m
 ********************test case 1********************
 Exit status of your code: 1
@@ -19,11 +19,7 @@ Exit status of your code: 0
 ********************test case 4********************
 Exit status of your code: 0
 [32mValgrind was clean[0m
-unexpected line length in line 1
-line 1:   [31mI hope you would not fail [0m
-unexpected line length in line 5
-line 5:   [31mcat[0m
-[31mIncorrect: your output did not match the expected output.[0m
-[31mfailed test case 4[0m
-[31mfailed 1 out of 4 test cases[0m
-Overall Grade: C
+[32mCorrect: your output matched the expected output.[0m
+[32mpassed test case 4[0m
+[32msuccessfully passed all 4 test cases[0m
+Overall Grade: A

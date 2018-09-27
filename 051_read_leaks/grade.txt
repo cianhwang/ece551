@@ -1,11 +1,9 @@
-Grading at 09/27/2018:15:36:59.325239
-For commit ID a2351967f4ebbe196fd9899b9e2439601068f623
-Line_1_did_not_match
-Line_3_did_not_match
-Your file did not match the expected ouput
-Your output did not match what we expected.
+Grading at 09/27/2018:15:40:21.273781
+For commit ID a2603e44bdd6b33d0857e0a87795bc68d8f69673
+Your file matched the expected output
+Your output matched what we expected
 Attempting to compile test.c
   - Valgrind was clean (no errors, no memory leaks)
 valgrind was clean
 
-Overall Grade: F
+Overall Grade: A

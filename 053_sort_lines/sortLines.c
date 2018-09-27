@@ -21,6 +21,9 @@ char ** Load_file(size_t * plen, int argc, char ** argv) {
     char * curr = NULL;
     size_t sz;
     while ((getline(&curr, &sz, stdin) >= 0)) {
+      if (*curr == '\n') {
+        continue;
+      }
       line = realloc(line, (*plen + 1) * sizeof(*line));
       line[*plen] = curr;
       curr = NULL;
@@ -38,6 +41,9 @@ char ** Load_file(size_t * plen, int argc, char ** argv) {
       char * curr = NULL;
       size_t sz;
       while ((getline(&curr, &sz, f) >= 0)) {
+        if (*curr == '\n') {
+          continue;
+        }
         line = realloc(line, (*plen + 1) * sizeof(*line));
         line[*plen] = curr;
         curr = NULL;

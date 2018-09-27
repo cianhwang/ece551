@@ -1,5 +1,5 @@
-Grading at 09/27/2018:21:29:32.072550
-For commit ID 360d77ad454718e4e2c3a83657323ea3c82a5763
+Grading at 09/27/2018:21:36:55.659182
+For commit ID 2ceac8f90137f4057edea144e89ec6732a209c36
 [32mSuccessfully compiled ['sortLines.c'].[0m
 ********************test case 1********************
 Exit status of your code: 1
@@ -8,17 +8,22 @@ Exit status of your code: 1
 [32mpassed test case 1[0m
 ********************test case 2********************
 Exit status of your code: 0
-[31mtest case 2 Error: valgrind was not clean,here are error suggestions:[0m
-[31m1 Memory leak error: detected direct lost[0m
-[31mfailed test case 2[0m
+[32mValgrind was clean[0m
+[32mCorrect: your output matched the expected output.[0m
+[32mpassed test case 2[0m
 ********************test case 3********************
 Exit status of your code: 0
-[31mtest case 3 Error: valgrind was not clean,here are error suggestions:[0m
-[31m1 Memory leak error: detected direct lost[0m
-[31mfailed test case 3[0m
+[32mValgrind was clean[0m
+[32mCorrect: your output matched the expected output.[0m
+[32mpassed test case 3[0m
 ********************test case 4********************
 Exit status of your code: 0
-[31mtest case 4 Error: valgrind was not clean,here are error suggestions:[0m
+[32mValgrind was clean[0m
+unexpected line length in line 1
+line 1:   [31mI hope you would not fail [0m
+unexpected line length in line 5
+line 5:   [31mcat[0m
+[31mIncorrect: your output did not match the expected output.[0m
 [31mfailed test case 4[0m
-[31mfailed 3 out of 4 test cases[0m
-Overall Grade: F
+[31mfailed 1 out of 4 test cases[0m
+Overall Grade: C

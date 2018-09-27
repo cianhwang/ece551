@@ -71,8 +71,8 @@ int main(int argc, char ** argv) {
   sortData(line, length);
   for (size_t i = 0; i < length; ++i) {
     printf("%s", line[i]);
+    free(line[i]);
   }
-
   free(line);
   return EXIT_SUCCESS;
 }

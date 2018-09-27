@@ -26,6 +26,10 @@ void Read_data(FILE * f, int mat[][10]) {
       }
     }
   }
+  if (counter != 100 || enterCounter != 10) {
+    perror("Need more lines");
+    exit(EXIT_FAILURE);
+  }
 }
 void Rotate(int mat[][10], int rmat[][10]) {
   for (int i = 0; i < 10; ++i) {

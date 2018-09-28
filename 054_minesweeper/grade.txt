@@ -1,5 +1,5 @@
-Grading at 09/28/2018:03:42:46.021828
-For commit ID 1f24f78951ef78d2d35fac983a6c09c0a93f8fa8
+Grading at 09/28/2018:03:57:46.577574
+For commit ID e6e3031189d7b70f1d15c3218e27b530784ee53e
 [32mSuccessfully compiled ['minesweeper.c'].[0m
 ********************test case 1********************
 Exit status of your code: 0
@@ -17,7 +17,9 @@ Exit status of your code: 0
 [32mCorrect: your output matched the expected output.[0m
 [32mpassed test case 3[0m
 ********************test case 4********************
-Exit status of your code: 139
-[31mtest case 4 Error: Your program had segmentation fault[0m
-[31mCannot continue testing[0m
-Overall Grade: F
+Exit status of your code: 0
+[32mValgrind was clean[0m
+[32mCorrect: your output matched the expected output.[0m
+[32mpassed test case 4[0m
+[32msuccessfully passed all 4 test cases[0m
+Overall Grade: A

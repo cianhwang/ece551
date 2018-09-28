@@ -128,8 +128,8 @@ void printBoard(board_t * b) {
 }
 int countMines(board_t * b, int x, int y) {
   int localMineNum = 0;
-  for (int i = max(0, y - 1); i <= min(b->height, y + 1); ++i) {
-    for (int j = max(0, x - 1); j <= min(b->width, x + 1); ++j) {
+  for (int i = max(0, y - 1); i <= min(b->height - 1, y + 1); ++i) {
+    for (int j = max(0, x - 1); j <= min(b->width - 1, x + 1); ++j) {
       if (i == y && j == x) {
         continue;
       }
@@ -176,6 +176,7 @@ void freeBoard(board_t * b) {
   }
   free(b->board);
   free(b);
+  b = NULL;
 }
 
 int readInt(char ** linep, size_t * lineszp) {

@@ -40,11 +40,11 @@ void addRandomMine(board_t * b) {
 }
 
 int max(int a, int b) {
-  return a > b ? a : b;
+  return (a > b) ? a : b;
 }
 
 int min(int a, int b) {
-  return a < b ? a : b;
+  return (a < b) ? a : b;
 }
 
 board_t * makeBoard(int w, int h, int numMines) {
@@ -128,8 +128,8 @@ void printBoard(board_t * b) {
 }
 int countMines(board_t * b, int x, int y) {
   int localMineNum = 0;
-  for (int i = max(0, y - 2); i < min(b->height, y + 2); ++i) {
-    for (int j = max(0, x - 2); j < min(b->width, x + 2); ++j) {
+  for (int i = max(0, y - 1); i < min(b->height, y + 1); ++i) {
+    for (int j = max(0, x - 1); j < min(b->width, x + 1); ++j) {
       if (i == y && j == x) {
         continue;
       }

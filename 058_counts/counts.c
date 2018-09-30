@@ -55,9 +55,6 @@ void printCounts(counts_t * c, FILE * outFile) {
   if (unknownIdx != -1) {
     fprintf(f, "%s : %d\n", c->oneCountArr[unknownIdx].str, c->oneCountArr[unknownIdx].seeTimes);
   }
-  if (fclose(f) != 0) {
-    exit(EXIT_FAILURE);
-  }
 }
 
 void freeCounts(counts_t * c) {

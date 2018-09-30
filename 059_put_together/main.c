@@ -9,6 +9,7 @@
 counts_t * countFile(const char * filename, kvarray_t * kvPairs) {
   FILE * f = fopen(filename, "r");
   if (f == NULL) {
+    perror("fail to open file");
     exit(EXIT_FAILURE);
   }
   counts_t * c = createCounts();
@@ -26,6 +27,7 @@ counts_t * countFile(const char * filename, kvarray_t * kvPairs) {
   free(curr);
 
   if (fclose(f) != 0) {
+    perror("fail to close file");
     exit(EXIT_FAILURE);
   }
 
@@ -54,6 +56,7 @@ int main(int argc, char ** argv) {
     printCounts(c, f);
     //close f
     if (fclose(f) != 0) {
+      perror("fail to close file");
       return EXIT_FAILURE;
     }
     //free the memory for outName and c

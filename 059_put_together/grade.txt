@@ -1,5 +1,5 @@
-Grading at 09/30/2018:14:10:30.325712
-For commit ID 804d1f8b07c3fe0c51e60565e5c8bac5d080b469
+Grading at 09/30/2018:14:12:59.927749
+For commit ID eecbabb299351c031947d6b1883e6a909e381fe1
 running passed-in stu_imp ./count_values
 [32mSuccessfully compiled .[0m
 ********************test case 1********************

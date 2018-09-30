@@ -12,9 +12,9 @@ counts_t * countFile(const char * filename, kvarray_t * kvPairs) {
     exit(EXIT_FAILURE);
   }
   counts_t * c = createCounts();
-  char * curr;
-  size_t sz;
-  ssize_t len;
+  char * curr = NULL;
+  size_t sz = 0;
+  ssize_t len = 0;
   while ((len = getline(&curr, &sz, f)) >= 0) {
     char * line = calloc(len, sizeof(*line));  // curr contains /n.
     strncpy(line, curr, len - 1);
@@ -43,16 +43,13 @@ int main(int argc, char ** argv) {
   //count from 2 to argc (call the number you count i)
   //count the values that appear in the file named by argv[i], using kv as the key/value pair
   //   (call this result c)
-  for (int i = 2; i <= argc; ++i) {
+  for (int i = 2; i < argc; ++i) {
     counts_t * c = countFile(argv[i], kvPairs);
-    char * outFileName = computeOutputFileName(argv[i]);
+    char * outName = computeOutputFileName(argv[i]);
 
     //compute the output file name from argv[i] (call this outName)
     //open the file named by outName (call that f)
-    FILE * f = fopen(outFileName, "w");
-    if (f == NULL) {
-      return EXIT_FAILURE;
-    }
+    FILE * f = fopen(outName, "w");
     //print the counts from c into the FILE f
     printCounts(c, f);
     //close f
@@ -60,7 +57,7 @@ int main(int argc, char ** argv) {
       return EXIT_FAILURE;
     }
     //free the memory for outName and c
-    free(outFileName);
+    free(outName);
     freeCounts(c);
   }
   //free the memory for kv

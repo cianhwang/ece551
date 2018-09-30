@@ -9,11 +9,11 @@ void Split_String(char * curr, ssize_t len, char ** pkeyStr, char ** pvalStr) {
   while (*pTemp != '=') {
     ++pTemp;
   }
-  *pkeyStr = malloc(len * sizeof(**pkeyStr));
+  *pkeyStr = calloc(len, sizeof(**pkeyStr));
   if (pkeyStr == NULL) {
     exit(EXIT_FAILURE);
   }
-  *pvalStr = malloc(len * sizeof(**pvalStr));
+  *pvalStr = calloc(len, sizeof(**pvalStr));
   if (pvalStr == NULL) {
     exit(EXIT_FAILURE);
   }
@@ -31,7 +31,7 @@ kvarray_t * readKVs(const char * fname) {
     perror("Fail to open file!");
     exit(EXIT_FAILURE);
   }
-  kvarray_t * kvArr = malloc(sizeof(*kvArr));
+  kvarray_t * kvArr = calloc(1, sizeof(*kvArr));
   kvArr->size = 0;
   kvArr->pArr = NULL;
   char * curr = NULL;
@@ -73,8 +73,8 @@ char * lookupValue(kvarray_t * pairs, const char * key) {
   char * findValue = NULL;
   for (size_t i = 0; i < pairs->size; ++i) {
     if (strcmp(pairs->pArr[i].key, key) == 0) {
-      findValue = malloc(strlen(pairs->pArr[i].value) * sizeof(*findValue));
-      strcpy(findValue, pairs->pArr[i].value);
+      findValue = pairs->pArr[i].value;
+      break;
     }
   }
   return findValue;

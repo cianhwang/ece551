@@ -1,0 +1,27 @@
+Grading at 09/30/2018:00:44:33.644594
+For commit ID 9fc1488c4d15c51c29d7f41f79027598b5f9aade
+********************test case 1********************
+Exit status of your code: 0
+[31mtest case 1 Error: valgrind was not clean,here are error suggestions:[0m
+[31m1 Invalid read of size 1[0m
+[31m2 Conditional jump or move depends on uninitialised value(s)[0m
+[31m3 Memory leak error: detected direct lost[0m
+[31m4  Address 0x522fad6 is 0 bytes after a block of size 6 alloc[0m
+[31m5 Invalid write of size 1[0m
+[31mfailed test case 1[0m
+********************test case 2********************
+Exit status of your code: 0
+[31mtest case 2 Error: valgrind was not clean,here are error suggestions:[0m
+[31m1 Invalid read of size 1[0m
+[31m2  Address 0x522fb7c is 0 bytes after a block of size 12 alloc[0m
+[31m3 Conditional jump or move depends on uninitialised value(s)[0m
+[31m4 Memory leak error: detected direct lost[0m
+[31m5 Invalid write of size 1[0m
+[31mfailed test case 2[0m
+********************test case 3********************
+Exit status of your code: 0
+[32mValgrind was clean[0m
+[32mCorrect: your output matched the expected output.[0m
+[32mpassed test case 3[0m
+[31mfailed 2 out of 3 test cases[0m
+Overall Grade: F

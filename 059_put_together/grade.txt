@@ -1,5 +1,5 @@
-Grading at 09/30/2018:04:53:43.085324
-For commit ID 3073ca17b2481fc3830d09683ac77327c0260559
+Grading at 09/30/2018:14:10:30.325712
+For commit ID 804d1f8b07c3fe0c51e60565e5c8bac5d080b469
 running passed-in stu_imp ./count_values
 [32mSuccessfully compiled .[0m
 ********************test case 1********************
@@ -9,68 +9,19 @@ Exit status of your code: 1
 [31mtest case 1 Incorrect: your stderr is empty[0m
 [31mfailed test case 1[0m
 ********************test case 2********************
-Exit status of your code: 1
-[31mtest case 2 Error: valgrind was not clean,here are error suggestions:[0m
-[31m1 Use of uninitialised value of size 8[0m
-[31m2  Address 0x522d306 is 6 bytes inside a block of size 120 free[0m
-[31m3  Address 0x5232738 is 136 bytes inside a block of size 552 free[0m
-[31m4  Address 0x5232770 is 192 bytes inside a block of size 552 free[0m
-[31m5 Invalid free() [0m
-[31m6  Address 0x522d301 is 1 bytes inside a block of size 120 free[0m
-[31m7  Address 0x5232790 is 224 bytes inside a block of size 552 free[0m
-[31m8  Address 0x522d300 is 0 bytes inside a block of size 120 free[0m
-[31m9  Address 0x5232788 is 216 bytes inside a block of size 552 free[0m
-[31m10  Address 0x5232710 is 96 bytes inside a block of size 552 free[0m
-[31m11 Invalid read of size 4[0m
-[31m12  Address 0x52326b0 is 0 bytes inside a block of size 552 free[0m
-[31m13 Invalid write of size 2[0m
-[31m14 Invalid read of size 1[0m
-[31m15 Invalid read of size 8[0m
-[31m16  Address 0x5232798 is 232 bytes inside a block of size 552 free[0m
-[31m17  Address 0x5232720 is 112 bytes inside a block of size 552 free[0m
-[31m18 Invalid write of size 8[0m
-[31m19  Address 0x5232794 is 228 bytes inside a block of size 552 free[0m
-[31m20  Block was alloc[0m
-[31m21  Address 0x52326f8 is 72 bytes inside a block of size 552 free[0m
-[31m22 Conditional jump or move depends on uninitialised value(s)[0m
-[31m23 Invalid write of size 1[0m
-[31m24  Address 0x52326e8 is 56 bytes inside a block of size 552 free[0m
-[31m25 Memory leak error: detected direct lost[0m
-[31mfailed test case 2[0m
+Exit status of your code: 0
+[32mValgrind was clean[0m
+[32mCorrect: your output matched the expected output.[0m
+[32mpassed test case 2[0m
 ********************test case 3********************
-Exit status of your code: 1
-[31mtest case 3 Error: valgrind was not clean,here are error suggestions:[0m
-[31m1  Address 0x522d30b is 11 bytes inside a block of size 120 free[0m
-[31m2 Use of uninitialised value of size 8[0m
-[31m3  Address 0x52310c8 is 56 bytes inside a block of size 552 free[0m
-[31m4  Address 0x52310d8 is 72 bytes inside a block of size 552 free[0m
-[31m5 Invalid free() [0m
-[31m6  Address 0x5231118 is 136 bytes inside a block of size 552 free[0m
-[31m7  Address 0x522d301 is 1 bytes inside a block of size 120 free[0m
-[31m8 Memory leak error: detected indirect lost[0m
-[31m9  Address 0x5231178 is 232 bytes inside a block of size 552 free[0m
-[31m10  Address 0x522d300 is 0 bytes inside a block of size 120 free[0m
-[31m11 Invalid read of size 4[0m
-[31m12  Address 0x522d30a is 10 bytes inside a block of size 120 free[0m
-[31m13  Address 0x5231150 is 192 bytes inside a block of size 552 free[0m
-[31m14  Address 0x5231168 is 216 bytes inside a block of size 552 free[0m
-[31m15  Address 0x5231174 is 228 bytes inside a block of size 552 free[0m
-[31m16 Invalid write of size 2[0m
-[31m17 Invalid read of size 1[0m
-[31m18 Invalid read of size 8[0m
-[31m19  Address 0x52310f0 is 96 bytes inside a block of size 552 free[0m
-[31m20  Address 0x5231100 is 112 bytes inside a block of size 552 free[0m
-[31m21 Invalid write of size 8[0m
-[31m22  Address 0x5231090 is 0 bytes inside a block of size 552 free[0m
-[31m23  Address 0x522d308 is 8 bytes inside a block of size 120 free[0m
-[31m24  Block was alloc[0m
-[31m25  Address 0x5231170 is 224 bytes inside a block of size 552 free[0m
-[31m26 Conditional jump or move depends on uninitialised value(s)[0m
-[31m27 Invalid write of size 1[0m
-[31m28 Memory leak error: detected direct lost[0m
-[31mfailed test case 3[0m
+Exit status of your code: 0
+[32mValgrind was clean[0m
+[32mCorrect: your output matched the expected output.[0m
+[32mpassed test case 3[0m
 ********************test case 4********************
-Exit status of your code: 134
-[31mtest case 4 Error: double free or corruption[0m
-[31mCannot continue testing[0m
-Overall Grade: F
+Exit status of your code: 0
+[32mValgrind was clean[0m
+[32mCorrect: your output matched the expected output.[0m
+[32mpassed test case 4[0m
+[31mfailed 1 out of 4 test cases[0m
+Overall Grade: C

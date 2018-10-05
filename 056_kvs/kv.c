@@ -9,19 +9,21 @@ void Split_String(char * curr, ssize_t len, char ** pkeyStr, char ** pvalStr) {
   while (*pTemp != '=') {
     ++pTemp;
   }
-  *pkeyStr = calloc(len, sizeof(**pkeyStr));
+  *pkeyStr = malloc(len * sizeof(**pkeyStr));
   if (pkeyStr == NULL) {
     exit(EXIT_FAILURE);
   }
-  *pvalStr = calloc(len, sizeof(**pvalStr));
+  *pvalStr = malloc(len * sizeof(**pvalStr));
   if (pvalStr == NULL) {
     exit(EXIT_FAILURE);
   }
 
   strncpy(*pkeyStr, curr, pTemp - curr);
+  (*pkeyStr)[pTemp - curr] = '\0';
   // strcat(*pkeyStr, "\0");
   ++pTemp;
   strncpy(*pvalStr, pTemp, len - 1 - (pTemp - curr));
+  (*pvalStr)[len - 1 - (pTemp - curr)] = '\0';
   // strcat(*pvalStr, "\0");
 }
 
@@ -31,7 +33,7 @@ kvarray_t * readKVs(const char * fname) {
     perror("Fail to open file!");
     exit(EXIT_FAILURE);
   }
-  kvarray_t * kvArr = calloc(1, sizeof(*kvArr));
+  kvarray_t * kvArr = malloc(1 * sizeof(*kvArr));
   kvArr->size = 0;
   kvArr->pArr = NULL;
   char * curr = NULL;

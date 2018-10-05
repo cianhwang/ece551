@@ -18,7 +18,7 @@ void Read_data(FILE * f, int mat[][10]) {
       perror("Should be 10 chars one line");
       exit(EXIT_FAILURE);
     }
-    else {
+    else {  // in case of too much of '\n' in new lines
       ++enterCounter;
       if (enterCounter > 10) {
         perror("Too much lines");

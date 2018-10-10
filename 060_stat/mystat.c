@@ -113,6 +113,23 @@ int main(int argc, char ** argv) {
          sb.st_nlink);
   s = realloc(s, 11 * sizeof(*s));
   idFileReadable(sb, s);
-  printf("Access: (%04o/%s)\n", sb.st_mode & ~S_IFMT, s);
+
+  printf("Access: (%04o/%s)  Uid: (%5d/%8s)   Gid: (%5d/%8s)\n",
+         sb.st_mode & ~S_IFMT,
+         s,
+         getpwuid(sb.st_uid)->pw_uid,
+         getpwuid(sb.st_uid)->pw_name,
+         getgrgid(sb.st_gid)->gr_gid,
+         getgrgid(sb.st_gid)->gr_name);
   free(s);
+  char * atime = time2str(&sb.st_atime, sb.st_atim.tv_nsec);
+  char * mtime = time2str(&sb.st_mtime, sb.st_mtim.tv_nsec);
+  char * ctime = time2str(&sb.st_ctime, sb.st_ctim.tv_nsec);
+  printf("Access: %s\n", atime);
+  printf("Modify: %s\n", mtime);
+  printf("Change: %s\n", ctime);
+  printf(" Birth: -\n");
+  free(atime);
+  free(mtime);
+  free(ctime);
 }

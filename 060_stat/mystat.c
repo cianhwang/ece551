@@ -93,11 +93,19 @@ int main(int argc, char ** argv) {
   }
   for (int i = 1; i < argc; ++i) {
     struct stat sb;
-    printf("  File: ‘%s’\n", argv[i]);
 
     if (lstat(argv[i], &sb) == -1) {
       perror("...");
       return EXIT_FAILURE;
+    }
+    if (!S_ISLNK(sb.st_mode)) {
+      printf("  File: ‘%s’\n", argv[i]);
+    }
+    else {
+      char linktarget[256];
+      ssize_t len = readlink(argv[i], linktarget, 256);
+      linktarget[len] = '\0';
+      printf("  File: ‘%s’ -> ‘%s’\n", argv[i], linktarget);
     }
     char * s = malloc(50 * sizeof(*s));
     idFileType(sb, s);

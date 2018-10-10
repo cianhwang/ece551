@@ -20,19 +20,7 @@ char * time2str(const time_t * when, long ns) {
   return ans;
 }
 
-int main(int argc, char ** argv) {
-  struct stat sb;
-  if (argc != 2) {
-    fprintf(stderr, "Wrong para.");
-    return EXIT_FAILURE;
-  }
-  printf("  File: ‘%s’\n", argv[1]);
-
-  if (lstat(argv[1], &sb) == -1) {
-    perror("...");
-    return EXIT_FAILURE;
-  }
-  char * s = malloc(50 * sizeof(*s));
+void idFileType(struct stat sb, char * s) {
   switch (sb.st_mode & S_IFMT) {
     case S_IFBLK:
       strcpy(s, "block special file");
@@ -58,7 +46,22 @@ int main(int argc, char ** argv) {
     default:
       break;
   }
+}
 
+int main(int argc, char ** argv) {
+  struct stat sb;
+  if (argc != 2) {
+    fprintf(stderr, "Wrong para.");
+    return EXIT_FAILURE;
+  }
+  printf("  File: ‘%s’\n", argv[1]);
+
+  if (lstat(argv[1], &sb) == -1) {
+    perror("...");
+    return EXIT_FAILURE;
+  }
+  char * s = malloc(50 * sizeof(*s));
+  idFileType(sb, s);
   printf("  Size: %-10lu\tBlocks: %-10lu IO Block: %-6lu %s\n",
          sb.st_size,
          sb.st_blocks,

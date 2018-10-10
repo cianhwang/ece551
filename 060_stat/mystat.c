@@ -87,49 +87,61 @@ void idFileReadable(struct stat sb, char * s) {
 }
 
 int main(int argc, char ** argv) {
-  struct stat sb;
-  if (argc != 2) {
-    fprintf(stderr, "Wrong para.");
+  if (argc < 2) {
+    fprintf(stderr, "Wrong para.\n");
     return EXIT_FAILURE;
   }
-  printf("  File: ‘%s’\n", argv[1]);
+  for (int i = 1; i < argc; ++i) {
+    struct stat sb;
+    printf("  File: ‘%s’\n", argv[i]);
 
-  if (lstat(argv[1], &sb) == -1) {
-    perror("...");
-    return EXIT_FAILURE;
+    if (lstat(argv[i], &sb) == -1) {
+      perror("...");
+      return EXIT_FAILURE;
+    }
+    char * s = malloc(50 * sizeof(*s));
+    idFileType(sb, s);
+    printf("  Size: %-10lu\tBlocks: %-10lu IO Block: %-6lu %s\n",
+           sb.st_size,
+           sb.st_blocks,
+           sb.st_blksize,
+           s);
+    if (!(S_ISCHR(sb.st_mode) || S_ISBLK(sb.st_mode))) {
+      printf("Device: %lxh/%lud\tInode: %-10lu  Links: %lu\n",
+             sb.st_dev,
+             sb.st_dev,
+             sb.st_ino,
+             sb.st_nlink);
+    }
+    else {
+      printf("Device: %lxh/%lud\tInode: %-10lu  Links: %-5lu Device type: %d,%d\n",
+             sb.st_dev,
+             sb.st_dev,
+             sb.st_ino,
+             sb.st_nlink,
+             major(sb.st_dev),
+             minor(sb.st_dev));
+    }
+    s = realloc(s, 11 * sizeof(*s));
+    idFileReadable(sb, s);
+
+    printf("Access: (%04o/%s)  Uid: (%5d/%8s)   Gid: (%5d/%8s)\n",
+           sb.st_mode & ~S_IFMT,
+           s,
+           getpwuid(sb.st_uid)->pw_uid,
+           getpwuid(sb.st_uid)->pw_name,
+           getgrgid(sb.st_gid)->gr_gid,
+           getgrgid(sb.st_gid)->gr_name);
+    free(s);
+    char * atime = time2str(&sb.st_atime, sb.st_atim.tv_nsec);
+    char * mtime = time2str(&sb.st_mtime, sb.st_mtim.tv_nsec);
+    char * ctime = time2str(&sb.st_ctime, sb.st_ctim.tv_nsec);
+    printf("Access: %s\n", atime);
+    printf("Modify: %s\n", mtime);
+    printf("Change: %s\n", ctime);
+    printf(" Birth: -\n");
+    free(atime);
+    free(mtime);
+    free(ctime);
   }
-  char * s = malloc(50 * sizeof(*s));
-  idFileType(sb, s);
-  printf("  Size: %-10lu\tBlocks: %-10lu IO Block: %-6lu %s\n",
-         sb.st_size,
-         sb.st_blocks,
-         sb.st_blksize,
-         s);
-
-  printf("Device: %lxh/%lud\tInode: %-10lu  Links: %lu\n",
-         (long)major(sb.st_dev),
-         (long)minor(sb.st_dev),
-         sb.st_ino,
-         sb.st_nlink);
-  s = realloc(s, 11 * sizeof(*s));
-  idFileReadable(sb, s);
-
-  printf("Access: (%04o/%s)  Uid: (%5d/%8s)   Gid: (%5d/%8s)\n",
-         sb.st_mode & ~S_IFMT,
-         s,
-         getpwuid(sb.st_uid)->pw_uid,
-         getpwuid(sb.st_uid)->pw_name,
-         getgrgid(sb.st_gid)->gr_gid,
-         getgrgid(sb.st_gid)->gr_name);
-  free(s);
-  char * atime = time2str(&sb.st_atime, sb.st_atim.tv_nsec);
-  char * mtime = time2str(&sb.st_mtime, sb.st_mtim.tv_nsec);
-  char * ctime = time2str(&sb.st_ctime, sb.st_ctim.tv_nsec);
-  printf("Access: %s\n", atime);
-  printf("Modify: %s\n", mtime);
-  printf("Change: %s\n", ctime);
-  printf(" Birth: -\n");
-  free(atime);
-  free(mtime);
-  free(ctime);
 }

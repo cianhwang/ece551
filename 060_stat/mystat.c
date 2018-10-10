@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <sys/sysmacros.h>
 #include <sys/types.h>
 #include <time.h>
 #include <unistd.h>
@@ -99,13 +100,13 @@ int main(int argc, char ** argv) {
       return EXIT_FAILURE;
     }
     if (!S_ISLNK(sb.st_mode)) {
-      printf("  File: ‘%s’\n", argv[i]);
+      printf("  File: %s\n", argv[i]);
     }
     else {
       char linktarget[256];
       ssize_t len = readlink(argv[i], linktarget, 256);
       linktarget[len] = '\0';
-      printf("  File: ‘%s’ -> ‘%s’\n", argv[i], linktarget);
+      printf("  File: %s -> %s\n", argv[i], linktarget);
     }
     char * s = malloc(50 * sizeof(*s));
     idFileType(sb, s);
@@ -127,8 +128,8 @@ int main(int argc, char ** argv) {
              sb.st_dev,
              sb.st_ino,
              sb.st_nlink,
-             major(sb.st_dev),
-             minor(sb.st_dev));
+             major(sb.st_rdev),
+             minor(sb.st_rdev));
     }
     s = realloc(s, 11 * sizeof(*s));
     idFileReadable(sb, s);

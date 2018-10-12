@@ -97,7 +97,7 @@ int main(int argc, char ** argv) {
 
     if (lstat(argv[i], &sb) == -1) {
       perror("...");
-      return EXIT_FAILURE;
+      continue;
     }
     if (!S_ISLNK(sb.st_mode)) {
       printf("  File: %s\n", argv[i]);

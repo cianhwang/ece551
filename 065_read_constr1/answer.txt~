@@ -1,0 +1,13 @@
+First loop
+Creating MyClass
+Second loop
+Math resulted in a=4 b=4
+Math resulted in a=8 b=3
+Math resulted in a=12 b=2
+Math resulted in a=16 b=1
+Third loop
+Destroying with a=4 b=4
+Destroying with a=8 b=3
+Destroying with a=12 b=2
+Destroying with a=16 b=1
+Done looping

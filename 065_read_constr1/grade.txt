@@ -1,0 +1,6 @@
+Grading at 10/12/2018:21:44:34.790904
+For commit ID 01969d958d688f89caf987ce6b094cc06227ec3b
+Attempting to compile:
+You do not have a Makefile
+
+Overall Grade: FAILED

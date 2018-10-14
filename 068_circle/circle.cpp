@@ -22,17 +22,7 @@ double Circle::intersectionArea(const Circle & otherCircle) {
   else {
     double x = (a * a - b * b + dis * dis) / (2 * dis * a);
     double y = (-a * a + b * b + dis * dis) / (2 * dis * b);
-    int signA = 1;
-    int signB = 1;
-    if (x < 0) {
-      signA = -1;
-      std::cout << "x < 0" << std::endl;
-    }
-    if (y < 0) {
-      signB = -1;
-      std::cout << "y < 0" << std::endl;
-    }
-    return 2 * a * a * acos(x) - signA * a * a * sin(acos(x)) * x + 2 * b * b * acos(y) -
-           signB * b * b * sin(acos(y)) * y;
+    return a * a * acos(x) - 0.5 * a * a * sin(2 * acos(x)) + b * b * acos(y) -
+           0.5 * b * b * sin(2 * acos(y));
   }
 }

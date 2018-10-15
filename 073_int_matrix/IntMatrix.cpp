@@ -1,40 +1,88 @@
 #include "IntMatrix.h"
 
-IntMatrix::IntMatrix(){
+IntMatrix::IntMatrix() : numRows(0), numColumns(0), rows(NULL) {}
+IntMatrix::IntMatrix(int r, int c) : numRows(r), numColumns(c), rows(new IntArray *) {
+  *rows = new IntArray[r];
+  for (int i = 0; i < r; ++i) {
+    (*rows)[i] = IntArray(c);
+  }
 }
-IntMatrix::IntMatrix(int r, int c) {
-}
-IntMatrix::IntMatrix(const IntMatrix & rhs)  {
-
+IntMatrix::IntMatrix(const IntMatrix & rhs) :
+    numRows(rhs.numRows),
+    numColumns(rhs.numColumns),
+    rows(new IntArray *) {
+  *rows = new IntArray[numRows];
+  for (int i = 0; i < rhs.numRows; ++i) {
+    (*rows)[i] = (*rhs.rows)[i];
+  }
 }
 IntMatrix::~IntMatrix() {
-
+  delete[](*rows);
+  delete rows;
 }
-IntMatrix &IntMatrix::operator=(const IntMatrix & rhs) {
+IntMatrix & IntMatrix::operator=(const IntMatrix & rhs) {
+  if (this != &rhs) {
+    IntArray ** temp = new IntArray *;
+    *temp = new IntArray[rhs.numColumns];
 
+    for (int i = 0; i < rhs.numColumns; ++i) {
+      (*temp)[i] = (*rhs.rows)[i];
+    }
+    delete[](*rows);
+    delete rows;
+    rows = temp;
+    numRows = rhs.numRows;
+    numColumns = rhs.numColumns;
+  }
+  return *this;
 }
 int IntMatrix::getRows() const {
-
+  return numRows;
 }
 int IntMatrix::getColumns() const {
-
+  return numColumns;
 }
 const IntArray & IntMatrix::operator[](int index) const {
-
+  assert(index < numRows);
+  return (*rows)[index];
 }
-IntArray & IntMatrix::operator[](int index){
-
+IntArray & IntMatrix::operator[](int index) {
+  assert(index < numRows);
+  return (*rows)[index];
 }
-
-
 
 bool IntMatrix::operator==(const IntMatrix & rhs) const {
-
+  bool flag = true;
+  if (numRows != rhs.numRows) {
+    flag = false;
+  }
+  for (int i = 0; i < numRows; ++i) {
+    if ((*rows)[i] != (*rhs.rows)[i]) {
+      flag = false;
+    }
+  }
+  return flag;
 }
 
 IntMatrix IntMatrix::operator+(const IntMatrix & rhs) const {
-
+  assert((numRows == rhs.numRows) && (numColumns == rhs.numColumns));
+  IntMatrix temp(*this);
+  for (int i = 0; i < numRows; ++i) {
+    for (int j = 0; j < numColumns; ++j) {
+      temp[i][j] += rhs[i][j];
+    }
+  }
+  return temp;
 }
 
 std::ostream & operator<<(std::ostream & s, const IntMatrix & rhs) {
+  s.write("[ ", 2);
+  for (int i = 0; i < rhs.getRows(); ++i) {
+    s << rhs[i];
+    if (i != rhs.getRows() - 1) {
+      s.write(",\n", 2);
+    }
+  }
+  s.write(" ]", 2);
+  return s;
 }

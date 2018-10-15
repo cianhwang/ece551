@@ -1,11 +1,15 @@
 #include "IntMatrix.h"
 
-IntMatrix::IntMatrix() : numRows(0), numColumns(0), rows(NULL) {}
+IntMatrix::IntMatrix() : numRows(0), numColumns(0), rows(new IntArray *) {
+  *rows = NULL;
+  std::cout << "Default Init." << std::endl;
+}
 IntMatrix::IntMatrix(int r, int c) : numRows(r), numColumns(c), rows(new IntArray *) {
   *rows = new IntArray[r];
   for (int i = 0; i < r; ++i) {
     (*rows)[i] = IntArray(c);
   }
+  std::cout << "2nd Init." << std::endl;
 }
 IntMatrix::IntMatrix(const IntMatrix & rhs) :
     numRows(rhs.numRows),
@@ -15,17 +19,19 @@ IntMatrix::IntMatrix(const IntMatrix & rhs) :
   for (int i = 0; i < rhs.numRows; ++i) {
     (*rows)[i] = (*rhs.rows)[i];
   }
+  std::cout << "3rd Init." << std::endl;
 }
 IntMatrix::~IntMatrix() {
   delete[](*rows);
   delete rows;
+  std::cout << "Something Distroyed." << std::endl;
 }
 IntMatrix & IntMatrix::operator=(const IntMatrix & rhs) {
   if (this != &rhs) {
     IntArray ** temp = new IntArray *;
-    *temp = new IntArray[rhs.numColumns];
+    *temp = new IntArray[rhs.numRows];
 
-    for (int i = 0; i < rhs.numColumns; ++i) {
+    for (int i = 0; i < rhs.numRows; ++i) {
       (*temp)[i] = (*rhs.rows)[i];
     }
     delete[](*rows);
@@ -66,7 +72,7 @@ bool IntMatrix::operator==(const IntMatrix & rhs) const {
 
 IntMatrix IntMatrix::operator+(const IntMatrix & rhs) const {
   assert((numRows == rhs.numRows) && (numColumns == rhs.numColumns));
-  IntMatrix temp(*this);
+  IntMatrix temp = *this;
   for (int i = 0; i < numRows; ++i) {
     for (int j = 0; j < numColumns; ++j) {
       temp[i][j] += rhs[i][j];

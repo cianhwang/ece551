@@ -21,7 +21,7 @@ char * time2str(const time_t * when, long ns) {
   return ans;
 }
 
-void idFileType(struct stat sb, char * s) {
+void idFileType(struct stat sb, char * s) {  // this function aims to find the type of file
   switch (sb.st_mode & S_IFMT) {
     case S_IFBLK:
       strcpy(s, "block special file");
@@ -49,7 +49,7 @@ void idFileType(struct stat sb, char * s) {
   }
 }
 
-void idFileReadable(struct stat sb, char * s) {
+void idFileReadable(struct stat sb, char * s) {  // this function check the readability of file
   switch (sb.st_mode & S_IFMT) {
     case S_IFBLK:
       s[0] = 'b';
@@ -84,7 +84,7 @@ void idFileReadable(struct stat sb, char * s) {
   s[7] = ((sb.st_mode & S_IROTH) == 0) ? '-' : 'r';
   s[8] = ((sb.st_mode & S_IWOTH) == 0) ? '-' : 'w';
   s[9] = ((sb.st_mode & S_IXOTH) == 0) ? '-' : 'x';
-  s[10] = '\0';
+  s[10] = '\0';  // end of a string.
 }
 
 int main(int argc, char ** argv) {
@@ -92,7 +92,7 @@ int main(int argc, char ** argv) {
     fprintf(stderr, "Wrong para.\n");
     return EXIT_FAILURE;
   }
-  for (int i = 1; i < argc; ++i) {
+  for (int i = 1; i < argc; ++i) {  // for each file ...
     struct stat sb;
 
     if (lstat(argv[i], &sb) == -1) {
@@ -131,7 +131,7 @@ int main(int argc, char ** argv) {
              major(sb.st_rdev),
              minor(sb.st_rdev));
     }
-    s = realloc(s, 11 * sizeof(*s));
+    s = realloc(s, 11 * sizeof(*s));  // last space for '\0'
     idFileReadable(sb, s);
 
     printf("Access: (%04o/%s)  Uid: (%5d/%8s)   Gid: (%5d/%8s)\n",

@@ -13,8 +13,13 @@ int main(int argc, char ** argv) {
   if (argc == 1) {
     std::vector<string> v;
     string s;
+    bool flag = false;
     while (std::getline(std::cin, s)) {
       v.push_back(s);
+      flag = true;
+    }
+    if (!flag) {
+      std::cerr << "..." << std::endl;
     }
 
     std::sort(v.begin(), v.end());

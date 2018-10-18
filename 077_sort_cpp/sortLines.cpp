@@ -28,6 +28,9 @@ int main(int argc, char ** argv) {
       string s;
       std::ifstream inFile;
       inFile.open(argv[i]);
+      if (inFile.fail()) {
+        std::cerr << "ERROR!" << std::endl;
+      }
       while (std::getline(inFile, s)) {
         v.push_back(s);
       }

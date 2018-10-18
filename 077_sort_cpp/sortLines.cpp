@@ -9,6 +9,7 @@ using std::string;
 int main(int argc, char ** argv) {
   if (argc < 1) {
     std::cerr << "ERROR." << std::endl;
+    return EXIT_FAILURE;
   }
   if (argc == 1) {
     std::vector<string> v;
@@ -20,6 +21,7 @@ int main(int argc, char ** argv) {
     }
     if (!flag) {
       std::cerr << "..." << std::endl;
+      return EXIT_FAILURE;
     }
 
     std::sort(v.begin(), v.end());
@@ -35,6 +37,7 @@ int main(int argc, char ** argv) {
       inFile.open(argv[i]);
       if (inFile.fail()) {
         std::cerr << "ERROR!" << std::endl;
+        return EXIT_FAILURE;
       }
       while (std::getline(inFile, s)) {
         v.push_back(s);

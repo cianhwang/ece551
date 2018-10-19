@@ -1,26 +1,26 @@
-Grading at 10/19/2018:00:52:18.488342
-For commit ID 08de9f9b2b77672debd8c390a9dff389787e6f72
+Grading at 10/19/2018:00:58:53.543850
+For commit ID e1830081ae1bf656a90af3433a84da5b341b1d6c
 -----------------------------------------------
 testcase 1 : Testing with Matrix<int>
 ...compiling...
-/tmp/ccjyT6Or.o: In function `main':
-test.cpp:(.text+0x89d): undefined reference to `Matrix<int>::operator[](int) const'
-collect2: error: ld returned 1 exit status
-The code did not compile.  This test failed.
+The code compiled.
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 2 : Testing with Matrix<std::string>
 ...compiling...
-/tmp/ccrmy8n5.o: In function `main':
-test.cpp:(.text+0x906): undefined reference to `Matrix<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::operator[](int) const'
-collect2: error: ld returned 1 exit status
-The code did not compile.  This test failed.
+The code compiled.
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 3 : Testing with Matrix<(a custom class we wrote)>
 ...compiling...
-/tmp/ccb4a4UI.o: In function `main':
-test.cpp:(.text+0x906): undefined reference to `Matrix<Tester>::operator[](int) const'
-collect2: error: ld returned 1 exit status
-The code did not compile.  This test failed.
+The code compiled.
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 --------------------------------------------
 Preparing to test assert fails...
 Compiling assertion failure tester...
@@ -45,4 +45,4 @@ testcase 7 :  operator+: different number of columns
 Your file matched the expected output
 Testcase passed
 
-Overall Grade: F
+Overall Grade: C

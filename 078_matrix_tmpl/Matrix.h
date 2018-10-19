@@ -80,6 +80,12 @@ vector<T> & Matrix<T>::operator[](int index) {
 }
 
 template<typename T>
+const vector<T> & Matrix<T>::operator[](int index) const {
+  assert(index < nRow);
+  return (*rows)[index];
+}
+
+template<typename T>
 bool Matrix<T>::operator==(const Matrix<T> & rhs) const {
   bool flag = true;
   if (nRow != rhs.nRow) {
@@ -88,6 +94,7 @@ bool Matrix<T>::operator==(const Matrix<T> & rhs) const {
   for (int i = 0; i < nRow; ++i) {
     if ((*rows)[i] != (*rhs.rows)[i]) {
       flag = false;
+      break;
     }
   }
   return flag;

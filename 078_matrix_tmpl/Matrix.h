@@ -75,12 +75,14 @@ Matrix<T> & Matrix<T>::operator=(const Matrix<T> & rhs) {
 
 template<typename T>
 vector<T> & Matrix<T>::operator[](int index) {
+  assert(index >= 0);
   assert(index < nRow);
   return (*rows)[index];
 }
 
 template<typename T>
 const vector<T> & Matrix<T>::operator[](int index) const {
+  assert(index >= 0);
   assert(index < nRow);
   return (*rows)[index];
 }

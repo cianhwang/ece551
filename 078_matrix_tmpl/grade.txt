@@ -1,5 +1,5 @@
-Grading at 10/19/2018:00:58:53.543850
-For commit ID e1830081ae1bf656a90af3433a84da5b341b1d6c
+Grading at 10/19/2018:01:02:04.974859
+For commit ID d549f632ef00e68c537751078b27570b84342db3
 -----------------------------------------------
 testcase 1 : Testing with Matrix<int>
 ...compiling...
@@ -32,8 +32,9 @@ Your file matched the expected output
 Testcase passed
 -----------------------------------------------
 testcase 5 :  operator[]: row number too low
-  - Valgrind reported errors
-Valgrind reported errors (test failed).
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed
 -----------------------------------------------
 testcase 6 :  operator+: different number of rows
   - Valgrind was clean (no errors, no memory leaks)
@@ -45,4 +46,4 @@ testcase 7 :  operator+: different number of columns
 Your file matched the expected output
 Testcase passed
 
-Overall Grade: C
+Overall Grade: A

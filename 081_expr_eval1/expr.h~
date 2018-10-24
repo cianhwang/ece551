@@ -1,0 +1,50 @@
+#ifndef EXPR_H
+#define EXPR_H
+#include <sstream>
+#include <string>
+
+class Expression
+{
+ protected:
+  std::ostringstream stm;
+
+ public:
+  Expression() {}
+  virtual ~Expression() {}
+  virtual std::string toString() const = 0;
+};
+
+class NumExpression : public Expression
+{
+ private:
+  long n;
+
+ public:
+  NumExpression(long num) : n(num) { stm << num; }
+  virtual ~NumExpression() {}
+  virtual std::string toString() const { return stm.str(); }
+};
+
+class SignExpression : public Expression
+{
+ protected:
+  Expression * a;
+  Expression * b;
+  std::string sign;
+
+ public:
+  SignExpression(Expression * lhs, Expression * rhs, std::string sgn) : a(lhs), b(rhs), sign(sgn) {
+    stm << "(" << a->toString() << sign << b->toString() << ")";
+  }
+  virtual ~SignExpression() {}
+  virtual std::string toString() const { return stm.str(); }
+};
+
+class PlusExpression : public SignExpression
+{
+ public:
+  PlusExpression(Expression * lhs, Expression * rhs) : SignExpression(lhs, rhs, " + ") {}
+  virtual ~PlusExpression() {}
+};
+
+#endif

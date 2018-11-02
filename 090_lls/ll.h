@@ -4,6 +4,7 @@
 
 #include <cstdlib>
 #include <exception>
+#include <iostream>
 
 //YOUR CODE GOES HERE
 template<typename T>
@@ -17,6 +18,10 @@ class LinkedList
     Node * next;
     Node * prev;
     Node() : next(NULL), prev(NULL) {}
+    Node(T dat) : data(dat), next(NULL), prev(NULL) {}
+    Node(T dat, Node * nex) : data(dat), next(nex), prev(NULL) {}
+    Node(T dat, Node * nex, Node * pre) : data(dat), next(nex), prev(pre) {}
+
     /*    Node(const Node & rhs) {}
     Node & operator=(const Node & rhs) {}
     ~Node() {}*/
@@ -25,113 +30,125 @@ class LinkedList
   Node * tail;
   int size;
 
+  Node * remove(const T & item, Node * current, bool & flag) {
+    if (current == NULL) {
+      return NULL;
+    }
+    if (item == current->data) {
+      Node * ans = current->next;
+      delete current;
+      flag = true;
+      return ans;
+    }
+    current->next = remove(item, current->next, flag);
+    return current;
+  }
+
  public:
-  LinkedList() : head(NULL), tail(NULL), size(0) {}
-  LinkedList(const LinkedList & rhs) {
-    size = rhs.size;
-    for (int i = 0; i < size; ++i) {
-      addBack(rhs[i]);  //??
+  LinkedList() : head(NULL), tail(NULL), size(0) {}  //ok
+  LinkedList(const LinkedList & rhs) : head(NULL), tail(NULL), size(rhs.size) {
+    if (size > 0) {
+      head = new Node(rhs.head->data);
+      Node * curr = head;
+      Node * rhsCurr = rhs.head;
+      while (rhsCurr->next != NULL) {
+        curr->next = new Node(rhsCurr->next->data);
+        curr->next->prev = curr;
+        curr = curr->next;
+        rhsCurr = rhsCurr->next;
+      }
+      tail = curr;
     }
   }
   LinkedList & operator=(const LinkedList & rhs) {
-    size = rhs.size;
     if (this != &rhs) {
+      while (head != NULL) {
+        Node * temp = head->next;
+        delete head;
+        head = temp;
+      }
+      tail = NULL;
+      size = rhs.size;
       for (int i = 0; i < size; ++i) {
         addBack(rhs[i]);  //??
       }
     }
+    return *this;
   }
-  ~LinkedList() {
+  ~LinkedList() {  // ok
     while (head != NULL) {
-      Node * temp = head;
-      head = head->next;
-      delete temp;
+      Node * temp = head->next;
+      delete head;
+      head = temp;
     }
-    tail = NULL;
   }
-  void addFront(const T & item) {
-    if (head == NULL) {
-      head = new Node();
-      head->data = item;
-      head->next = head->prev = NULL;
+  void addFront(const T & item) {  //ok
+    head = new Node(item, head);
+    if (tail == NULL) {
       tail = head;
     }
     else {
-      Node * temp = head;
-      head = new Node();
-      head->data = item;
-      head->next = temp;
-      head->prev = NULL;
+      head->next->prev = head;
     }
-    size += 1;
+    ++size;
   }
-  void addBack(const T & item) {
+  void addBack(const T & item) {  //ok
+    tail = new Node(item, NULL, tail);
     if (head == NULL) {
-      addFront(item);
+      head = tail;
     }
     else {
-      Node * temp = tail;
-      tail = new Node();
-      tail->data = item;
-      tail->prev = temp;
-      tail->next = NULL;
+      tail->prev->next = tail;
     }
-    size += 1;
+    ++size;
   }
-  bool remove(const T & item) {
+  bool remove(const T & item) {  //ok
     bool flag = false;
-    Node * temp = head;
-    while (temp != NULL && temp->data != item) {
-      temp = temp->next;
-    }
-    if (temp != NULL) {
-      flag = true;
-      size -= 1;
-      if (size == 0) {
-        delete head;
-        head = tail = NULL;
-      }
-      else {
-        if (temp->prev != NULL) {
-          temp->prev->next = temp->next;
-        }
-        if (temp->next != NULL) {
-          temp->next->prev = temp->prev;
-        }
-        delete temp;
-      }
+    head = remove(item, head, flag);
+    if (flag) {
+      --size;
     }
     return flag;
   }
   T & operator[](int index) {
-    assert(index >= 0 && index < size);
     Node * temp = head;
-    int i;
-    for (i = 0; i < index; ++i) {
-      temp = temp->next;
+    try {
+      for (int i = 0; i < index; ++i) {
+        temp = temp->next;
+      }
+    }
+    catch (const std::exception & e) {
+      std::cout << e.what() << std::endl;
+      throw;
     }
     return temp->data;
   }
   const T & operator[](int index) const {
-    assert(index >= 0 && index < size);
     Node * temp = head;
-    int i;
-    for (i = 0; i < index; ++i) {
-      temp = temp->next;
+    try {
+      for (int i = 0; i < index; ++i) {
+        temp = temp->next;
+      }
+    }
+    catch (const std::exception & e) {
+      std::cout << e.what() << std::endl;
+      throw;
     }
     return temp->data;
   }
-  int find(const T & item) const {
+  int find(const T & item) const {  //ok
     int idx = -1;
-    for (int i = 0; i < size; ++i) {
-      if ((*this)[i] == item) {
-        idx = i;
-        break;
+    Node * temp = head;
+    while (temp != NULL) {
+      ++idx;
+      if (temp->data == item) {
+        return idx;
       }
+      temp = temp->next;
     }
-    return idx;
+    return -1;
   }
-  int getSize() { return size; }
+  int getSize() const { return size; }  //ok
 };
 
 #endif

@@ -1,22 +1,25 @@
-Grading at 11/02/2018:18:08:56.452971
-For commit ID 94e15d57483ef7d0fd3d496b8477968fa2aed86c
+Grading at 11/02/2018:18:17:52.349512
+For commit ID c757ca57cec4f331f8985595ad8eaf11c483777f
 -----------------------------------------------
 testcase 1 : Testing with LinkedList<int>
 ...compiling...
 The code compiled.
-  - Valgrind reported errors
-Valgrind reported errors (test failed).
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 2 : Testing with LinkedList<std::string>
 ...compiling...
 The code compiled.
-  - Valgrind reported errors
-Valgrind reported errors (test failed).
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 -----------------------------------------------
 testcase 3 : Testing with LinkedList<(a custom class we wrote)>
 ...compiling...
 The code compiled.
-  - Valgrind reported errors
-Valgrind reported errors (test failed).
+  - Valgrind was clean (no errors, no memory leaks)
+Your file matched the expected output
+Testcase passed 
 
-Overall Grade: F
+Overall Grade: A

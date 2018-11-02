@@ -62,14 +62,14 @@ class LinkedList
   }
   LinkedList & operator=(const LinkedList & rhs) {
     if (this != &rhs) {
-      /*  while (head != NULL) {
+      while (head != NULL) {
         Node * temp = head->next;
         delete head;
         head = temp;
       }
       tail = NULL;
       size = rhs.size;
-      for (int i = 0; i < size; ++i) {
+      /*for (int i = 0; i < size; ++i) {
         addBack(rhs[i]);  //??
 	}*/
       if (size > 0) {

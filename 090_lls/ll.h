@@ -103,12 +103,41 @@ class LinkedList
     ++size;
   }
   bool remove(const T & item) {  //ok
-    bool flag = false;
-    head = remove(item, head, flag);
-    if (flag) {
-      --size;
+    Node * temp = head;
+    if (temp == NULL) {
+      return false;
     }
-    return flag;
+    if (temp->data == item) {
+      head = head->next;
+      delete temp;
+      if (head != NULL) {
+        head->prev = NULL;
+      }
+      else {
+        tail = NULL;
+      }
+      --size;
+      return true;
+    }
+    while (temp->next != NULL && temp->next->data != item) {
+      temp = temp->next;
+    }
+    if (temp->next == NULL) {
+      return false;
+    }
+    else {
+      Node * Next = temp->next;
+      temp->next = temp->next->next;
+      if (temp->next != NULL) {
+        temp->next->prev = temp;
+      }
+      else {
+        tail = temp;
+      }
+      delete Next;
+      --size;
+      return true;
+    }
   }
   T & operator[](int index) {
     Node * temp = head;

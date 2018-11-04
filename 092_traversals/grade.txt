@@ -1,0 +1,24 @@
+Grading at 11/04/2018:00:18:42.928206
+For commit ID ec61312796322e1e6394cf36cada1c5bfaee6bdc
+Comparing answer1.txt
+Line_1_did_not_match
+Line_2_did_not_match
+Line_3_did_not_match
+Your file did not match the expected ouput
+ answer1.txt is incorrect
+Comparing answer2.txt
+Line_1_did_not_match
+Line_2_did_not_match
+Your file did not match the expected ouput
+ answer2.txt is incorrect
+Comparing answer3.txt to one possible solution
+ (two child delete uses left, then all the way right)
+Line_1_did_not_match
+Line_3_did_not_match
+Your file did not match the expected ouput
+Comparing answer3.txt to the other possible solution
+ (two child delete uses right, then all the way left)
+Your file matched the expected output
+ answer3.txt is correct
+
+Overall Grade: FAILED

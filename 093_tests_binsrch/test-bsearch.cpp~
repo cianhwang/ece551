@@ -1,0 +1,63 @@
+#include <iostream>
+
+#include "function.h"
+
+class CountedIntFn : public Function<int, int>
+{
+ protected:
+  unsigned remaining;
+  Function<int, int> * f;
+  const char * mesg;
+
+ public:
+  CountedIntFn(unsigned n, Function<int, int> * fn, const char * m) :
+      remaining(n),
+      f(fn),
+      mesg(m) {}
+  virtual int invoke(int arg) {
+    if (remaining == 0) {
+      fprintf(stderr, "Too many function invocations in %s\n", mesg);
+      exit(EXIT_FAILURE);
+    }
+    remaining--;
+    return f->invoke(arg);
+  }
+  virtual ~CountedIntFn() {}
+};
+
+void check(Function<int, int> * f, int low, int high, int expected_ans); /* {
+  int temp = low + (high - low) / 2;
+  int ans = f->invoke(temp);
+  while (ans != expected_ans) {
+    if (ans > expected_ans) {
+      high = temp;
+      temp = low + (temp - low) / 2;
+      ans = f->invoke(temp);
+    }
+    else {
+      low = temp;
+      temp = high - (high - temp) / 2;
+      ans = f->invoke(temp);
+    }
+  }
+  }*/
+
+class func1 : public Function<int, int>
+{
+ public:
+  virtual int invoke(int arg) { return arg * arg; }
+  virtual ~func1() {}
+};
+
+int main(void) {
+  Function<int, int> * f1 = new func1;
+  Function<int, int> * c = new CountedIntFn(1, f1, "haha");
+  check(c, 0, 0, 0);
+  check(c, 5, 3, 100);
+  Function<int, int> * c2 = new CountedIntFn(4, f1, "haha");
+  check(c2, 0, 100, 2500);
+  delete f1;
+  delete c;
+  delete c2;
+  return EXIT_SUCCESS;
+}

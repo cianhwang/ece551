@@ -37,7 +37,7 @@ class BstSet : public Set<T>
     if (rootRhs == NULL) {
       return NULL;
     }
-    Node * root = new Node(rootRhs->mapDat.first, rootRhs->mapDat.second, NULL);
+    Node * root = new Node(rootRhs->data, NULL);
     root->lnode = construct_helper(rootRhs->lnode);
     root->rnode = construct_helper(rootRhs->rnode);
     return root;
@@ -65,7 +65,7 @@ class BstSet : public Set<T>
         while (curr->rnode != NULL) {
           curr = curr->rnode;
         }
-        root->dat = curr->dat;
+        root->data = curr->data;
         root->lnode = remove_helper(root->lnode, curr->data);
       }
     }
@@ -114,7 +114,7 @@ class BstSet : public Set<T>
       Node * parent = NULL;
       while ((*curr) != NULL) {
         parent = *curr;
-        if (key < (*curr)->mapDat.first) {
+        if (key < (*curr)->data) {
           curr = &((*curr)->lnode);
         }
         else {
@@ -128,10 +128,10 @@ class BstSet : public Set<T>
   virtual bool contains(const T & key) const {
     Node * const * curr = &root;
     while (*curr != NULL) {
-      if (key < (*curr)->mapDat.first) {
+      if (key < (*curr)->data) {
         curr = &((*curr)->lnode);
       }
-      else if (key > (*curr)->mapDat.first) {
+      else if (key > (*curr)->data) {
         curr = &((*curr)->rnode);
       }
       else {

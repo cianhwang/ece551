@@ -1,0 +1,23 @@
+#include <iostream>
+
+#include "bstmap.h"
+#include "map.h"
+int main(void) {
+  BstMap<int, std::string> m;
+  m.add(5, "x");
+  m.add(10, "w");
+  m.add(3, "-");
+  m.add(6, "ad");
+  m.add(15, "p");
+  m.add(9, "--");
+  m.Print();
+  std::cout << m.lookup(10) << std::endl;
+  std::cout << m.lookup(3) << std::endl;
+  std::cout << m.lookup(5) << std::endl;
+  m.remove(15);
+  m.remove(6);
+  m.remove(5);
+  m.Print();
+
+  return 0;
+}

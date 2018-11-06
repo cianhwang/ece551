@@ -1,0 +1,196 @@
+#ifndef BSTMAP_H
+#define BSTMAP_H
+
+#include <iostream>
+
+#include "map.h"
+
+template<typename K, typename V>
+class BstMap : public Map<K, V>
+{
+ private:
+  class Node
+  {
+   public:
+    std::pair<K, V> mapDat;
+    Node * lnode;
+    Node * rnode;
+    Node * parent;
+
+   public:
+    Node() : lnode(NULL), rnode(NULL), parent(NULL) {}
+    Node(K key, V val) : lnode(NULL), rnode(NULL), parent(NULL) {
+      mapDat.first = key;
+      mapDat.second = val;
+    }
+    Node(K key, V val, Node * par) : lnode(NULL), rnode(NULL), parent(par) {
+      mapDat.first = key;
+      mapDat.second = val;
+    }
+    Node(K key, V val, Node * ln, Node * rn, Node * par) : lnode(ln), rnode(rn), parent(par) {
+      mapDat.first = key;
+      mapDat.second = val;
+    }
+    ~Node() {}
+  };
+  Node * root;
+  void des_helper(Node * root) {
+    if (root == NULL) {
+      return;
+    }
+    des_helper(root->lnode);
+    des_helper(root->rnode);
+    delete root;
+  }
+  Node * construct_helper(Node * rootRhs) {
+    if (rootRhs == NULL) {
+      return NULL;
+    }
+    Node * root = new Node(rootRhs->mapDat.first, rootRhs->mapDat.second, NULL);
+    root->lnode = construct_helper(rootRhs->lnode);
+    root->rnode = construct_helper(rootRhs->rnode);
+    return root;
+  }
+  Node * remove_helper(Node * root, const K & key) {
+    if (key < root->mapDat.first) {
+      root->lnode = remove_helper(root->lnode, key);
+    }
+    else if (key > root->mapDat.first) {
+      root->rnode = remove_helper(root->rnode, key);
+    }
+    else {
+      if (root->lnode == NULL) {
+        Node * temp = root;
+        root = root->rnode;
+        delete temp;
+      }
+      else if (root->rnode == NULL) {
+        Node * temp = root;
+        root = root->lnode;
+        delete temp;
+      }
+      else {
+        Node * curr = root->lnode;
+        while (curr->rnode != NULL) {
+          curr = curr->rnode;
+        }
+        root->mapDat = curr->mapDat;
+        root->lnode = remove_helper(root->lnode, curr->mapDat.first);
+      }
+    }
+    return root;
+  }
+  void print_helper(const Node * root) const {
+    if (root == NULL) {
+      return;
+    }
+    std::cout << root->mapDat.first << ' ';
+    print_helper(root->lnode);
+    print_helper(root->rnode);
+  }
+  void print_helper2(const Node * root) const {
+    if (root == NULL) {
+      return;
+    }
+    print_helper2(root->lnode);
+    std::cout << root->mapDat.first << ' ';
+    print_helper2(root->rnode);
+  }
+
+ public:
+  BstMap() : root(NULL) {}
+  BstMap(const BstMap & rhs) { root = construct_helper(rhs.root); }
+  BstMap & operator=(const BstMap & rhs) {
+    Node * temp = construct_helper(rhs.root);
+    des_helper(root);
+    root = temp;
+  }
+  ~BstMap() { des_helper(root); }  // destroy
+  void Print() const {
+    std::cout << "Pre: ";
+    print_helper(root);
+    std::cout << std::endl;
+    std::cout << "In: ";
+    print_helper2(root);
+    std::cout << std::endl;
+  }
+  virtual void add(const K & key, const V & value) {
+    Node ** curr = &root;
+    Node * parent = NULL;
+    while ((*curr) != NULL) {
+      parent = *curr;
+      if (key < (*curr)->mapDat.first) {
+        curr = &((*curr)->lnode);
+      }
+      else {
+        curr = &((*curr)->rnode);
+      }
+    }
+    Node * newNode = new Node(key, value, parent);
+    *curr = newNode;
+  }
+  virtual const V & lookup(const K & key) const throw(std::invalid_argument) {
+    Node * const * curr = &root;
+    while (*curr != NULL) {
+      if (key < (*curr)->mapDat.first) {
+        curr = &((*curr)->lnode);
+      }
+      else if (key > (*curr)->mapDat.first) {
+        curr = &((*curr)->rnode);
+      }
+      else {
+        return (*curr)->mapDat.second;
+      }
+    }
+    throw std::invalid_argument("Key not found");
+  }
+  virtual void remove(const K & key) {
+    root = remove_helper(root, key);
+    /*    Node ** curr = &root;
+    while (*curr != NULL) {
+      if (key < (*curr)->mapDat.first) {
+        curr = &((*curr)->lnode);
+      }
+      else if (key > (*curr)->mapDat.first) {
+        curr = &((*curr)->rnode);
+      }
+      else {
+        if ((*curr)->lnode == NULL) {
+          if ((*curr)->parent->lnode == *curr) {
+            (*curr)->parent->lnode = (*curr)->rnode;
+          }
+          else {
+            (*curr)->parent->rnode = (*curr)->rnode;
+          }
+          delete *curr;
+        }
+        else if ((*curr)->rnode == NULL) {
+          if ((*curr)->parent->lnode == *curr) {
+            (*curr)->parent->lnode = (*curr)->lnode;
+          }
+          else {
+            (*curr)->parent->rnode = (*curr)->lnode;
+          }
+          delete *curr;
+        }
+        else {
+          Node * temp = *curr;
+          curr = &((*curr)->lnode);
+          while ((*curr)->rnode != NULL) {
+            curr = &((*curr)->rnode);
+          }
+          temp->mapDat = (*curr)->mapDat;
+          if ((*curr)->parent != temp) {
+            (*curr)->parent->rnode = (*curr)->lnode;
+          }
+          else {
+            (*curr)->parent->lnode = (*curr)->lnode;
+          }
+          delete *curr;
+        }
+      }
+      }*/
+  }
+};
+
+#endif

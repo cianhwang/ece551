@@ -101,9 +101,12 @@ class BstMap : public Map<K, V>
   BstMap() : root(NULL) {}
   BstMap(const BstMap & rhs) { root = construct_helper(rhs.root); }
   BstMap & operator=(const BstMap & rhs) {
-    Node * temp = construct_helper(rhs.root);
-    des_helper(root);
-    root = temp;
+    if (this != &rhs) {
+      Node * temp = construct_helper(rhs.root);
+      des_helper(root);
+      root = temp;
+    }
+    return *this;
   }
   ~BstMap() { des_helper(root); }  // destroy
   void Print() const {

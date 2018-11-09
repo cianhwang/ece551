@@ -1,5 +1,5 @@
-Grading at 11/09/2018:21:05:06.740263
-For commit ID 508cb70563958d705f893ed9852b9d934792a82e
+Grading at 11/09/2018:21:33:51.696144
+For commit ID 8a0694a8fb09918f7559bc9c470ae89f4da3f6ba
 Running make
 g++ -std=c++11 -pedantic -Wall -Werror -o dedup dedup.cpp
 Found executable dedup
@@ -7,26 +7,1074 @@ Found executable dedup
 testcase 1 : ./dedup /var/dedup/d000
   - Valgrind was clean (no errors, no memory leaks)
 Checking output:
-Testcase passed 
+**Testcase failed **
+Expected: # but found 17576780057726601476
+Expected: # but found 669543200140054838
+Expected: # but found 1172864238359480439
+Expected: # but found 7425825761422201412
+Expected: # but found 17601705522740651267
+Expected: # but found 11800491054759695118
+Expected: # but found 12198876675041544599
+Expected: # but found 6486166134353700749
+Expected: # but found 9391379466599442977
+Expected: # but found 7966655047203716057
+Expected: # but found 16027278188336990574
+Expected: # but found 5352508690565101981
+Expected: # but found 14167816869528437495
+Expected: # but found 1728396360697268704
+Expected: # but found 14228668882747348340
+Expected: # but found 12727062067718996027
+Expected: # but found 970548508211993828
+Expected: # but found 425035733700612383
+Expected: # but found 4670498230589918812
+Expected: # but found 10997979566337152644
+Expected: # but found 5501396224758035145
+Expected: # but found 10090837019441189622
+Expected: # but found 11546463597955914159
+Expected: # but found 8616159070312828494
+Expected: # but found 11608261684448129545
+Expected: # but found 1537427482206719679
+Expected: # but found 238243933377439125
+Expected: # but found 2132962024960138329
+Expected: # but found 12123069802518529003
+Expected: # but found 11057672519999991483
+Expected: # but found 1045760689375026859
+Expected: # but found 394259682091877930
+Expected: # but found 12498582694206420684
+Expected: # but found 13556547385948624624
+Expected: # but found 6609888360660579401
+Expected: # but found 17190011271762142517
+Expected: # but found 10360264103375426179
+Expected: # but found 9938375976597956564
+Expected: # but found 3680914164812808733
+Expected: # but found 14159558056165767295
+Expected: # but found 17943307428157506349
+Expected: # but found 8802488184091300394
+Expected: # but found 15953660377196590561
+Expected: # but found 13338314157302071598
+Expected: # but found 5605785681998825439
+Expected: # but found 10979348591710715608
+Expected: # but found 692431852667812453
+Expected: # but found 9702242366284585875
+Expected: # but found 12452896016835077098
+Expected: # but found 15924926443765523383
+Expected: # but found 7948450112455397825
+Expected: # but found 3960026941210412627
+Expected: # but found 14170759705428729242
+Expected: # but found 4525139729870680804
+Expected: # but found 7905769489427724071
+Expected: # but found 5320427728664623691
+Expected: # but found 1645462698888754625
+Expected: # but found 7578852167778833373
+Expected: # but found 10135030223513336705
+Expected: # but found 4230402778979549199
+Expected: # but found 11817997467184436096
+Expected: # but found 11351540512228755466
+Expected: # but found 5658039755582613679
+Expected: # but found 361431685577988221
+Expected: # but found 12602840278915483297
+Expected: # but found 1595019267709658603
+Expected: # but found 16549775169605657693
+Expected: # but found 254141737019779432
+Expected: # but found 7986821581941230581
+Expected: # but found 12032127847173500712
+Expected: # but found 174172701666120459
+Expected: # but found 4367986819925678851
+Expected: # but found 5447329391342025987
+Expected: # but found 8198891319723539239
+Expected: # but found 17642543879529598161
+Expected: # but found 14999488482537880113
+Expected: # but found 6469310349803727643
+Expected: # but found 1525401540200976289
+Expected: # but found 9916939331081476547
+Expected: # but found 11057672519999991483
+Expected: # but found 6486166134353700749
+Expected: # but found 6756666138629390823
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/x/file7
+Expected: # but found 8616159070312828494
+Expected: # but found 392310702827422472
+Expected: # but found 13890490274153533711
+Expected: # but found 12478089778786556217
+Expected: # but found 12478089778786556217
+Expected: # but found 13273277585162513973
+Expected: # but found 6275449772841634344
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/x/file17
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/x/file18
+Expected: # but found 18374231460916216803
+Expected: # but found 13829020043416417082
+Expected: # but found 13890490274153533711
+Expected: # but found 8589501715967994411
+Expected: # but found 7645176336964523786
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/x/file27
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/x/file28
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/x/file29
+Expected: # but found 522035252459431772
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/x/file32
+Expected: # but found 14170759705428729242
+Expected: # but found 5320427728664623691
+Expected: # but found 1728396360697268704
+Expected: # but found 11800491054759695118
+Expected: # but found 6212954891109676536
+Expected: # but found 5476002812413184267
+Expected: # but found 17749602856725976922
+Expected: # but found 254141737019779432
+Expected: # but found 14516040676825136013
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/x/file46
+Expected: # but found 6971820460513599996
+Expected: # but found 8198891319723539239
+Expected: # but found 12444589130832059531
+Expected: # but found 5320427728664623691
+Expected: # but found 14949126528041032174
+Expected: # but found 1852827121558710527
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/x/y/file5
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/x/y/file6
+Expected: # but found 12486975008020843230
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/x/y/file9
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/x/y/file10
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/x/y/file11
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/x/y/file12
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/x/y/file13
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/x/y/file14
+Expected: # but found 11575515669871501013
+Expected: # but found 6456126989472608011
+Expected: # but found 9445906142723614357
+Expected: # but found 1396928370161620580
+Expected: # but found 14744069592475224874
+Expected: # but found 17190011271762142517
+Expected: # but found 3492188359030600413
+Expected: # but found 3680914164812808733
+Expected: # but found 7175882063655533824
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/x/y/file27
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/x/y/file28
+Expected: # but found 15813252061678527778
+Expected: # but found 17809568821867225175
+Expected: # but found 11351540512228755466
+Expected: # but found 6469310349803727643
+Expected: # but found 16960728155321058216
+Expected: # but found 11761759549020094084
+Expected: # but found 11761759549020094084
+Expected: # but found 12452896016835077098
+Expected: # but found 5423716805149580268
+Expected: # but found 16549775169605657693
+Expected: # but found 15466860108545732773
+Expected: # but found 5320427728664623691
+Expected: # but found 1396928370161620580
+Expected: # but found 1273446808012625412
+Expected: # but found 667568412006257659
+Expected: # but found 2028039673478350937
+Expected: # but found 9244424414843566200
+Expected: # but found 9960742763473305931
+Expected: # but found 3456217159798341090
+Expected: # but found 6253794935238435938
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/file169
+Expected: # but found 15566195140183403281
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/file172
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/file173
+Expected: # but found 2788300187930048098
+Expected: # but found 17631312068866036858
+Expected: # but found compare.
+Expected: # but found 15950002901261105869
+Expected: # but found 15440903316742972948
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/file181
+Expected: # but found 15931269740322401039
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/file184
+Expected: # but found 1487061584066594212
+Expected: # but found 1250741213351437132
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/file189
+Expected: # but found 12930477559504996260
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/file192
+Expected: # but found 14684569978944398012
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/file195
+Expected: # but found 15498786265382404022
+Expected: # but found 5358455335604178809
+Expected: # but found 10153958144438389257
+Expected: # but found 11798710933742155959
+Expected: # but found 2435217467084957671
+Expected: # but found 6380184385041943113
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/file207
+Expected: # but found 15368152299327445120
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/file210
+Expected: # but found 14864372014406828701
+Expected: # but found 3456217159798341090
+Expected: # but found 4581245862294619160
+Expected: # but found 7694312883184860928
+Expected: # but found 17690997259649698346
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/file220
+Expected: # but found 8589501715967994411
+Expected: # but found 3699913569342515767
+Expected: # but found 10375340638969230171
+Expected: # but found 2547452182724076969
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/file228
+Expected: # but found 5653282957099208681
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/file231
+Expected: # but found 11761759549020094084
+Expected: # but found 17337595718577443755
+Expected: # but found 16751513739328008315
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/file237
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/file238
+Expected: # but found 11549078705676384480
+Expected: # but found 13193327842881023549
+Expected: # but found 12486975008020843230
+Expected: # but found 17850995295516480707
+Expected: # but found 9916939331081476547
+Expected: # but found 9138151510486261069
+Expected: # but found 11234142163555095130
+Expected: # but found 17749602856725976922
+Expected: # but found 16732185668400464795
+Expected: # but found 4156054466395166611
+Expected: # but found 13334416985876275326
+Expected: # but found 2488394211097582635
+Expected: # but found 12082889805415206716
+Expected: # but found 2008182840209152455
+Expected: # but found 13352451743022088478
+Expected: # but found 13738701483324552489
+Expected: # but found 17400471801717302845
+Expected: # but found 4942612620744396409
+Expected: # but found 10847878734400099776
+Expected: # but found 11240114104681460431
+Expected: # but found 7882269226532656072
+Expected: # but found 2650405547433637059
+Expected: # but found 6275449772841634344
+Expected: # but found 12936043347093093732
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/file278
+Expected: # but found 730802228858376857
+Expected: # but found 10931037799299145193
+Expected: # but found 16748224885567058920
+Expected: # but found compare.
+Expected: # but found rm /var/dedup/d000/file285
+Expected: # but found 4493755600335790380
+Expected: # but found 5187450507006508078
+Expected: # but found 16222389964983372324
+Expected: # but found 17507218703495000418
+Expected: # but found 18343232505262207754
+Expected: # but found 6971820460513599996
+Expected: # but found 12939624713008118976
+Expected: # but found 8937166231525203476
+Expected: # but found 13431751232017473819
+Expected: # but found 1423611477439315814
+Expected: # but found 14668937019719242902
+Expected: # but found 17982484555096198697
+Expected: # but found 327304755895839317
+Expected: # but found 448456748269007394
+Expected: # but found 12110156361345503102
+Expected: # but found 7010399146766941658
+Expected: # but found 18322905179243372566
+Expected: # but found 12306072191246152459
+Expected: # but found 18326531698737056970
+Expected: # but found 14256395117992266234
+Expected: # but found 12428062234349870150
+Expected: # but found 1481165884142909073
+Expected: # but found 3630023424299674385
+Expected: # but found 2395928100415963634
+Expected: # but found 14986858407544015112
+Expected: # but found 1145183358507880336
+Expected: # but found 10978643361316120457
+Expected: # but found 4912009931830151632
+Expected: # but found 12109246962919319418
+Expected: # but found 17701233926657026442
+Expected: # but found 14487493810272549829
+Expected: # but found 13936789547669330379
+Expected: # but found 3379143671171068340
+Expected: # but found 7678555009645879425
+Expected: # but found 6169833849233627457
+Expected: # but found 17361355702321580135
+Expected: # but found 5776595184633211750
+Expected: # but found 10270670001979678066
+Expected: # but found 8306767433254446140
+Expected: # but found 15125543445551563106
+Expected: # but found 17073611714953956105
+Expected: # but found 6179314850311487244
+Expected: # but found 16053524404640517443
+Expected: # but found 2084939103494822012
+Expected: # but found 1436711766949656106
+Expected: # but found 10648513446056848170
+Expected: # but found 17604404305633144990
+Expected: # but found 12710276419292195972
+Expected: # but found 16593243460150869940
+Expected: # but found 17956530617822544403
+Expected: # but found 10803818239214675115
+Expected: # but found 17410647969315589777
+Expected: # but found 13854006040932581840
+Expected: # but found 15992362959157791859
+Expected: # but found 3121822247480234118
+Expected: # but found 4752912634887257703
+Expected: # but found 1106596477360686165
+Bad format:
+  10641019866676249204
+  
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file103
+    /var/dedup/d000/x/y/file31
+    /var/dedup/d000/x/y/file5
+  You deleted:
+    /var/dedup/d000/x/y/file31
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file116
+    /var/dedup/d000/x/file28
+    /var/dedup/d000/x/file34
+  You deleted:
+    /var/dedup/d000/x/file34
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file117
+    /var/dedup/d000/x/y/file12
+    /var/dedup/d000/x/y/file48
+  You deleted:
+    /var/dedup/d000/x/y/file48
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file118
+    /var/dedup/d000/x/y/file6
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file119
+    /var/dedup/d000/x/y/file22
+    /var/dedup/d000/x/y/file9
+  You deleted:
+    /var/dedup/d000/x/y/file22
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file130
+    /var/dedup/d000/x/y/file14
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file135
+    /var/dedup/d000/x/y/file27
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file136
+    /var/dedup/d000/x/y/file13
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file16
+    /var/dedup/d000/x/file5
+    /var/dedup/d000/x/y/file28
+  You deleted:
+    /var/dedup/d000/x/file5
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file169
+    /var/dedup/d000/x/file33
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file17
+    /var/dedup/d000/x/file18
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file172
+    /var/dedup/d000/x/y/file40
+    /var/dedup/d000/x/y/file49
+  You deleted:
+    /var/dedup/d000/x/y/file49
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file173
+    /var/dedup/d000/x/y/file16
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file181
+    /var/dedup/d000/x/file45
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file184
+    /var/dedup/d000/x/file14
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file189
+    /var/dedup/d000/x/y/file36
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file192
+    /var/dedup/d000/x/file19
+    /var/dedup/d000/x/y/file30
+  You deleted:
+    /var/dedup/d000/x/y/file30
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file195
+    /var/dedup/d000/x/file41
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file207
+    /var/dedup/d000/x/y/file39
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file21
+    /var/dedup/d000/x/file27
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file210
+    /var/dedup/d000/x/file49
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file220
+    /var/dedup/d000/x/y/file19
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file228
+    /var/dedup/d000/x/file15
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file231
+    /var/dedup/d000/x/y/file15
+    /var/dedup/d000/x/y/file45
+  You deleted:
+    /var/dedup/d000/x/y/file45
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file237
+    /var/dedup/d000/x/file8
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file238
+    /var/dedup/d000/x/file20
+    /var/dedup/d000/x/y/file11
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file245
+    /var/dedup/d000/x/file2
+    /var/dedup/d000/x/file32
+  You deleted:
+    /var/dedup/d000/file245
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file278
+    /var/dedup/d000/x/file6
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file285
+    /var/dedup/d000/x/file21
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file6
+    /var/dedup/d000/x/file29
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file64
+    /var/dedup/d000/x/y/file10
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file71
+    /var/dedup/d000/x/file17
+    /var/dedup/d000/x/file46
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file88
+    /var/dedup/d000/x/file7
+    /var/dedup/d000/x/y/file25
+  You deleted:
+    /var/dedup/d000/x/y/file25
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file184
+    /var/dedup/d000/x/file14
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file228
+    /var/dedup/d000/x/file15
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file71
+    /var/dedup/d000/x/file17
+    /var/dedup/d000/x/file46
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file17
+    /var/dedup/d000/x/file18
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file192
+    /var/dedup/d000/x/file19
+    /var/dedup/d000/x/y/file30
+  You deleted:
+    /var/dedup/d000/x/y/file30
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file245
+    /var/dedup/d000/x/file2
+    /var/dedup/d000/x/file32
+  You deleted:
+    /var/dedup/d000/file245
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file238
+    /var/dedup/d000/x/file20
+    /var/dedup/d000/x/y/file11
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file285
+    /var/dedup/d000/x/file21
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file21
+    /var/dedup/d000/x/file27
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file116
+    /var/dedup/d000/x/file28
+    /var/dedup/d000/x/file34
+  You deleted:
+    /var/dedup/d000/x/file34
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file6
+    /var/dedup/d000/x/file29
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file245
+    /var/dedup/d000/x/file2
+    /var/dedup/d000/x/file32
+  You deleted:
+    /var/dedup/d000/file245
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file169
+    /var/dedup/d000/x/file33
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file116
+    /var/dedup/d000/x/file28
+    /var/dedup/d000/x/file34
+  You deleted:
+    /var/dedup/d000/x/file34
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file195
+    /var/dedup/d000/x/file41
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file181
+    /var/dedup/d000/x/file45
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file71
+    /var/dedup/d000/x/file17
+    /var/dedup/d000/x/file46
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file210
+    /var/dedup/d000/x/file49
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file16
+    /var/dedup/d000/x/file5
+    /var/dedup/d000/x/y/file28
+  You deleted:
+    /var/dedup/d000/x/file5
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file278
+    /var/dedup/d000/x/file6
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file88
+    /var/dedup/d000/x/file7
+    /var/dedup/d000/x/y/file25
+  You deleted:
+    /var/dedup/d000/x/y/file25
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file237
+    /var/dedup/d000/x/file8
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file64
+    /var/dedup/d000/x/y/file10
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file238
+    /var/dedup/d000/x/file20
+    /var/dedup/d000/x/y/file11
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file117
+    /var/dedup/d000/x/y/file12
+    /var/dedup/d000/x/y/file48
+  You deleted:
+    /var/dedup/d000/x/y/file48
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file136
+    /var/dedup/d000/x/y/file13
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file130
+    /var/dedup/d000/x/y/file14
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file231
+    /var/dedup/d000/x/y/file15
+    /var/dedup/d000/x/y/file45
+  You deleted:
+    /var/dedup/d000/x/y/file45
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file173
+    /var/dedup/d000/x/y/file16
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file220
+    /var/dedup/d000/x/y/file19
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file119
+    /var/dedup/d000/x/y/file22
+    /var/dedup/d000/x/y/file9
+  You deleted:
+    /var/dedup/d000/x/y/file22
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file88
+    /var/dedup/d000/x/file7
+    /var/dedup/d000/x/y/file25
+  You deleted:
+    /var/dedup/d000/x/y/file25
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file135
+    /var/dedup/d000/x/y/file27
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file16
+    /var/dedup/d000/x/file5
+    /var/dedup/d000/x/y/file28
+  You deleted:
+    /var/dedup/d000/x/file5
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file192
+    /var/dedup/d000/x/file19
+    /var/dedup/d000/x/y/file30
+  You deleted:
+    /var/dedup/d000/x/y/file30
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file103
+    /var/dedup/d000/x/y/file31
+    /var/dedup/d000/x/y/file5
+  You deleted:
+    /var/dedup/d000/x/y/file31
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file189
+    /var/dedup/d000/x/y/file36
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file207
+    /var/dedup/d000/x/y/file39
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file172
+    /var/dedup/d000/x/y/file40
+    /var/dedup/d000/x/y/file49
+  You deleted:
+    /var/dedup/d000/x/y/file49
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file231
+    /var/dedup/d000/x/y/file15
+    /var/dedup/d000/x/y/file45
+  You deleted:
+    /var/dedup/d000/x/y/file45
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file117
+    /var/dedup/d000/x/y/file12
+    /var/dedup/d000/x/y/file48
+  You deleted:
+    /var/dedup/d000/x/y/file48
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file172
+    /var/dedup/d000/x/y/file40
+    /var/dedup/d000/x/y/file49
+  You deleted:
+    /var/dedup/d000/x/y/file49
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file103
+    /var/dedup/d000/x/y/file31
+    /var/dedup/d000/x/y/file5
+  You deleted:
+    /var/dedup/d000/x/y/file31
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file118
+    /var/dedup/d000/x/y/file6
+  You deleted:
+These groupings were incorrect:
+  Expected all but one of:
+    /var/dedup/d000/file119
+    /var/dedup/d000/x/y/file22
+    /var/dedup/d000/x/y/file9
+  You deleted:
+    /var/dedup/d000/x/y/file22
 -----------------------------------------------
 testcase 2 : ./dedup /var/dedup/d001
-  - Valgrind reported errors
+  - Valgrind showed memory leaks
 Valgrind reported errors (test failed).
-==41620== Memcheck, a memory error detector
-==41620== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==41620== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==41620== Command: ./dedup /var/dedup/d001
-==41620== Parent PID: 41618
-==41620== 
+==19739== Memcheck, a memory error detector
+==19739== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19739== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==19739== Command: ./dedup /var/dedup/d001
+==19739== Parent PID: 19737
+==19739== 
+==19739== 
+==19739== Process terminating with default action of signal 13 (SIGPIPE)
+==19739==    at 0x54F2154: write (write.c:27)
+==19739==    by 0x546D1BC: _IO_file_write@@GLIBC_2.2.5 (fileops.c:1203)
+==19739==    by 0x546EF50: new_do_write (fileops.c:457)
+==19739==    by 0x546EF50: _IO_do_write@@GLIBC_2.2.5 (fileops.c:433)
+==19739==    by 0x546C787: _IO_file_sync@@GLIBC_2.2.5 (fileops.c:813)
+==19739==    by 0x546087C: fflush (iofflush.c:40)
+==19739==    by 0x4F52761: std::ostream::flush() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19739==    by 0x10A278: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739== 
+==19739== HEAP SUMMARY:
+==19739==     in use at exit: 196,696 bytes in 5,413 blocks
+==19739==   total heap usage: 29,065 allocs, 23,652 frees, 36,332,058 bytes allocated
+==19739== 
+==19739== 24 bytes in 1 blocks are still reachable in loss record 1 of 9
+==19739==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19739==    by 0x4F676BC: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19739==    by 0x10A08F: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739== 
+==19739== 24 bytes in 1 blocks are still reachable in loss record 2 of 9
+==19739==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19739==    by 0x4F6754C: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19739==    by 0x10A149: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739== 
+==19739== 552 bytes in 1 blocks are still reachable in loss record 3 of 9
+==19739==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19739==    by 0x5460E49: __fopen_internal (iofopen.c:65)
+==19739==    by 0x5460E49: fopen@@GLIBC_2.2.5 (iofopen.c:89)
+==19739==    by 0x4EF09E3: std::__basic_file<char>::open(char const*, std::_Ios_Openmode, int) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19739==    by 0x4F32B6D: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19739==    by 0x4F33BE1: std::basic_ifstream<char, std::char_traits<char> >::basic_ifstream(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19739==    by 0x10A167: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739== 
+==19739== 8,192 bytes in 1 blocks are still reachable in loss record 4 of 9
+==19739==    at 0x4C3089F: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19739==    by 0x4F2E91F: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19739==    by 0x4F32B85: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19739==    by 0x4F33BE1: std::basic_ifstream<char, std::char_traits<char> >::basic_ifstream(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19739==    by 0x10A167: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739== 
+==19739== 15,072 bytes in 470 blocks are still reachable in loss record 5 of 9
+==19739==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19739==    by 0x10B9FD: __gnu_cxx::new_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::allocate(unsigned long, void const*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10B85E: std::allocator_traits<std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::allocate(std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >&, unsigned long) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10B6AF: std::_Vector_base<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_allocate(unsigned long) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10B19F: void std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_realloc_insert<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(__gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10AF05: std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::push_back(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10A48C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10A11C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10A11C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10A11C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739== 
+==19739== 15,271 bytes in 482 blocks are still reachable in loss record 6 of 9
+==19739==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19739==    by 0x4F6754C: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19739==    by 0x10B52D: void __gnu_cxx::new_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::construct<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10B11F: void std::allocator_traits<std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::construct<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10B1DF: void std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_realloc_insert<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(__gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10AF05: std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::push_back(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10A48C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10A11C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10A11C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10A11C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739== 
+==19739== 32,816 bytes in 1 blocks are still reachable in loss record 7 of 9
+==19739==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19739==    by 0x54C19B5: __alloc_dir (opendir.c:216)
+==19739==    by 0x54C19B5: opendir_tail (opendir.c:136)
+==19739==    by 0x54C19B5: opendir (opendir.c:190)
+==19739==    by 0x109E7E: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739== 
+==19739== 52,585 bytes in 2,244 blocks are still reachable in loss record 8 of 9
+==19739==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19739==    by 0x4F6754C: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19739==    by 0x10B52D: void __gnu_cxx::new_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::construct<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10B11F: void std::allocator_traits<std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::construct<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10B1DF: void std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_realloc_insert<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(__gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10AF05: std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::push_back(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10A48C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739== 
+==19739== 72,160 bytes in 2,212 blocks are still reachable in loss record 9 of 9
+==19739==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19739==    by 0x10B9FD: __gnu_cxx::new_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::allocate(unsigned long, void const*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10B85E: std::allocator_traits<std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::allocate(std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >&, unsigned long) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10B6AF: std::_Vector_base<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_allocate(unsigned long) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10B19F: void std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_realloc_insert<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(__gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10AF05: std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::push_back(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10A48C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19739== 
+==19739== LEAK SUMMARY:
+==19739==    definitely lost: 0 bytes in 0 blocks
+==19739==    indirectly lost: 0 bytes in 0 blocks
+==19739==      possibly lost: 0 bytes in 0 blocks
+==19739==    still reachable: 196,696 bytes in 5,413 blocks
+==19739==         suppressed: 0 bytes in 0 blocks
+==19739== 
+==19739== For counts of detected and suppressed errors, rerun with: -v
+==19739== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 -----------------------------------------------
 testcase 3 : ./dedup /var/dedup/*
-  - Valgrind reported errors
+  - Valgrind showed memory leaks
 Valgrind reported errors (test failed).
-==43983== Memcheck, a memory error detector
-==43983== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==43983== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==43983== Command: ./dedup /var/dedup/d000 /var/dedup/d001 /var/dedup/d002 /var/dedup/d003 /var/dedup/d004 /var/dedup/d005 /var/dedup/d006 /var/dedup/d007 /var/dedup/d008 /var/dedup/d009
-==43983== Parent PID: 43981
-==43983== 
+==19976== Memcheck, a memory error detector
+==19976== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==19976== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==19976== Command: ./dedup /var/dedup/d000 /var/dedup/d001 /var/dedup/d002 /var/dedup/d003 /var/dedup/d004 /var/dedup/d005 /var/dedup/d006 /var/dedup/d007 /var/dedup/d008 /var/dedup/d009
+==19976== Parent PID: 19974
+==19976== 
+==19976== 
+==19976== Process terminating with default action of signal 13 (SIGPIPE)
+==19976==    at 0x54F2154: write (write.c:27)
+==19976==    by 0x546D1BC: _IO_file_write@@GLIBC_2.2.5 (fileops.c:1203)
+==19976==    by 0x546EF50: new_do_write (fileops.c:457)
+==19976==    by 0x546EF50: _IO_do_write@@GLIBC_2.2.5 (fileops.c:433)
+==19976==    by 0x546C787: _IO_file_sync@@GLIBC_2.2.5 (fileops.c:813)
+==19976==    by 0x546087C: fflush (iofflush.c:40)
+==19976==    by 0x4F52761: std::ostream::flush() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19976==    by 0x10A278: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976== 
+==19976== HEAP SUMMARY:
+==19976==     in use at exit: 172,755 bytes in 4,565 blocks
+==19976==   total heap usage: 29,984 allocs, 25,419 frees, 63,648,572 bytes allocated
+==19976== 
+==19976== 24 bytes in 1 blocks are still reachable in loss record 1 of 13
+==19976==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19976==    by 0x4F676BC: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19976==    by 0x10A08F: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976== 
+==19976== 24 bytes in 1 blocks are still reachable in loss record 2 of 13
+==19976==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19976==    by 0x4F6754C: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19976==    by 0x10A149: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976== 
+==19976== 429 bytes in 16 blocks are still reachable in loss record 3 of 13
+==19976==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19976==    by 0x4F6754C: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19976==    by 0x10B52D: void __gnu_cxx::new_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::construct<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10B11F: void std::allocator_traits<std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::construct<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10B1DF: void std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_realloc_insert<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(__gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10AF05: std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::push_back(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10A48C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10A11C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10A11C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976== 
+==19976== 544 bytes in 16 blocks are still reachable in loss record 4 of 13
+==19976==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19976==    by 0x10B9FD: __gnu_cxx::new_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::allocate(unsigned long, void const*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10B85E: std::allocator_traits<std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::allocate(std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >&, unsigned long) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10B6AF: std::_Vector_base<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_allocate(unsigned long) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10B19F: void std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_realloc_insert<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(__gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10AF05: std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::push_back(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10A48C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10A11C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10A11C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976== 
+==19976== 552 bytes in 1 blocks are still reachable in loss record 5 of 13
+==19976==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19976==    by 0x5460E49: __fopen_internal (iofopen.c:65)
+==19976==    by 0x5460E49: fopen@@GLIBC_2.2.5 (iofopen.c:89)
+==19976==    by 0x4EF09E3: std::__basic_file<char>::open(char const*, std::_Ios_Openmode, int) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19976==    by 0x4F32B6D: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19976==    by 0x4F33BE1: std::basic_ifstream<char, std::char_traits<char> >::basic_ifstream(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19976==    by 0x10A167: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976== 
+==19976== 670 bytes in 27 blocks are still reachable in loss record 6 of 13
+==19976==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19976==    by 0x4F6754C: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19976==    by 0x10B52D: void __gnu_cxx::new_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::construct<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10B11F: void std::allocator_traits<std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::construct<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10B1DF: void std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_realloc_insert<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(__gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10AF05: std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::push_back(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10A48C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10A11C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976== 
+==19976== 832 bytes in 26 blocks are still reachable in loss record 7 of 13
+==19976==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19976==    by 0x10B9FD: __gnu_cxx::new_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::allocate(unsigned long, void const*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10B85E: std::allocator_traits<std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::allocate(std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >&, unsigned long) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10B6AF: std::_Vector_base<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_allocate(unsigned long) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10B19F: void std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_realloc_insert<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(__gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10AF05: std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::push_back(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10A48C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10A11C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976== 
+==19976== 8,192 bytes in 1 blocks are still reachable in loss record 8 of 13
+==19976==    at 0x4C3089F: operator new[](unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19976==    by 0x4F2E91F: std::basic_filebuf<char, std::char_traits<char> >::_M_allocate_internal_buffer() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19976==    by 0x4F32B85: std::basic_filebuf<char, std::char_traits<char> >::open(char const*, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19976==    by 0x4F33BE1: std::basic_ifstream<char, std::char_traits<char> >::basic_ifstream(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::_Ios_Openmode) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19976==    by 0x10A167: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976== 
+==19976== 15,200 bytes in 472 blocks are still reachable in loss record 9 of 13
+==19976==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19976==    by 0x10B9FD: __gnu_cxx::new_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::allocate(unsigned long, void const*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10B85E: std::allocator_traits<std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::allocate(std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >&, unsigned long) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10B6AF: std::_Vector_base<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_allocate(unsigned long) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10B19F: void std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_realloc_insert<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(__gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10AF05: std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::push_back(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10A48C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10A11C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10A11C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10A11C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976== 
+==19976== 15,271 bytes in 482 blocks are still reachable in loss record 10 of 13
+==19976==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19976==    by 0x4F6754C: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19976==    by 0x10B52D: void __gnu_cxx::new_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::construct<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10B11F: void std::allocator_traits<std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::construct<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10B1DF: void std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_realloc_insert<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(__gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10AF05: std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::push_back(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10A48C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10A11C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10A11C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10A11C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976== 
+==19976== 32,816 bytes in 1 blocks are still reachable in loss record 11 of 13
+==19976==    at 0x4C2FB0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19976==    by 0x54C19B5: __alloc_dir (opendir.c:216)
+==19976==    by 0x54C19B5: opendir_tail (opendir.c:136)
+==19976==    by 0x54C19B5: opendir (opendir.c:190)
+==19976==    by 0x109E7E: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976== 
+==19976== 41,209 bytes in 1,774 blocks are still reachable in loss record 12 of 13
+==19976==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19976==    by 0x4F6754C: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.25)
+==19976==    by 0x10B52D: void __gnu_cxx::new_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::construct<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10B11F: void std::allocator_traits<std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::construct<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10B1DF: void std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_realloc_insert<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(__gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10AF05: std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::push_back(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10A48C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976== 
+==19976== 56,992 bytes in 1,747 blocks are still reachable in loss record 13 of 13
+==19976==    at 0x4C3017F: operator new(unsigned long) (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==19976==    by 0x10B9FD: __gnu_cxx::new_allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::allocate(unsigned long, void const*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10B85E: std::allocator_traits<std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::allocate(std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >&, unsigned long) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10B6AF: std::_Vector_base<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_allocate(unsigned long) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10B19F: void std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::_M_realloc_insert<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&>(__gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >*, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10AF05: std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >::push_back(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10A48C: fileVec(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::vector<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::allocator<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > >*) (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976==    by 0x10AA16: main (in /home/ece551db/graderbase/work/qh38.098_dedup.bmVIko/dedup)
+==19976== 
+==19976== LEAK SUMMARY:
+==19976==    definitely lost: 0 bytes in 0 blocks
+==19976==    indirectly lost: 0 bytes in 0 blocks
+==19976==      possibly lost: 0 bytes in 0 blocks
+==19976==    still reachable: 172,755 bytes in 4,565 blocks
+==19976==         suppressed: 0 bytes in 0 blocks
+==19976== 
+==19976== For counts of detected and suppressed errors, rerun with: -v
+==19976== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 Overall Grade: F

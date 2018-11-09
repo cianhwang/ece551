@@ -1,4 +1,7 @@
+#include <assert.h>
+#include <dirent.h>
 #include <linux/limits.h>
+#include <stdio.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -17,6 +20,54 @@ bool isSymlink(std::string filename) {
     return true;
   }
   return false;
+}
+
+bool isDirectory(std::string filename) {
+  struct stat sb;
+  lstat(filename.c_str(), &sb);
+  if ((sb.st_mode & S_IFMT) == S_IFDIR) {
+    return true;
+  }
+  return false;
+}
+
+void fileVec(std::string homeroot, std::vector<std::string> & vec) {
+  char * p1 = realpath(homeroot.c_str(), NULL);
+  homeroot = p1;
+  //  std::cout << homeroot << std::endl;
+  free(p1);
+  if (!isDirectory(homeroot)) {
+    return;
+  }
+  DIR * dirp;
+  struct dirent * directory;
+  dirp = opendir(homeroot.c_str());
+  if (dirp != NULL) {
+    while ((directory = readdir(dirp)) != NULL) {
+      std::string filename(directory->d_name);
+      if (filename == "." || filename == "..") {
+        continue;
+      }
+      else {
+        //std::cout << filename.c_str() << std::endl;
+        char * p2 = realpath((homeroot + "/" + filename).c_str(), NULL);
+        assert(p2 != NULL);
+        std::string absPath(p2);
+
+        free(p2);
+        if (isDirectory(absPath)) {
+          fileVec(absPath, vec);
+        }
+        else if (isSymlink(absPath)) {
+          continue;
+        }
+        else {
+          vec.push_back(absPath);
+        }
+      }
+    }
+    closedir(dirp);
+  }
 }
 
 bool compContent(std::string filename, std::string dupname) {
@@ -44,19 +95,19 @@ void putToShell(std::string filename, std::string dupname) {
     exit(EXIT_FAILURE);
   }
 
-  char * path1 = realpath(filename.c_str(), NULL);
-  char * path2 = realpath(dupname.c_str(), NULL);
-  sh << "#Removing " << path1 << " ";
-  sh << "(duplicate of " << path2 << ").\n\n";
-  sh << "rm " << path1 << std::endl;
+  //  char * path1 = realpath(filename.c_str(), NULL);
+  //char * path2 = realpath(dupname.c_str(), NULL);
+  sh << "#Removing " << filename << " ";
+  sh << "(duplicate of " << dupname << ").\n\n";
+  sh << "rm " << filename << std::endl;
   sh.close();
-  free(path1);
-  free(path2);
+  //  free(path1);
+  //  free(path2);
 }
 
 int main(int argc, char ** argv) {
   if (argc < 2) {
-    perror("Please input file name.");
+    perror("Please input directory name.");
     return EXIT_FAILURE;
   }
   std::ofstream sh;
@@ -68,11 +119,15 @@ int main(int argc, char ** argv) {
   sh.close();
 
   std::vector<std::string> hashTable[97];
+  std::vector<std::string> vec;
   for (int i = 1; i < argc; ++i) {
-    std::string filename(argv[i]);
-    if (isSymlink(filename)) {
-      continue;
-    }
+    std::string root(argv[i]);
+    fileVec(root, vec);
+    //   std::cout << "-finish.\n";
+  }
+  for (unsigned i = 0; i < vec.size(); ++i) {
+    std::string filename = vec[i];
+    //    std::cout << filename << std::endl;
     std::ifstream t(filename);
     std::stringstream buffer;
     buffer << t.rdbuf();
@@ -96,6 +151,5 @@ int main(int argc, char ** argv) {
       hashTable[idx].push_back(filename);
     }
   }
-
   return EXIT_SUCCESS;
 }

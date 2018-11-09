@@ -12,7 +12,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
-
+#define tableSize 65535
 bool isSymlink(std::string filename) {
   struct stat sb;
   lstat(filename.c_str(), &sb);
@@ -68,8 +68,8 @@ void fileVec(std::string homeroot, std::vector<std::string> * hashTable) {
           std::stringstream buffer;
           buffer << t.rdbuf();
           std::hash<std::string> hashStr;
-          int hashNum = 65535;
-          int idx = hashStr(buffer.str()) % hashNum;
+          int idx = hashStr(buffer.str()) % tableSize;
+          std::cout << hashStr(buffer.str()) << std::endl;
           bool dup = false;
           if (hashTable[idx].size() != 0) {  //comparison
             // if same content, output to sh, continue;
@@ -93,6 +93,7 @@ void fileVec(std::string homeroot, std::vector<std::string> * hashTable) {
 }
 
 bool compContent(std::string filename, std::string dupname) {
+  std::cout << "compare." << std::endl;
   //  std::cout << "fun compContent: filename: " << filename << " "
   //      << "dupname: " << dupname << std::endl;
   /*  std::ifstream fs1(filename);
@@ -145,11 +146,11 @@ int main(int argc, char ** argv) {
 
   sh.close(); */
   std::cout << "#!/bin/bash\n\n";
-  std::vector<std::string> hashTable[65535];
+  std::vector<std::string> hashTable[tableSize];
 
   for (int i = 1; i < argc; ++i) {
     std::string root(argv[i]);
-    std::vector<std::string> vec;
+    //    std::vector<std::string> vec;
     fileVec(root, hashTable);
     /*    for (unsigned i = 0; i < vec.size(); ++i) {
       //      std::cout << vec.size() << std::endl;

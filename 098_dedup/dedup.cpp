@@ -45,7 +45,7 @@ void fileVec(std::string homeroot, std::vector<std::string> & vec) {
   if (dirp != NULL) {
     while ((directory = readdir(dirp)) != NULL) {
       std::string filename(directory->d_name);
-      if (filename == "." || filename == "..") {
+      if (filename == "." || filename == ".." || isSymlink(homeroot + "/" + filename)) {
         continue;
       }
       else {
@@ -57,9 +57,6 @@ void fileVec(std::string homeroot, std::vector<std::string> & vec) {
         free(p2);
         if (isDirectory(absPath)) {
           fileVec(absPath, vec);
-        }
-        else if (isSymlink(absPath)) {
-          continue;
         }
         else {
           vec.push_back(absPath);
@@ -73,7 +70,7 @@ void fileVec(std::string homeroot, std::vector<std::string> & vec) {
 bool compContent(std::string filename, std::string dupname) {
   //  std::cout << "fun compContent: filename: " << filename << " "
   //      << "dupname: " << dupname << std::endl;
-  std::ifstream fs1(filename);
+  /*  std::ifstream fs1(filename);
   std::ifstream fs2(filename);
   std::stringstream buf1;
   std::stringstream buf2;
@@ -82,6 +79,11 @@ bool compContent(std::string filename, std::string dupname) {
   //  std::cout << buf1.str() << buf2.str();
   if (filename != dupname && buf1.str() == buf2.str()) {
     // std::cout << "TRUE!" << std::endl;
+    return true;
+  }
+  return false;*/
+  int result = system(("diff " + filename + " " + dupname).c_str());
+  if (filename != dupname && result == 0) {
     return true;
   }
   return false;

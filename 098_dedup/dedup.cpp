@@ -12,7 +12,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#define tableSize 100001
+#define tableSize 65521
 bool isSymlink(std::string filename) {
   struct stat sb;
   lstat(filename.c_str(), &sb);
@@ -76,6 +76,7 @@ void fileVec(std::string homeroot, std::vector<std::string> * hashTable) {
             for (auto const & value : hashTable[idx]) {
               if (compContent(filename, value)) {
                 putToShell(filename, value);
+
                 dup = true;
                 break;
               }
@@ -84,6 +85,9 @@ void fileVec(std::string homeroot, std::vector<std::string> * hashTable) {
           //push_back
           if (!dup) {
             hashTable[idx].push_back(filename);
+          }
+          if (filename == "/var/dedup/d001/acccacab") {
+            break;
           }
         }
       }

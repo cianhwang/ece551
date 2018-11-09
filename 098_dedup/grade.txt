@@ -1,5 +1,5 @@
-Grading at 11/09/2018:20:48:02.623641
-For commit ID 4ec5bf7f849ce0460ff7927ae67a37a599433481
+Grading at 11/09/2018:21:05:06.740263
+For commit ID 508cb70563958d705f893ed9852b9d934792a82e
 Running make
 g++ -std=c++11 -pedantic -Wall -Werror -o dedup dedup.cpp
 Found executable dedup
@@ -12,21 +12,21 @@ Testcase passed
 testcase 2 : ./dedup /var/dedup/d001
   - Valgrind reported errors
 Valgrind reported errors (test failed).
-==6054== Memcheck, a memory error detector
-==6054== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==6054== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==6054== Command: ./dedup /var/dedup/d001
-==6054== Parent PID: 6052
-==6054== 
+==41620== Memcheck, a memory error detector
+==41620== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==41620== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==41620== Command: ./dedup /var/dedup/d001
+==41620== Parent PID: 41618
+==41620== 
 -----------------------------------------------
 testcase 3 : ./dedup /var/dedup/*
   - Valgrind reported errors
 Valgrind reported errors (test failed).
-==8239== Memcheck, a memory error detector
-==8239== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==8239== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==8239== Command: ./dedup /var/dedup/d000 /var/dedup/d001 /var/dedup/d002 /var/dedup/d003 /var/dedup/d004 /var/dedup/d005 /var/dedup/d006 /var/dedup/d007 /var/dedup/d008 /var/dedup/d009
-==8239== Parent PID: 8237
-==8239== 
+==43983== Memcheck, a memory error detector
+==43983== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==43983== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==43983== Command: ./dedup /var/dedup/d000 /var/dedup/d001 /var/dedup/d002 /var/dedup/d003 /var/dedup/d004 /var/dedup/d005 /var/dedup/d006 /var/dedup/d007 /var/dedup/d008 /var/dedup/d009
+==43983== Parent PID: 43981
+==43983== 
 
 Overall Grade: F

@@ -82,7 +82,7 @@ bool compContent(std::string filename, std::string dupname) {
     return true;
   }
   return false;*/
-  int result = system(("diff " + filename + " " + dupname).c_str());
+  int result = system(("diff " + filename + " " + dupname + " > /dev/null 2>&1").c_str());
   if (filename != dupname && result == 0) {
     return true;
   }
@@ -101,7 +101,7 @@ void putToShell(std::string filename, std::string dupname) {
   //char * path2 = realpath(dupname.c_str(), NULL);
   sh << "#Removing " << filename << " ";
   sh << "(duplicate of " << dupname << ").\n\n";
-  sh << "rm " << filename << std::endl;
+  sh << "rm " << filename << "\n\n";
   sh.close();
   //  free(path1);
   //  free(path2);
@@ -117,7 +117,7 @@ int main(int argc, char ** argv) {
   if (!sh.is_open()) {
     exit(EXIT_FAILURE);
   }
-  sh << "#!/bin/bash\n";
+  sh << "#!/bin/bash\n\n";
   sh.close();
 
   std::vector<std::string> hashTable[97];

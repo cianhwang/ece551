@@ -1,4 +1,5 @@
 #!/bin/bash
+
 #Removing /var/dedup/d000/x/file4 (duplicate of /var/dedup/d000/file70).
 
 rm /var/dedup/d000/x/file4

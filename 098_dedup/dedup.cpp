@@ -51,7 +51,7 @@ void fileVec(std::string homeroot, std::vector<std::string> & vec) {
       else {
         //std::cout << filename.c_str() << std::endl;
         char * p2 = realpath((homeroot + "/" + filename).c_str(), NULL);
-        assert(p2 != NULL);
+
         std::string absPath(p2);
 
         free(p2);
@@ -91,18 +91,18 @@ bool compContent(std::string filename, std::string dupname) {
 
 void putToShell(std::string filename, std::string dupname) {
   //  std::cout << "fun puttoshell" << std::endl;
-  std::fstream sh;
-  sh.open("shell.sh", std::fstream::app);
-  if (!sh.is_open()) {
-    exit(EXIT_FAILURE);
-  }
+  //  std::fstream sh;
+  //sh.open("shell.sh", std::fstream::app);
+  //if (!sh.is_open()) {
+  //  exit(EXIT_FAILURE);
+  //}
 
   //  char * path1 = realpath(filename.c_str(), NULL);
   //char * path2 = realpath(dupname.c_str(), NULL);
-  sh << "#Removing " << filename << " ";
-  sh << "(duplicate of " << dupname << ").\n\n";
-  sh << "rm " << filename << "\n\n";
-  sh.close();
+  std::cout << "#Removing " << filename << " ";
+  std::cout << "(duplicate of " << dupname << ").\n\n";
+  std::cout << "rm " << filename << "\n\n";
+  // sh.close();
   //  free(path1);
   //  free(path2);
 }
@@ -112,45 +112,49 @@ int main(int argc, char ** argv) {
     perror("Please input directory name.");
     return EXIT_FAILURE;
   }
-  std::ofstream sh;
+  /* std::ofstream sh;
   sh.open("shell.sh");
   if (!sh.is_open()) {
     exit(EXIT_FAILURE);
   }
-  sh << "#!/bin/bash\n\n";
-  sh.close();
 
-  std::vector<std::string> hashTable[97];
-  std::vector<std::string> vec;
+  sh.close(); */
+  std::cout << "#!/bin/bash\n\n";
+  std::vector<std::string> hashTable[65535];
+
   for (int i = 1; i < argc; ++i) {
     std::string root(argv[i]);
+    std::vector<std::string> vec;
     fileVec(root, vec);
+
     //   std::cout << "-finish.\n";
-  }
-  for (unsigned i = 0; i < vec.size(); ++i) {
-    std::string filename = vec[i];
-    //    std::cout << filename << std::endl;
-    std::ifstream t(filename);
-    std::stringstream buffer;
-    buffer << t.rdbuf();
-    //    std::cout << buffer.str();
-    std::hash<std::string> hashStr;
-    int hashNum = 97;
-    int idx = hashStr(buffer.str()) % hashNum;
-    bool dup = false;
-    if (hashTable[idx].size() != 0) {  //comparison
-      // if same content, output to sh, continue;
-      for (auto const & value : hashTable[idx]) {
-        if (compContent(filename, value)) {
-          putToShell(filename, value);
-          dup = true;
-          break;
+
+    for (unsigned i = 0; i < vec.size(); ++i) {
+      //      std::cout << vec.size() << std::endl;
+      std::string filename = vec[i];
+      //  std::cout << filename << std::endl;
+      std::ifstream t(filename);
+      std::stringstream buffer;
+      buffer << t.rdbuf();
+      //    std::cout << buffer.str();
+      std::hash<std::string> hashStr;
+      int hashNum = 65535;
+      int idx = hashStr(buffer.str()) % hashNum;
+      bool dup = false;
+      if (hashTable[idx].size() != 0) {  //comparison
+        // if same content, output to sh, continue;
+        for (auto const & value : hashTable[idx]) {
+          if (compContent(filename, value)) {
+            putToShell(filename, value);
+            dup = true;
+            break;
+          }
         }
       }
-    }
-    //push_back
-    if (!dup) {
-      hashTable[idx].push_back(filename);
+      //push_back
+      if (!dup) {
+        hashTable[idx].push_back(filename);
+      }
     }
   }
   return EXIT_SUCCESS;

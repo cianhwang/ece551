@@ -69,7 +69,7 @@ void fileVec(std::string homeroot, std::vector<std::string> * hashTable) {
           buffer << t.rdbuf();
           std::hash<std::string> hashStr;
           int idx = hashStr(buffer.str()) % tableSize;
-          std::cout << hashStr(buffer.str()) << std::endl;
+          //          std::cout << hashStr(buffer.str()) << std::endl;
           bool dup = false;
           if (hashTable[idx].size() != 0) {  //comparison
             // if same content, output to sh, continue;
@@ -93,7 +93,7 @@ void fileVec(std::string homeroot, std::vector<std::string> * hashTable) {
 }
 
 bool compContent(std::string filename, std::string dupname) {
-  std::cout << "compare." << std::endl;
+  //  std::cout << "compare." << std::endl;
   //  std::cout << "fun compContent: filename: " << filename << " "
   //      << "dupname: " << dupname << std::endl;
   /*  std::ifstream fs1(filename);

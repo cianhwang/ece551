@@ -12,7 +12,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
-#define tableSize 65535
+#define tableSize 100001
 bool isSymlink(std::string filename) {
   struct stat sb;
   lstat(filename.c_str(), &sb);

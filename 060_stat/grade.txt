@@ -1,4 +1,4 @@
-Grading at 11/10/2018:21:41:24.717097
+Grading at 11/10/2018:23:01:47.953795
 For commit ID edf4e921e3522d02605fbc29659d6da7964f9692
 Attempting to compile mystat.c
 Your code seems to compile fine.
@@ -431,6 +431,6 @@ Note from the grader:
 You have some abstraction, but not enough and still have duplicate code. The main function is still too long. Comments are lacking.
 Total points 4.5 / 9 = 50.00 % 
  -> This is 15% of your overall grade on this assignment
-Total: 0.85 * 85.00 + 0.15 * 50.00=79.75
+Total: 0.85 * 100 + 0.15 * 50.00=92.50
 
-Overall Grade: 79.75
+Overall Grade: 92.50

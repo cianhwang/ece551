@@ -40,7 +40,7 @@ class NumExpression : public Expression
     //  std::cout << "~Numexpression.\n";
   }
   virtual double evaluate() const { return num; }
-  virtual Expression * clone() const { return new NumExpression(num); }
+  virtual Expression * clone() const { return new NumExpression(*this); }
   virtual void assign(map<string, Expression *> & mapping) { return; }
   virtual bool isNumExpr() const { return true; }
   virtual int CountParaNum() const { return 0; }
@@ -57,6 +57,9 @@ class VarExpression : public Expression
   VarExpression(const VarExpression & rhs) : varName(rhs.varName) {
     if (rhs.varExpr != NULL) {
       varExpr = rhs.varExpr->clone();
+    }
+    else {
+      varExpr = NULL;
     }
   }
   /*  VarExpression & operator=(const VarExpression & rhs) {
@@ -157,6 +160,7 @@ class FuncExpression : public Expression
     for (map<string, Expression *>::iterator it = mapping.begin(); it != mapping.end(); ++it) {
       delete it->second;
     }
+
     return;
   }
   virtual bool isNumExpr() const { return false; }

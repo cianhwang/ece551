@@ -39,6 +39,22 @@ Expression * makeExpr(FuncTable & funcTable, string op, map<string, Expression *
   if (op == "+") {
     return new PlusExpression(varMap["x"]->clone(), varMap["y"]->clone());
   }
+  else if (op == "-") {
+    return new MinusExpression(varMap["x"]->clone(), varMap["y"]->clone());
+  }
+  else if (op == "*") {
+    return new TimesExpression(varMap["x"]->clone(), varMap["y"]->clone());
+  }
+  else if (op == "/") {
+    return new DivExpression(varMap["x"]->clone(), varMap["y"]->clone());
+  }
+  else if (op == "%") {
+    return new ModExpression(varMap["x"]->clone(), varMap["y"]->clone());
+  }
+  else if (op == "pow") {
+    return new PowExpression(varMap["x"]->clone(), varMap["y"]->clone());
+  }
+
   if (funcTable.funcTableMap.find(op) != funcTable.funcTableMap.end()) {
     Expression * temp = funcTable[op]->clone();
     temp->assign(varMap);
@@ -115,7 +131,7 @@ Expression * parse(FuncTable & functable, const char ** strp) {
 }
 
 int main(void) {
-  const char * temp = "(+ x y)";
+  const char * temp = "(/ x y)";
   FuncTable funcTable;
   vector<string> paraVec;
   paraVec.push_back("x");
@@ -125,7 +141,7 @@ int main(void) {
   Expression * func = new FuncExpression(expr, paraVec);
   funcTable.addFunc("f", func);
 
-  const char * temp2 = "(+ (f 1 x) x)";
+  const char * temp2 = "(% (f 1 x) y)";
   Expression * expr2 = parse(funcTable, &temp2);
   Expression * func2 = new FuncExpression(expr2, paraVec);
   funcTable.addFunc("g", func2);

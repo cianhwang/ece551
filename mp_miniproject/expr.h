@@ -157,9 +157,9 @@ class FuncExpression : public Expression
       it->second->assign(mapping);
     }
     funcExpr->assign(mapping);
-    for (map<string, Expression *>::iterator it = mapping.begin(); it != mapping.end(); ++it) {
+    /*    for (map<string, Expression *>::iterator it = mapping.begin(); it != mapping.end(); ++it) {
       delete it->second;
-    }
+      }*/
 
     return;
   }

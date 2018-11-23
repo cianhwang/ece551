@@ -37,7 +37,7 @@ void skipSpace(const char ** strp) {
 
 Expression * makeExpr(FuncTable & funcTable, string op, map<string, Expression *> & varMap) {
   if (op == "+") {
-    return new PlusExpression(varMap["x"], varMap["y"]);
+    return new PlusExpression(varMap["x"]->clone(), varMap["y"]->clone());
   }
   if (funcTable.funcTableMap.find(op) != funcTable.funcTableMap.end()) {
     Expression * temp = funcTable[op]->clone();
@@ -65,13 +65,19 @@ Expression * parseOp(FuncTable & functable, const char ** strp) {
   temp = parse(functable, strp);
   opExprMap.insert(pair<string, Expression *>("y", temp));
   skipSpace(strp);
+  Expression * temp2 = NULL;
   if (**strp == ')') {
     *strp = *strp + 1;
-    return makeExpr(functable, op, opExprMap);
+    temp2 = makeExpr(functable, op, opExprMap);
+  }
+  else {
+    std::cerr << "Expected ) but found " << *strp << "\n";
+  }
+  for (map<string, Expression *>::iterator it = opExprMap.begin(); it != opExprMap.end(); ++it) {
+    delete it->second;
   }
 
-  std::cerr << "Expected ) but found " << *strp << "\n";
-  return NULL;
+  return temp2;
 }
 
 Expression * parse(FuncTable & functable, const char ** strp) {
@@ -119,18 +125,18 @@ int main(void) {
   Expression * func = new FuncExpression(expr, paraVec);
   funcTable.addFunc("f", func);
 
-  /*const char *temp2 = "(+ (f 1 x) x)";
-    Expression *expr2 = parse(funcTable, &temp2);
-    Expression *func2 = new FuncExpression(expr2, paraVec);
-    funcTable.addFunc("g", func2);
-    
-    map<string, Expression *> tempMap;
-    tempMap.insert(pair<string, Expression *>("x", new NumExpression(5.0)));
-    tempMap.insert(pair<string, Expression *>("y", new NumExpression(3.0)));
-    Expression *Temp = funcTable["g"]->clone();
-    Temp -> assign(tempMap);
-    std::cout << Temp->evaluate() << std::endl;
-    delete Temp;*/
+  const char * temp2 = "(+ (f 1 x) x)";
+  Expression * expr2 = parse(funcTable, &temp2);
+  Expression * func2 = new FuncExpression(expr2, paraVec);
+  funcTable.addFunc("g", func2);
+
+  map<string, Expression *> tempMap;
+  tempMap.insert(pair<string, Expression *>("x", new NumExpression(5.0)));
+  tempMap.insert(pair<string, Expression *>("y", new NumExpression(3.0)));
+  Expression * Temp = funcTable["g"]->clone();
+  Temp->assign(tempMap);
+  std::cout << Temp->evaluate() << std::endl;
+  delete Temp;
   map<string, Expression *> tempMap2;
   tempMap2.insert(pair<string, Expression *>("x", new NumExpression(12.33)));
   tempMap2.insert(pair<string, Expression *>("y", new NumExpression(3.3)));
@@ -138,12 +144,13 @@ int main(void) {
   Temp2->assign(tempMap2);
   std::cout << Temp2->evaluate() << std::endl;
   delete Temp2;
-  //	for(map<string, Expression *>::iterator it = tempMap.begin(); it != tempMap.end(); ++it){
-  //  delete it->second;
-  //}
-  //  for (map<string, Expression *>::iterator it = tempMap2.begin(); it != tempMap2.end(); ++it) {
-  //  delete it->second;
-  //}
+
+  for (map<string, Expression *>::iterator it = tempMap.begin(); it != tempMap.end(); ++it) {
+    delete it->second;
+  }
+  for (map<string, Expression *>::iterator it = tempMap2.begin(); it != tempMap2.end(); ++it) {
+    delete it->second;
+  }
 
   return EXIT_SUCCESS;
 }

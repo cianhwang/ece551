@@ -1,182 +1,158 @@
 #ifndef EXPR_H
 #define EXPR_H
 
-#include <string>
-#include <cmath>
-#include <map>
-#include <vector>
 #include <iostream>
-#include <assert.h>
+#include <map>
+#include <string>
+#include <vector>
 
 using std::map;
+using std::pair;
 using std::string;
 using std::vector;
 
-class Expression{
+class Expression
+{
  public:
-  virtual double eval() const = 0;
-  virtual ~Expression(){}
-  virtual void setData(map<string, double> &varMap) = 0;
+  virtual ~Expression() {}
+  virtual double evaluate() const = 0;
+  virtual Expression * clone() const = 0;
+  virtual void assign(map<string, Expression *> & mapping) = 0;
+  virtual bool isNumExpr() const = 0;
+  virtual int CountParaNum() const = 0;
 };
 
-class VarExpression: public Expression{
- private:
-  std::string varName;
-  std::map<std::string, double> varMap;
- public:
- VarExpression(std::string _varName):varName(_varName){ 
-    //    std::cout << "VarExpression::varName: " << varName << "\n";
- }
-  virtual double eval() const {
-    std::map<std::string, double>::const_iterator it;
-    it = varMap.find(varName);
-    assert(it != varMap.end());
-    return it->second;
-  }
-  virtual void setData(map<string, double> &_varMap){
-    varMap = _varMap;
-  }
-  virtual ~VarExpression(){}
-};
-
-class NumExpression: public Expression{
+class NumExpression : public Expression
+{
  private:
   double num;
+
  public:
- NumExpression(double _num):num(_num){}
-  virtual double eval() const {return num;}
-  virtual ~NumExpression(){}
-  virtual void setData(map<string, double> &_varMap){
+  NumExpression(double _num) : num(_num) {}
+  NumExpression(const NumExpression & rhs) : num(rhs.num) {}
+  NumExpression & operator=(const NumExpression & rhs) {
+    if (this != &rhs) {
+      num = rhs.num;
+    }
+    return *this;
+  }
+  virtual ~NumExpression() {}
+  virtual double evaluate() const { return num; }
+  virtual Expression * clone() const { return new NumExpression(*this); }
+  virtual void assign(map<string, Expression *> & mapping) { return; }
+  virtual bool isNumExpr() const { return true; }
+  virtual int CountParaNum() const { return 0; }
+};
+
+class VarExpression : public Expression
+{
+ private:
+  string varName;
+  Expression * varExpr;
+
+ public:
+  VarExpression(const string & _varName) : varName(_varName), varExpr(NULL) {}
+  VarExpression(const VarExpression & rhs) : varName(rhs.varName) {
+    if (rhs.varExpr != NULL) {
+      varExpr = rhs.varExpr->clone();
+    }
+  }
+  VarExpression & operator=(const VarExpression & rhs) {
+    if (this != &rhs) {
+      // delete
+      varName = rhs.varName;
+      varExpr = rhs.varExpr->clone();
+    }
+    return *this;
+  }
+  virtual ~VarExpression() { delete varExpr; }
+  virtual double evaluate() const { return varExpr->evaluate(); }
+  virtual Expression * clone() const { return new VarExpression(*this); }
+  virtual void assign(map<string, Expression *> & mapping) {
+    if (varExpr == NULL) {
+      varExpr = mapping.find(varName)->second->clone();
+    }
+    else if (!(varExpr->isNumExpr())) {
+      varExpr->assign(mapping);
+    }
     return;
   }
+  virtual bool isNumExpr() const { return false; }
+  virtual int CountParaNum() const { return 0; }
 };
 
-class UnaryExpression : public Expression{
- protected:
-  Expression *exp;
-  std::string built_in;
- public:
- UnaryExpression():exp(NULL){}
- UnaryExpression(Expression *_exp, std::string _built_in):exp(_exp), built_in(_built_in){}
-  virtual ~UnaryExpression(){
-    delete exp;
-  }
- virtual void setData(map<string, double> &_varMap){
-   exp->setData(_varMap);
-  }
-};
-
-class DoubleExpression : public Expression{
- protected:
-  Expression *lhs;
-  Expression *rhs;
-  std::string sign;
- public:
- DoubleExpression():lhs(NULL), rhs(NULL){}
- DoubleExpression(Expression *_lhs, Expression *_rhs, std::string _sign):lhs(_lhs), rhs(_rhs), sign(_sign){}
-  virtual ~DoubleExpression(){
-    delete lhs;
-    delete rhs;
-  }
- virtual void setData(map<string, double> &_varMap){
-   lhs->setData(_varMap);
-   rhs->setData(_varMap);
-  }
-};
-
-class PlusExpression : public DoubleExpression{
- public:
- PlusExpression(Expression *_lhs, Expression *_rhs):DoubleExpression(_lhs, _rhs, "+"){}
-  virtual double eval() const {return lhs->eval() + rhs->eval();}
-  virtual ~PlusExpression(){}
-};
-
-class MinusExpression : public DoubleExpression{
- public:
- MinusExpression(Expression *_lhs, Expression *_rhs):DoubleExpression(_lhs, _rhs, "-"){}
-  virtual double eval() const {return lhs->eval() - rhs->eval();}
-  virtual ~MinusExpression(){}
-};
-
-class TimesExpression : public DoubleExpression{
- public:
- TimesExpression(Expression *_lhs, Expression *_rhs):DoubleExpression(_lhs, _rhs, "*"){}
-  virtual double eval() const {return lhs->eval() * rhs->eval();}
-  virtual ~TimesExpression(){}
-};
-
-class DivExpression : public DoubleExpression{
- public:
- DivExpression(Expression *_lhs, Expression *_rhs):DoubleExpression(_lhs, _rhs, "/"){}
-  virtual double eval() const {return lhs->eval() / rhs->eval();}
-  virtual ~DivExpression(){}
-};
-
-class ModExpression : public DoubleExpression{
- public:
- ModExpression(Expression *_lhs, Expression *_rhs):DoubleExpression(_lhs, _rhs, "%"){}
-  virtual double eval() const {
-    //    if (std::fmod())
-    return std::fmod(lhs->eval(),rhs->eval());
-  }
-  virtual ~ModExpression(){}
-};
-
-class SinExpression : public UnaryExpression{
- public:
- SinExpression(Expression *_exp):UnaryExpression(_exp, "sin"){}
-  virtual double eval() const {return sin(exp->eval());}
-  virtual ~SinExpression(){}
-};
-
-class CosExpression : public UnaryExpression{
- public:
- CosExpression(Expression *_exp):UnaryExpression(_exp, "cos"){}
-  virtual double eval() const {return cos(exp->eval());}
-  virtual ~CosExpression(){}
-};
-
-class SqrtExpression : public UnaryExpression{
- public:
- SqrtExpression(Expression *_exp):UnaryExpression(_exp, "sqrt"){}
-  virtual double eval() const {return sqrt(exp->eval());}
-  virtual ~SqrtExpression(){}
-};
-
-class LnExpression : public UnaryExpression{
- public:
- LnExpression(Expression *_exp):UnaryExpression(_exp, "ln"){}
-  virtual double eval() const {return log(exp->eval());}
-  virtual ~LnExpression(){}
-};
-
-class PowExpression : public DoubleExpression{
- public:
- PowExpression(Expression *_lhs, Expression *_rhs):DoubleExpression(_lhs, _rhs, "pow"){}
-  virtual double eval() const {return pow(lhs->eval(), rhs->eval());}
-  virtual ~PowExpression(){}
-};
-
-class FuncExpression: public Expression{
+class PlusExpression : public Expression
+{
  private:
-  std::string funcName;
-  Expression *calcLaw;
-  std::map<std::string, Expression *> exprVec;
+  Expression * lhs;
+  Expression * rhs;
+
  public:
- FuncExpression(std::vector<Expression *> _exprVec):exprVec(_exprVec){}
-  virtual double eval() const {
-    return calcLaw->eval();
+  PlusExpression(Expression * _lhs, Expression * _rhs) : lhs(_lhs), rhs(_rhs) {}
+  PlusExpression(const PlusExpression & pExpr) : lhs(pExpr.lhs->clone()), rhs(pExpr.rhs->clone()) {}
+  virtual ~PlusExpression() {}
+  virtual double evaluate() const { return lhs->evaluate() + rhs->evaluate(); }
+  virtual Expression * clone() const { return new PlusExpression(*this); }
+  virtual void assign(map<string, Expression *> & mapping) {
+    lhs->assign(mapping);
+    rhs->assign(mapping);
+    return;
   }
-  virtual void setData(){
-    for (int i = 0; i < exprVec.size(); ++i){
-      exprVec[i]->setData();
+  virtual bool isNumExpr() const { return false; }
+  virtual int CountParaNum() const { return 2; }
+};
+
+class FuncExpression : public Expression
+{
+ private:
+  Expression * funcExpr;
+  map<string, Expression *> funcMap;
+
+ public:
+  FuncExpression(Expression * _funcExpr, vector<string> & varNameVec) : funcExpr(_funcExpr) {
+    for (size_t i = 0; i < varNameVec.size(); ++i) {
+      funcMap.insert(pair<string, Expression *>(varNameVec[i], new VarExpression(varNameVec[i])));
     }
   }
-  virtual ~FuncExpression(){
-    for (int i = 0; i < exprVec.size(); ++i){
-      delete exprVec[i];
+ FuncExpression(const FuncExpression & rhs) : funcExpr(rhs.funcExpr->clone()) {
+    for (map<string, Expression *>::const_iterator it = rhs.funcMap.begin();
+         it != rhs.funcMap.end();
+         ++it) {
+      funcMap.insert(pair<string, Expression *>(it->first, it->second->clone()));
     }
   }
-}
+  FuncExpression & operator=(const FuncExpression & rhs) {
+    if (this != &rhs) {
+      //delete!
+      funcExpr = rhs.funcExpr->clone();
+      for (map<string, Expression *>::const_iterator it = rhs.funcMap.begin();
+           it != rhs.funcMap.end();
+           ++it) {
+        funcMap.insert(pair<string, Expression *>(it->first, it->second->clone()));
+      }
+    }
+    return *this;
+  }
+  virtual ~FuncExpression() {
+    delete funcExpr;
+    for (map<string, Expression *>::iterator it = funcMap.begin(); it != funcMap.end(); ++it) {
+      delete it->second;
+    }
+  }
+  virtual double evaluate() const { return funcExpr->evaluate(); }
+  virtual Expression * clone() const { return new FuncExpression(*this); }
+  virtual void assign(map<string, Expression *> & mapping) {
+    for (map<string, Expression *>::iterator it = funcMap.begin(); it != funcMap.end(); ++it) {
+      it->second->assign(mapping);
+    }
+    funcExpr->assign(mapping);
+    for (map<string, Expression *>::iterator it = mapping.begin(); it != mapping.end(); ++it) {
+      delete it->second;
+    }
+    return;
+  }
+  virtual bool isNumExpr() const { return false; }
+  virtual int CountParaNum() const { return funcMap.size(); }
+};
 
 #endif

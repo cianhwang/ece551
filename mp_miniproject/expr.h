@@ -36,9 +36,11 @@ class NumExpression : public Expression
     }
     return *this;
   }
-  virtual ~NumExpression() {}
+  virtual ~NumExpression() {
+    //  std::cout << "~Numexpression.\n";
+  }
   virtual double evaluate() const { return num; }
-  virtual Expression * clone() const { return new NumExpression(*this); }
+  virtual Expression * clone() const { return new NumExpression(num); }
   virtual void assign(map<string, Expression *> & mapping) { return; }
   virtual bool isNumExpr() const { return true; }
   virtual int CountParaNum() const { return 0; }
@@ -57,15 +59,18 @@ class VarExpression : public Expression
       varExpr = rhs.varExpr->clone();
     }
   }
-  VarExpression & operator=(const VarExpression & rhs) {
+  /*  VarExpression & operator=(const VarExpression & rhs) {
     if (this != &rhs) {
       // delete
       varName = rhs.varName;
       varExpr = rhs.varExpr->clone();
     }
     return *this;
+    }*/
+  virtual ~VarExpression() {
+    delete varExpr;
+    //std::cout << "~Varexpression.\n";
   }
-  virtual ~VarExpression() { delete varExpr; }
   virtual double evaluate() const { return varExpr->evaluate(); }
   virtual Expression * clone() const { return new VarExpression(*this); }
   virtual void assign(map<string, Expression *> & mapping) {
@@ -90,7 +95,10 @@ class PlusExpression : public Expression
  public:
   PlusExpression(Expression * _lhs, Expression * _rhs) : lhs(_lhs), rhs(_rhs) {}
   PlusExpression(const PlusExpression & pExpr) : lhs(pExpr.lhs->clone()), rhs(pExpr.rhs->clone()) {}
-  virtual ~PlusExpression() {}
+  virtual ~PlusExpression() {
+    delete lhs;
+    delete rhs;
+  }
   virtual double evaluate() const { return lhs->evaluate() + rhs->evaluate(); }
   virtual Expression * clone() const { return new PlusExpression(*this); }
   virtual void assign(map<string, Expression *> & mapping) {
@@ -114,14 +122,14 @@ class FuncExpression : public Expression
       funcMap.insert(pair<string, Expression *>(varNameVec[i], new VarExpression(varNameVec[i])));
     }
   }
- FuncExpression(const FuncExpression & rhs) : funcExpr(rhs.funcExpr->clone()) {
+  FuncExpression(const FuncExpression & rhs) : funcExpr(rhs.funcExpr->clone()) {
     for (map<string, Expression *>::const_iterator it = rhs.funcMap.begin();
          it != rhs.funcMap.end();
          ++it) {
       funcMap.insert(pair<string, Expression *>(it->first, it->second->clone()));
     }
   }
-  FuncExpression & operator=(const FuncExpression & rhs) {
+  /*  FuncExpression & operator=(const FuncExpression & rhs) {
     if (this != &rhs) {
       //delete!
       funcExpr = rhs.funcExpr->clone();
@@ -132,7 +140,7 @@ class FuncExpression : public Expression
       }
     }
     return *this;
-  }
+    }*/
   virtual ~FuncExpression() {
     delete funcExpr;
     for (map<string, Expression *>::iterator it = funcMap.begin(); it != funcMap.end(); ++it) {

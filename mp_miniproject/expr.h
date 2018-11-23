@@ -89,21 +89,20 @@ class VarExpression : public Expression
   virtual int CountParaNum() const { return 0; }
 };
 
-class PlusExpression : public Expression
-{
- private:
+class DoubleExpression : public Expression {
+ protected:
   Expression * lhs;
   Expression * rhs;
 
  public:
-  PlusExpression(Expression * _lhs, Expression * _rhs) : lhs(_lhs), rhs(_rhs) {}
-  PlusExpression(const PlusExpression & pExpr) : lhs(pExpr.lhs->clone()), rhs(pExpr.rhs->clone()) {}
-  virtual ~PlusExpression() {
+ DoubleExpression(Expression *_lhs, Expression *_rhs):lhs(_lhs), rhs(_rhs){}
+  // DoubleExpression(const DoubleExpression &dExpr):lhs(dExpr->clone()),rhs(dExpr->clone()){}
+  //=
+  virtual ~DoubleExpression() {
     delete lhs;
     delete rhs;
   }
-  virtual double evaluate() const { return lhs->evaluate() + rhs->evaluate(); }
-  virtual Expression * clone() const { return new PlusExpression(*this); }
+  //  virtual Expression * clone() const { return new PlusExpression(*this); }
   virtual void assign(map<string, Expression *> & mapping) {
     lhs->assign(mapping);
     rhs->assign(mapping);
@@ -111,6 +110,29 @@ class PlusExpression : public Expression
   }
   virtual bool isNumExpr() const { return false; }
   virtual int CountParaNum() const { return 2; }
+};
+
+class PlusExpression : public DoubleExpression
+{
+  // private:
+  //Expression * lhs;
+  //Expression * rhs;
+ public:
+ PlusExpression(Expression * _lhs, Expression * _rhs) : DoubleExpression(_lhs, _rhs) {}
+ PlusExpression(const PlusExpression & pExpr) : DoubleExpression(pExpr.lhs->clone(),pExpr.rhs->clone()) {}
+  virtual ~PlusExpression() {
+    //    delete lhs;
+    //    delete rhs;
+  }
+  virtual double evaluate() const { return lhs->evaluate() + rhs->evaluate(); }
+  virtual Expression * clone() const { return new PlusExpression(*this); }
+  //  virtual void assign(map<string, Expression *> & mapping) {
+  //  lhs->assign(mapping);
+  //  rhs->assign(mapping);
+  //  return;
+  //}
+  //virtual bool isNumExpr() const { return false; }
+  //virtual int CountParaNum() const { return 2; }
 };
 
 class FuncExpression : public Expression

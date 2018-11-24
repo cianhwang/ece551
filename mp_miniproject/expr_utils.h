@@ -26,8 +26,16 @@ class FuncTable
   map<string, Expression *> funcTableMap;
 
  public:
-  void addFunc(string funcName, Expression * funcExpr) {
+  bool addFunc(string funcName, Expression * funcExpr) {
+    if (funcTableMap.find(funcName) != funcTableMap.end()){
+      std::cerr << "Function "<< funcName << " already exists.\n";
+      //!!
+      delete funcExpr;
+      //      exit(EXIT_FAILURE);
+      return false;
+    }
     funcTableMap.insert(pair<string, Expression *>(funcName, funcExpr));
+    return true;
   }
   Expression * operator[](string funcName) { return funcTableMap[funcName]; }
   

@@ -1,13 +1,21 @@
 #include <ctype.h>
-#include <stdio.h>
+#include <cstdio>
 #include <string.h>
-
+#include <sstream>
 #include <cstdlib>
 #include <iostream>
 
 #include "expr.h"
 
 using namespace std;
+
+void deleteMap (map<string, Expression *> &exprMap){
+   for (map<string, Expression *>::iterator it = exprMap.begin(); it != exprMap.end();
+         ++it) {
+      delete it->second;
+    }
+   return;
+}
 
 class FuncTable
 {
@@ -19,6 +27,10 @@ class FuncTable
     funcTableMap.insert(pair<string, Expression *>(funcName, funcExpr));
   }
   Expression * operator[](string funcName) { return funcTableMap[funcName]; }
+  
+  int countOpNum(string op) const{
+    return funcTableMap.find(op)->second->CountParaNum();
+  }
   ~FuncTable() {
     for (map<string, Expression *>::iterator it = funcTableMap.begin(); it != funcTableMap.end();
          ++it) {
@@ -35,29 +47,48 @@ void skipSpace(const char ** strp) {
   }
 }
 
-Expression * makeExpr(FuncTable & funcTable, string op, map<string, Expression *> & varMap) {
+Expression * makeExpr(FuncTable & funcTable, string op, vector<Expression *> & varVec) {
   if (op == "+") {
-    return new PlusExpression(varMap["x"]->clone(), varMap["y"]->clone());
+    return new PlusExpression(varVec[0]->clone(), varVec[1]->clone());
   }
-  else if (op == "-") {
-    return new MinusExpression(varMap["x"]->clone(), varMap["y"]->clone());
+  else if (op == "-"){
+    return new MinusExpression(varVec[0]->clone(), varVec[1]->clone());
   }
-  else if (op == "*") {
-    return new TimesExpression(varMap["x"]->clone(), varMap["y"]->clone());
+  else if (op == "*"){
+    return new TimesExpression(varVec[0]->clone(), varVec[1]->clone());
   }
-  else if (op == "/") {
-    return new DivExpression(varMap["x"]->clone(), varMap["y"]->clone());
+  else if (op == "/"){
+    return new DivExpression(varVec[0]->clone(), varVec[1]->clone());
   }
-  else if (op == "%") {
-    return new ModExpression(varMap["x"]->clone(), varMap["y"]->clone());
+  else if (op == "%"){
+    return new ModExpression(varVec[0]->clone(), varVec[1]->clone());
   }
-  else if (op == "pow") {
-    return new PowExpression(varMap["x"]->clone(), varMap["y"]->clone());
+  else if (op == "pow"){
+    return new PowExpression(varVec[0]->clone(), varVec[1]->clone());
+  }
+  else if (op == "sin"){
+    return new SinExpression(varVec[0]->clone());
+  }
+  else if (op == "cos"){
+    return new CosExpression(varVec[0]->clone());
+  }
+  else if (op == "sqrt"){
+    return new SqrtExpression(varVec[0]->clone());
+  }
+  else if (op == "ln"){
+    return new LnExpression(varVec[0]->clone());
   }
 
   if (funcTable.funcTableMap.find(op) != funcTable.funcTableMap.end()) {
     Expression * temp = funcTable[op]->clone();
+    map<string, Expression *> varMap;
+    for (size_t i = 0; i < varVec.size();++i){
+      std::stringstream out;
+      out << i;
+      varMap.insert(pair<string, Expression *>(out.str(), varVec[i]->clone()));
+    }
     temp->assign(varMap);
+    deleteMap(varMap);
     return temp;
   }
   return NULL;
@@ -73,24 +104,42 @@ Expression * parseOp(FuncTable & functable, const char ** strp) {
     }
   }
   std::string op(*strp, endp - *strp);
-  //	int opNum = 2;
+  map<string, int> opMap;
+  opMap.insert(pair<string, int>("+", 2));
+  opMap.insert(pair<string, int>("-", 2));
+  opMap.insert(pair<string, int>("*", 2));
+  opMap.insert(pair<string, int>("/", 2));
+  opMap.insert(pair<string, int>("%", 2));
+  opMap.insert(pair<string, int>("pow", 2));
+  opMap.insert(pair<string, int>("sin", 1));
+  opMap.insert(pair<string, int>("cos", 1));
+  opMap.insert(pair<string, int>("sqrt", 1));
+  opMap.insert(pair<string, int>("ln", 1));
+  int opNum;
+  if (opMap.find(op) != opMap.end()){
+    opNum = opMap.find(op)->second;
+  }
+  else{
+    opNum = functable.countOpNum(op);
+  }
   *strp = endp + 1;
-  map<string, Expression *> opExprMap;
-  Expression * temp = parse(functable, strp);
-  opExprMap.insert(pair<string, Expression *>("x", temp));
-  temp = parse(functable, strp);
-  opExprMap.insert(pair<string, Expression *>("y", temp));
+  vector <Expression *> varVec;
+  for (int i = 0; i < opNum; ++i){
+    Expression * temp = parse(functable, strp);
+    varVec.push_back(temp);
+  }
+  
   skipSpace(strp);
   Expression * temp2 = NULL;
   if (**strp == ')') {
     *strp = *strp + 1;
-    temp2 = makeExpr(functable, op, opExprMap);
+    temp2 = makeExpr(functable, op, varVec);
   }
   else {
     std::cerr << "Expected ) but found " << *strp << "\n";
   }
-  for (map<string, Expression *>::iterator it = opExprMap.begin(); it != opExprMap.end(); ++it) {
-    delete it->second;
+  for (size_t i = 0; i < varVec.size(); ++i){
+    delete varVec[i];
   }
 
   return temp2;
@@ -130,43 +179,57 @@ Expression * parse(FuncTable & functable, const char ** strp) {
   }
 }
 
+bool test(Expression * lexpr, Expression * rexpr){
+    return abs(lexpr->evaluate()-rexpr->evaluate()) < 0.0000000000001;
+}
+
 int main(void) {
-  const char * temp = "(/ x y)";
+  const char * temp = "(* (/ x -12.33) (pow zt y))";
   FuncTable funcTable;
   vector<string> paraVec;
   paraVec.push_back("x");
   paraVec.push_back("y");
+  paraVec.push_back("zt");
   Expression * expr = parse(funcTable, &temp);
   //  delete temp;
   Expression * func = new FuncExpression(expr, paraVec);
   funcTable.addFunc("f", func);
 
-  const char * temp2 = "(% (f 1 x) y)";
+  const char * temp2 = "(f (f 5.3 2.5 y) (/ 4.4 zt) 2.1)";
   Expression * expr2 = parse(funcTable, &temp2);
   Expression * func2 = new FuncExpression(expr2, paraVec);
   funcTable.addFunc("g", func2);
 
   map<string, Expression *> tempMap;
-  tempMap.insert(pair<string, Expression *>("x", new NumExpression(5.0)));
-  tempMap.insert(pair<string, Expression *>("y", new NumExpression(3.0)));
+  tempMap.insert(pair<string, Expression *>("1", new NumExpression(5.0)));
+  tempMap.insert(pair<string, Expression *>("2", new NumExpression(3.0)));
+  tempMap.insert(pair<string, Expression *>("3", new NumExpression(23.12)));
   Expression * Temp = funcTable["g"]->clone();
   Temp->assign(tempMap);
   std::cout << Temp->evaluate() << std::endl;
-  delete Temp;
+
   map<string, Expression *> tempMap2;
-  tempMap2.insert(pair<string, Expression *>("x", new NumExpression(12.33)));
-  tempMap2.insert(pair<string, Expression *>("y", new NumExpression(3.3)));
+  tempMap2.insert(pair<string, Expression *>("1", new NumExpression(1.5)));
+  tempMap2.insert(pair<string, Expression *>("2", new NumExpression(3.0)));
+  tempMap2.insert(pair<string, Expression *>("3", new NumExpression(5.30)));
+
   Expression * Temp2 = funcTable["f"]->clone();
   Temp2->assign(tempMap2);
   std::cout << Temp2->evaluate() << std::endl;
+  if (test(Temp, Temp2)){
+    std::cout << "Success!\n";
+  }
+  delete Temp;
   delete Temp2;
-
+  deleteMap(tempMap);
+  deleteMap(tempMap2);
+  /*
   for (map<string, Expression *>::iterator it = tempMap.begin(); it != tempMap.end(); ++it) {
     delete it->second;
   }
   for (map<string, Expression *>::iterator it = tempMap2.begin(); it != tempMap2.end(); ++it) {
     delete it->second;
-  }
+    }*/
 
   return EXIT_SUCCESS;
 }

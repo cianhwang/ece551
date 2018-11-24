@@ -1,0 +1,4 @@
+define ( f x y zt) = (* (/ x -12.33) (pow zt y))
+define (g s v) = (+ (f 5.3 v 1.0) (/ v (- s 5.0)))
+test (g 1 2.0) = (f 7 8 9)
+test (g 1 2.3) = (g 1 2.3)

@@ -19,7 +19,7 @@ class Expression
   virtual double evaluate() const = 0;
   virtual Expression * clone() const = 0;
   virtual void assign(map<string, Expression *> & mapping) = 0;
-  virtual bool isNumExpr() const = 0;
+  virtual int checkType() const = 0;
   virtual int CountParaNum() const = 0;
 };
 
@@ -43,7 +43,7 @@ class NumExpression : public Expression
   virtual double evaluate() const { return num; }
   virtual Expression * clone() const { return new NumExpression(*this); }
   virtual void assign(map<string, Expression *> & mapping) { return; }
-  virtual bool isNumExpr() const { return true; }
+  virtual int checkType() const { return 1; }
   virtual int CountParaNum() const { return 0; }
 };
 
@@ -78,15 +78,15 @@ class VarExpression : public Expression
   virtual double evaluate() const { return varExpr->evaluate(); }
   virtual Expression * clone() const { return new VarExpression(*this); }
   virtual void assign(map<string, Expression *> & mapping) {
-    if (varExpr == NULL) {
+    //    if (varExpr == NULL) {
       varExpr = mapping.find(varName)->second->clone();
-    }
-    else if (!(varExpr->isNumExpr())) {
-      varExpr->assign(mapping);
-    }
+      //}
+      //else if (varExpr->checkType() != 1) {
+      //varExpr->assign(mapping);
+      //}
     return;
   }
-  virtual bool isNumExpr() const { return false; }
+  virtual int checkType() const { return 2; }
   virtual int CountParaNum() const { return 0; }
 };
 
@@ -104,7 +104,7 @@ class UnaryExpression : public Expression {
     rhs->assign(mapping);
     return;
   }
-  virtual bool isNumExpr() const { return false; }
+  virtual int checkType() const { return 0; }
   virtual int CountParaNum() const { return 1; }
 };
 
@@ -167,7 +167,7 @@ class DoubleExpression : public Expression {
     rhs->assign(mapping);
     return;
   }
-  virtual bool isNumExpr() const { return false; }
+  virtual int checkType() const { return 0; }
   virtual int CountParaNum() const { return 2; }
 };
 
@@ -240,7 +240,8 @@ class FuncExpression : public Expression
  public:
   FuncExpression(Expression * _funcExpr, vector<string> & varNameVec) : funcExpr(_funcExpr) {
     for (size_t i = 0; i < varNameVec.size(); ++i) {
-      funcMap.insert(pair<string, Expression *>(varNameVec[i], new VarExpression(varNameVec[i])));
+            funcMap.insert(pair<string, Expression *>(varNameVec[i], new VarExpression(varNameVec[i])));
+      //      funcMap.insert(pair<string, Expression *>(varNameVec[i], NULL));
     }
   }
   FuncExpression(const FuncExpression & rhs) : funcExpr(rhs.funcExpr->clone()) {
@@ -271,9 +272,21 @@ class FuncExpression : public Expression
   virtual double evaluate() const { return funcExpr->evaluate(); }
   virtual Expression * clone() const { return new FuncExpression(*this); }
   virtual void assign(map<string, Expression *> & mapping) {
-    for (map<string, Expression *>::iterator it = funcMap.begin(), it2 = mapping.begin(); it != funcMap.end(); ++it, ++it2) {
-      delete it->second;
-      it->second = it2->second->clone();
+    if (mapping.find("0") != mapping.end()){ //initialize, first step
+      for (map<string, Expression *>::iterator it = funcMap.begin(), it2 = mapping.begin(); it != funcMap.end(); ++it, ++it2) {
+	  delete it->second;
+	it->second = it2->second->clone();
+      }
+    }
+    else{ //non-init
+      for (map<string, Expression *>::iterator it = funcMap.begin(); it != funcMap.end(); ++it){
+	if (it->second != NULL){
+	  it->second->assign(mapping);
+	}
+	else if(mapping.find(it->first) != mapping.end()){
+	  it->second = mapping.find(it->first)->second->clone();
+	}
+      }
     }
     funcExpr->assign(funcMap);
     /*    for (map<string, Expression *>::iterator it = mapping.begin(); it != mapping.end(); ++it) {
@@ -281,7 +294,7 @@ class FuncExpression : public Expression
       }*/
     return;
   }
-  virtual bool isNumExpr() const { return false; }
+  virtual int checkType() const { return 3; }
   virtual int CountParaNum() const { return funcMap.size(); }
 };
 

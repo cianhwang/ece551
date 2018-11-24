@@ -1,19 +1,18 @@
 #include <ctype.h>
-#include <string.h>
-
 #include <cstdio>
+#include <string.h>
+#include <sstream>
 #include <cstdlib>
 #include <iostream>
-#include <sstream>
 
 #include "expr_utils.h"
 
-using std::map;
-using std::pair;
 using std::string;
 using std::vector;
+using std::map;
+using std::pair;
 
-void parseDef(const char ** strp, string & name, vector<string> & vec) {
+void parseDef(const char **strp, string &name, vector<string> &vec){
   skipSpace(strp);
   if (**strp == '\0') {
     std::cerr << "End of line found mid expression!\n";
@@ -27,68 +26,68 @@ void parseDef(const char ** strp, string & name, vector<string> & vec) {
   std::stringstream ss(str);
   ss >> str;
   name = str;
-  while (ss >> str) {
-    if (str != ")") {
-      if (str[str.size() - 1] != ')') {
-        vec.push_back(str);
+  while(ss >> str){
+    if (str != ")"){
+      if (str[str.size()-1] != ')'){
+	vec.push_back(str);
       }
-      else {
-        string tempStr(str, 0, str.size() - 1);
-        vec.push_back(tempStr);
+      else{
+	string tempStr(str, 0, str.size()-1);
+	vec.push_back(tempStr);
       }
     }
   }
 }
 
-void defineFunc(FuncTable & funcTable, const char * deftemp, const char * temp) {
-  Expression * expr = parse(funcTable, &temp);
+void defineFunc(FuncTable &funcTable, const char *deftemp, const char *temp){
+  Expression *expr = parse(funcTable, &temp);
   vector<string> paraVec;
   string funcName;
   parseDef(&deftemp, funcName, paraVec);
-  Expression * func = new FuncExpression(expr, paraVec);
+  Expression *func = new FuncExpression(expr, paraVec);
   funcTable.addFunc(funcName, func);
 }
 
-bool test(Expression * lexpr, Expression * rexpr) {
-  return abs(lexpr->evaluate() - rexpr->evaluate()) < 0.0000000000001;
+bool test(Expression * lexpr, Expression * rexpr){
+  return abs(lexpr->evaluate()-rexpr->evaluate()) < 0.0000000000001;
 }
 
-void testFunc(FuncTable & funcTable, const char * ltemp, const char * rtemp) {
-  Expression * lExpr = parse(funcTable, &ltemp);
-  Expression * rExpr = parse(funcTable, &rtemp);
+void testFunc(FuncTable &funcTable, const char *ltemp, const char *rtemp){
+  Expression *lExpr = parse(funcTable, &ltemp);
+  Expression *rExpr = parse(funcTable, &rtemp);
   std::cout << lExpr->evaluate() << std::endl;
   std::cout << rExpr->evaluate() << std::endl;
-
-  if (test(lExpr, rExpr)) {
+  
+  if (test(lExpr, rExpr)){
     std::cout << "CORRECT.\n";
   }
-  else {
+  else{
     std::cout << "INCORRECT.\n";
   }
   delete lExpr;
   delete rExpr;
 }
 
-void readInput(FuncTable & funcTable, const char ** strp) {
+void readInput(FuncTable &funcTable, const char **strp){
   skipSpace(strp);
-  const char * endp = (*strp + 1);
-  while (*endp != ' ') {
+  const char *endp = (*strp + 1);
+  while(*endp != ' '){
     ++endp;
   }
-  string command(*strp, endp - *strp);
+  string command(*strp, endp-*strp);
   *strp = endp + 1;
-  while (*endp != '=') {
+  while(*endp != '='){
     ++endp;
   }
-  if (command == "define") {
-    string defStr(*strp, endp - *strp);
+  if (command == "define"){
+    string defStr(*strp, endp-*strp);
     *strp = endp + 1;
     std::cout << "left is: " << defStr << std::endl;
     std::cout << "right is: " << *strp << std::endl;
     defineFunc(funcTable, defStr.c_str(), *strp);
   }
-  else if (command == "test") {
-    string ltestStr(*strp, endp - *strp);
+  else if (command == "test"){
+    string ltestStr(*strp, endp-*strp);
     *strp = endp + 1;
     std::cout << "left is: " << ltestStr << std::endl;
     std::cout << "right is: " << *strp << std::endl;
@@ -98,6 +97,7 @@ void readInput(FuncTable & funcTable, const char ** strp) {
 }
 
 int main(void) {
+
   FuncTable funcTable;
   char * line = NULL;
   size_t sz;
@@ -105,7 +105,6 @@ int main(void) {
     const char * temp = line;
     std::cout << "Read expression: " << line;
     readInput(funcTable, &temp);
-    //    free(line);
   }
   free(line);
 

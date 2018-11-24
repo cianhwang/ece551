@@ -79,7 +79,10 @@ class VarExpression : public Expression
   virtual Expression * clone() const { return new VarExpression(*this); }
   virtual void assign(map<string, Expression *> & mapping) {
     //    if (varExpr == NULL) {
-      varExpr = mapping.find(varName)->second->clone();
+    if (varExpr != NULL){
+      delete varExpr;
+    }
+    varExpr = mapping.find(varName)->second->clone();
       //}
       //else if (varExpr->checkType() != 1) {
       //varExpr->assign(mapping);

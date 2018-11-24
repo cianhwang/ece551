@@ -13,6 +13,7 @@ using std::vector;
 using std::map;
 using std::pair;
 using std::stack;
+using std::stringstream;
 
 void parseDef(const char **strp, string &name, vector<string> &vec){
   skipSpace(strp);
@@ -121,6 +122,61 @@ void testFunc(FuncTable &funcTable, const char *ltemp, const char *rtemp){
   delete rExpr;
 }
 
+double calcVolumn(FuncTable &funcTable, string funcName, double step, vector<double> &range){
+  //check range is consistant with func
+  double vol = 0.0;
+  if (funcTable.countOpNum(funcName) == 1){
+    for (double i = range[0]; i < range[1]; i += step){
+      stringstream ss;
+      ss << "(" << funcName << " " << i << ")";
+      const char *temp_1 = ss.str().c_str();
+      Expression *curr_1 = parse(funcTable, &temp_1);
+      ss.str("");
+      ss << "(" << funcName << " " << i+step << ")";
+      const char *temp_2 = ss.str().c_str();
+      Expression *curr_2 = parse(funcTable, &temp_2);
+      vol += (curr_1->evaluate()+curr_2->evaluate())/2*step;
+      delete curr_1;
+      delete curr_2;
+    }
+  }
+  else if (funcTable.countOpNum(funcName) == 2){
+    for (double i = range[0]; i < range[1]; i += step){
+      //      std::cout << "i: " << i << std::endl;
+      for (double j = range[2]; j < range[3]; j += step){
+	//	std::cout << "j: " << j << std::endl;
+	stringstream ss;
+	ss << "(" << funcName << " " << i  << " " << j << ")";
+	const char *temp_1 = ss.str().c_str();
+	Expression *curr_1 = parse(funcTable, &temp_1);
+	ss.str("");
+	ss << "(" << funcName << " " << i+step << " " << j << ")";
+	const char *temp_2 = ss.str().c_str();
+	Expression *curr_2 = parse(funcTable, &temp_2);
+	ss.str("");
+	ss << "(" << funcName << " " << i+step << " " << j+step << ")";
+	const char *temp_3 = ss.str().c_str();
+	Expression *curr_3 = parse(funcTable, &temp_3);
+	ss.str("");
+	ss << "(" << funcName << " " << i << " " << j+step << ")";
+	const char *temp_4 = ss.str().c_str();
+	Expression *curr_4 = parse(funcTable, &temp_4);
+
+	vol += (curr_1->evaluate()+curr_2->evaluate()
+		+ curr_3->evaluate()+curr_4->evaluate())/4*step*step;
+	delete curr_1;
+	delete curr_2;
+	delete curr_3;
+	delete curr_4;
+      }
+    }
+  }
+  else{
+    std::cout << "too complex..\n";
+  }
+  return vol;
+}
+
 void readInput(FuncTable &funcTable, const char **strp){
   skipSpace(strp);
   if (**strp == '\0') {
@@ -179,8 +235,22 @@ void readInput(FuncTable &funcTable, const char **strp){
     //    std::cout << "test " << ltestStr << " = " << rtestStr;
     testFunc(funcTable, ltestStr.c_str(), rtestStr.c_str());
   }
+  else if (command == "numint") {
+    string numintStr(*strp);
+    std::stringstream numintss(numintStr);
+    string funcName;
+    numintss >> funcName;
+    double width;
+    numintss >> width;
+    vector<double> rangeVec;
+    double rangeTemp;
+    while(numintss >> rangeTemp){
+      rangeVec.push_back(rangeTemp);
+    }
+    std::cout << "Volumn: " << calcVolumn(funcTable, funcName, width, rangeVec)<< std::endl;
+  }
   else{
-    std::cerr << "Cannot identify 'define' or 'test'.\n";
+    std::cerr << "Cannot recognize the command.\n";
   }
   return;
 }

@@ -1,6 +1,6 @@
 #ifndef EXPR_UTILS_H
 #define EXPR_UTILS_H
-
+#include <assert.h>
 #include <ctype.h>
 #include <string.h>
 
@@ -87,6 +87,17 @@ class FuncTable
   void readInput(const char ** strp);
   void printTest(const string & lstr, const string & rstr);
   void generateRandNum(vector<double> & vec, vector<double> & range);
+  void gradUpdate(bool type,
+                  string funcName,
+                  double gamma,
+                  vector<double> & currVec,
+                  vector<double> & newVec);
+  double gradientMethod(bool type,
+                        string funcName,
+                        double gamma,
+                        double convDis,
+                        int rounds,
+                        vector<double> & startPosVec);
 };
 
 Expression * FuncTable::makeExpr(string op, vector<Expression *> & varVec) {
@@ -417,6 +428,99 @@ double FuncTable::mcVolume(string funcName, int times, vector<double> & range) {
   return avg;
 }
 
+double calcDis(const vector<double> & v1, const vector<double> & v2) {
+  double dist = 0.0;
+  assert(v1.size() == v2.size());
+  for (size_t i = 0; i < v1.size(); ++i) {
+    dist += (v1[i] - v2[i]) * (v1[i] - v2[i]);
+  }
+  return sqrt(dist);
+}
+
+void FuncTable::gradUpdate(bool type,
+                           string funcName,
+                           double gamma,
+                           vector<double> & currVec,
+                           vector<double> & newVec) {
+  vector<double> gradVec;
+  for (size_t i = 0; i < currVec.size(); ++i) {
+    double gradient;
+    stringstream ss;
+    ss << "(" << funcName << " ";
+    for (size_t j = 0; j < currVec.size(); ++j) {
+      ss << currVec[j] << " ";
+    }
+    ss << ")";
+    string tempStr(ss.str());
+    //std::cout << tempStr << std::endl;
+    const char * temp = tempStr.c_str();
+    Expression * curr = parse(&temp);
+    ss.str("");
+    ss << "(" << funcName << " ";
+    for (size_t j = 0; j < currVec.size(); ++j) {
+      if (j != i) {
+        ss << currVec[j] << " ";
+      }
+      else {
+        double deltaX = currVec[i] + 0.001;
+        ss << deltaX << " ";
+      }
+    }
+    ss << ")";
+    string tempStr2(ss.str());
+    //        std::cout << tempStr2 << std::endl;
+    const char * temp2 = tempStr2.c_str();
+    Expression * curr2 = parse(&temp2);
+    gradient = (curr2->evaluate() - curr->evaluate()) / 0.001;
+    //  std::cout << "gradient = " << gradient << std::endl;
+    gradVec.push_back(gradient);
+    delete curr;
+    delete curr2;
+  }
+  assert(gradVec.size() == currVec.size());
+  for (size_t i = 0; i < currVec.size(); ++i) {
+    double idx = 1.0;
+    if (!type) {
+      idx = -1.0;
+    }
+    newVec[i] = (currVec[i] - idx * gamma * gradVec[i]);
+  }
+}
+
+double FuncTable::gradientMethod(bool type,
+                                 string funcName,
+                                 double gamma,
+                                 double convDis,
+                                 int rounds,
+                                 vector<double> & startPosVec) {
+  vector<double> currVec(startPosVec);
+  vector<double> newVec(startPosVec);
+  for (int i = 0; i < rounds; ++i) {
+    // count gradient & update
+    gradUpdate(type, funcName, gamma, currVec, newVec);
+    //    std::cout << "new: " << newVec[0] << std::endl;
+    // check distance
+    if (calcDis(newVec, currVec) < convDis) {
+      break;
+    }
+    currVec = newVec;
+  }
+  // use new to form a expression.
+  stringstream ss;
+  ss << "(" << funcName << " ";
+  for (size_t j = 0; j < newVec.size(); ++j) {
+    ss << newVec[j] << " ";
+  }
+  ss << ")";
+  string tempStr(ss.str());
+  std::cout << tempStr << std::endl;
+  const char * temp = tempStr.c_str();
+  Expression * curr = parse(&temp);
+  double value = curr->evaluate();
+  delete curr;
+  return value;
+}
+
 void FuncTable::readInput(const char ** strp) {
   skipSpace(strp);
   if (**strp == '\0') {
@@ -502,6 +606,34 @@ void FuncTable::readInput(const char ** strp) {
       rangeVec.push_back(rangeTemp);
     }
     std::cout << "Volume: " << mcVolume(funcName, times, rangeVec) << std::endl;
+  }
+  else if (command == "min" || command == "max") {
+    string gdStr(*strp);
+    std::stringstream gdss(gdStr);
+    string funcName;
+    gdss >> funcName;
+    double gamma;
+    gdss >> gamma;
+    double convergedDistance;
+    gdss >> convergedDistance;
+    int steps;
+    gdss >> steps;
+    vector<double> startPosVec;
+    double startPos;
+    while (gdss >> startPos) {
+      startPosVec.push_back(startPos);
+    }
+
+    if (command == "min") {
+      std::cout << "Minimum: "
+                << gradientMethod(true, funcName, gamma, convergedDistance, steps, startPosVec)
+                << std::endl;
+    }
+    else {
+      std::cout << "Maximum: "
+                << gradientMethod(false, funcName, gamma, convergedDistance, steps, startPosVec)
+                << std::endl;
+    }
   }
   else {
     std::cerr << "Cannot recognize the command.\n";

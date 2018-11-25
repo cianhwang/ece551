@@ -2,10 +2,11 @@
 #define EXPR_UTILS_H
 
 #include <ctype.h>
-#include <cstdio>
 #include <string.h>
-#include <sstream>
+
+#include <cstdio>
 #include <cstdlib>
+#include <ctime>
 #include <iostream>
 #include <limits>
 #include <sstream>
@@ -20,12 +21,11 @@ using std::string;
 using std::stringstream;
 using std::vector;
 
-void deleteMap (map<string, Expression *> &exprMap){
-   for (map<string, Expression *>::iterator it = exprMap.begin(); it != exprMap.end();
-         ++it) {
-      delete it->second;
-    }
-   return;
+void deleteMap(map<string, Expression *> & exprMap) {
+  for (map<string, Expression *>::iterator it = exprMap.begin(); it != exprMap.end(); ++it) {
+    delete it->second;
+  }
+  return;
 }
 
 class FuncTable
@@ -33,22 +33,23 @@ class FuncTable
  private:
   map<string, Expression *> funcTableMap;
   map<string, int> opMap;
+
  public:
-  FuncTable(){
-  opMap.insert(pair<string, int>("+", 2));
-  opMap.insert(pair<string, int>("-", 2));
-  opMap.insert(pair<string, int>("*", 2));
-  opMap.insert(pair<string, int>("/", 2));
-  opMap.insert(pair<string, int>("%", 2));
-  opMap.insert(pair<string, int>("pow", 2));
-  opMap.insert(pair<string, int>("sin", 1));
-  opMap.insert(pair<string, int>("cos", 1));
-  opMap.insert(pair<string, int>("sqrt", 1));
-  opMap.insert(pair<string, int>("ln", 1));
+  FuncTable() {
+    opMap.insert(pair<string, int>("+", 2));
+    opMap.insert(pair<string, int>("-", 2));
+    opMap.insert(pair<string, int>("*", 2));
+    opMap.insert(pair<string, int>("/", 2));
+    opMap.insert(pair<string, int>("%", 2));
+    opMap.insert(pair<string, int>("pow", 2));
+    opMap.insert(pair<string, int>("sin", 1));
+    opMap.insert(pair<string, int>("cos", 1));
+    opMap.insert(pair<string, int>("sqrt", 1));
+    opMap.insert(pair<string, int>("ln", 1));
   }
   bool addFunc(string funcName, Expression * funcExpr) {
-    if (funcTableMap.find(funcName) != funcTableMap.end()){
-      std::cerr << "Function "<< funcName << " already exists.\n";
+    if (funcTableMap.find(funcName) != funcTableMap.end()) {
+      std::cerr << "Function " << funcName << " already exists.\n";
       //!!
       delete funcExpr;
       //      exit(EXIT_FAILURE);
@@ -58,10 +59,8 @@ class FuncTable
     return true;
   }
   Expression * operator[](string funcName) { return funcTableMap[funcName]; }
-  
-  int countOpNum(string op) const{
-    return funcTableMap.find(op)->second->CountParaNum();
-  }
+
+  int countOpNum(string op) const { return funcTableMap.find(op)->second->CountParaNum(); }
   ~FuncTable() {
     for (map<string, Expression *>::iterator it = funcTableMap.begin(); it != funcTableMap.end();
          ++it) {
@@ -84,48 +83,48 @@ class FuncTable
   bool test(Expression * lexpr, Expression * rexpr);
   void testFunc(const char * ltemp, const char * rtemp);
   double calcVolumn(string funcName, double step, vector<double> & range);
+  double mcVolume(string funcName, int times, vector<double> & range);
   void readInput(const char ** strp);
   void printTest(const string & lstr, const string & rstr);
-
+  void generateRandNum(vector<double> & vec, vector<double> & range);
 };
-
 
 Expression * FuncTable::makeExpr(string op, vector<Expression *> & varVec) {
   if (op == "+") {
     return new PlusExpression(varVec[0]->clone(), varVec[1]->clone());
   }
-  else if (op == "-"){
+  else if (op == "-") {
     return new MinusExpression(varVec[0]->clone(), varVec[1]->clone());
   }
-  else if (op == "*"){
+  else if (op == "*") {
     return new TimesExpression(varVec[0]->clone(), varVec[1]->clone());
   }
-  else if (op == "/"){
+  else if (op == "/") {
     return new DivExpression(varVec[0]->clone(), varVec[1]->clone());
   }
-  else if (op == "%"){
+  else if (op == "%") {
     return new ModExpression(varVec[0]->clone(), varVec[1]->clone());
   }
-  else if (op == "pow"){
+  else if (op == "pow") {
     return new PowExpression(varVec[0]->clone(), varVec[1]->clone());
   }
-  else if (op == "sin"){
+  else if (op == "sin") {
     return new SinExpression(varVec[0]->clone());
   }
-  else if (op == "cos"){
+  else if (op == "cos") {
     return new CosExpression(varVec[0]->clone());
   }
-  else if (op == "sqrt"){
+  else if (op == "sqrt") {
     return new SqrtExpression(varVec[0]->clone());
   }
-  else if (op == "ln"){
+  else if (op == "ln") {
     return new LnExpression(varVec[0]->clone());
   }
 
   if (funcTableMap.find(op) != funcTableMap.end()) {
     Expression * temp = funcTableMap[op]->clone();
     map<string, Expression *> varMap;
-    for (size_t i = 0; i < varVec.size();++i){
+    for (size_t i = 0; i < varVec.size(); ++i) {
       std::stringstream out;
       out << i;
       varMap.insert(pair<string, Expression *>(out.str(), varVec[i]->clone()));
@@ -149,19 +148,19 @@ Expression * FuncTable::parseOp(const char ** strp) {
   std::string op(*strp, endp - *strp);
 
   int opNum;
-  if (opMap.find(op) != opMap.end()){
+  if (opMap.find(op) != opMap.end()) {
     opNum = opMap.find(op)->second;
   }
-  else{
+  else {
     opNum = countOpNum(op);
   }
   *strp = endp + 1;
-  vector <Expression *> varVec;
-  for (int i = 0; i < opNum; ++i){
+  vector<Expression *> varVec;
+  for (int i = 0; i < opNum; ++i) {
     Expression * temp = parse(strp);
     varVec.push_back(temp);
   }
-  
+
   skipSpace(strp);
   Expression * temp2 = NULL;
   if (**strp == ')') {
@@ -171,7 +170,7 @@ Expression * FuncTable::parseOp(const char ** strp) {
   else {
     std::cerr << "Expected ) but found " << *strp << "\n";
   }
-  for (size_t i = 0; i < varVec.size(); ++i){
+  for (size_t i = 0; i < varVec.size(); ++i) {
     delete varVec[i];
   }
 
@@ -245,7 +244,7 @@ bool FuncTable::checkID(const string & id) {
   return true;
 }
 
-void FuncTable::defineFunc( const char * deftemp, const char * temp) {
+void FuncTable::defineFunc(const char * deftemp, const char * temp) {
   vector<string> paraVec;
   string funcName;
   parseDef(&deftemp, funcName, paraVec);
@@ -266,7 +265,7 @@ void FuncTable::defineFunc( const char * deftemp, const char * temp) {
     }
     // error handling: each para are unique.
   }
-  Expression * expr = parse( &temp);
+  Expression * expr = parse(&temp);
   if (expr == NULL) {
     std::cout << "Could not parse expression, please try again.\n";
     return;
@@ -301,11 +300,11 @@ void FuncTable::printTest(const string & lstr, const string & rstr) {
   std::cout << rtemp;
 }
 
-void FuncTable::testFunc( const char * ltemp, const char * rtemp) {
+void FuncTable::testFunc(const char * ltemp, const char * rtemp) {
   string lstr(ltemp);
   string rstr(rtemp);
-  Expression * lExpr = parse( &ltemp);
-  Expression * rExpr = parse( &rtemp);
+  Expression * lExpr = parse(&ltemp);
+  Expression * rExpr = parse(&rtemp);
   // error handling: check no variables
   //                 and all ids refer to function.
   printTest(lstr, rstr);
@@ -319,7 +318,7 @@ void FuncTable::testFunc( const char * ltemp, const char * rtemp) {
   delete rExpr;
 }
 
-double FuncTable::calcVolumn( string funcName, double step, vector<double> & range) {
+double FuncTable::calcVolumn(string funcName, double step, vector<double> & range) {
   //check range is consistant with func
   double vol = 0.0;
   if (countOpNum(funcName) == 1) {
@@ -329,12 +328,12 @@ double FuncTable::calcVolumn( string funcName, double step, vector<double> & ran
       ss << "(" << funcName << " " << i << ")";
       string tempStr_1(ss.str());
       const char * temp_1 = tempStr_1.c_str();
-      Expression * curr_1 = parse( &temp_1);
+      Expression * curr_1 = parse(&temp_1);
       ss.str("");
       ss << "(" << funcName << " " << a << ")";
       string tempStr_2(ss.str());
       const char * temp_2 = tempStr_2.c_str();
-      Expression * curr_2 = parse( &temp_2);
+      Expression * curr_2 = parse(&temp_2);
       vol += (curr_1->evaluate() + curr_2->evaluate()) / 2 * step;
       delete curr_1;
       delete curr_2;
@@ -351,22 +350,22 @@ double FuncTable::calcVolumn( string funcName, double step, vector<double> & ran
         ss << "(" << funcName << " " << i << " " << j << ")";
         string tempStr_1(ss.str());
         const char * temp_1 = tempStr_1.c_str();
-        Expression * curr_1 = parse( &temp_1);
+        Expression * curr_1 = parse(&temp_1);
         ss.str("");
         ss << "(" << funcName << " " << a << " " << j << ")";
         string tempStr_2(ss.str());
         const char * temp_2 = tempStr_2.c_str();
-        Expression * curr_2 = parse( &temp_2);
+        Expression * curr_2 = parse(&temp_2);
         ss.str("");
         ss << "(" << funcName << " " << a << " " << b << ")";
         string tempStr_3(ss.str());
         const char * temp_3 = tempStr_3.c_str();
-        Expression * curr_3 = parse( &temp_3);
+        Expression * curr_3 = parse(&temp_3);
         ss.str("");
         ss << "(" << funcName << " " << i << " " << b << ")";
         string tempStr_4(ss.str());
         const char * temp_4 = tempStr_4.c_str();
-        Expression * curr_4 = parse( &temp_4);
+        Expression * curr_4 = parse(&temp_4);
 
         vol += (curr_1->evaluate() + curr_2->evaluate() + curr_3->evaluate() + curr_4->evaluate()) /
                4 * step * step;
@@ -383,7 +382,42 @@ double FuncTable::calcVolumn( string funcName, double step, vector<double> & ran
   return vol;
 }
 
-void FuncTable::readInput( const char ** strp) {
+void FuncTable::generateRandNum(vector<double> & vec, vector<double> & range) {
+  for (size_t i = 0; 2 * i < range.size(); ++i) {
+    double randn = (double)rand() / RAND_MAX;
+    double randnum = randn * (range[2 * i + 1] - range[2 * i]) + range[2 * i];
+    vec.push_back(randnum);
+  }
+}
+
+double FuncTable::mcVolume(string funcName, int times, vector<double> & range) {
+  // check #para of func is according to vector
+  double avgtotal = 0.0;
+  srand(time(NULL));
+  for (int i = 0; i < times; ++i) {
+    vector<double> randnumVec;
+    generateRandNum(randnumVec, range);
+    stringstream ss;
+    ss << "(" << funcName << " ";
+    for (size_t j = 0; j < randnumVec.size(); ++j) {
+      ss << randnumVec[j] << " ";
+    }
+    ss << ")";
+    string tempStr(ss.str());
+    //    std::cout << tempStr << std::endl;
+    const char * temp = tempStr.c_str();
+    Expression * curr = parse(&temp);
+    avgtotal += curr->evaluate();
+    delete curr;
+  }
+  double avg = avgtotal / times;
+  for (size_t i = 0; 2 * i < range.size(); ++i) {
+    avg *= (range[2 * i + 1] - range[2 * i]);
+  }
+  return avg;
+}
+
+void FuncTable::readInput(const char ** strp) {
   skipSpace(strp);
   if (**strp == '\0') {
     std::cerr << "End of line found mid expression!\n";
@@ -418,7 +452,7 @@ void FuncTable::readInput( const char ** strp) {
       ++endp;
     }
     string rdefStr(*strp, endp - *strp);
-    defineFunc( ldefStr.c_str(), rdefStr.c_str());
+    defineFunc(ldefStr.c_str(), rdefStr.c_str());
   }
   else if (command == "test") {
     stack<char> bracketStack;
@@ -439,7 +473,7 @@ void FuncTable::readInput( const char ** strp) {
     }
     string rtestStr(*strp, endp - *strp);
     //    std::cout << "test " << ltestStr << " = " << rtestStr;
-    testFunc( ltestStr.c_str(), rtestStr.c_str());
+    testFunc(ltestStr.c_str(), rtestStr.c_str());
   }
   else if (command == "numint") {
     string numintStr(*strp);
@@ -453,7 +487,21 @@ void FuncTable::readInput( const char ** strp) {
     while (numintss >> rangeTemp) {
       rangeVec.push_back(rangeTemp);
     }
-    std::cout << "Volumn: " << calcVolumn( funcName, width, rangeVec) << std::endl;
+    std::cout << "Volume: " << calcVolumn(funcName, width, rangeVec) << std::endl;
+  }
+  else if (command == "mcint") {
+    string numintStr(*strp);
+    std::stringstream numintss(numintStr);
+    string funcName;
+    numintss >> funcName;
+    int times;
+    numintss >> times;
+    vector<double> rangeVec;
+    double rangeTemp;
+    while (numintss >> rangeTemp) {
+      rangeVec.push_back(rangeTemp);
+    }
+    std::cout << "Volume: " << mcVolume(funcName, times, rangeVec) << std::endl;
   }
   else {
     std::cerr << "Cannot recognize the command.\n";
@@ -462,5 +510,3 @@ void FuncTable::readInput( const char ** strp) {
 }
 
 #endif
-
-

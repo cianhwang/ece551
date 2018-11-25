@@ -1,23 +1,23 @@
 #include <ctype.h>
-#include <cstdio>
 #include <string.h>
-#include <sstream>
+
+#include <cstdio>
 #include <cstdlib>
 #include <iostream>
+#include <sstream>
 
 #include "expr.h"
 
-using std::string;
 using std::map;
-using std::vector;
 using std::pair;
+using std::string;
+using std::vector;
 
-void deleteMap (map<string, Expression *> &exprMap){
-   for (map<string, Expression *>::iterator it = exprMap.begin(); it != exprMap.end();
-         ++it) {
-      delete it->second;
-    }
-   return;
+void deleteMap(map<string, Expression *> & exprMap) {
+  for (map<string, Expression *>::iterator it = exprMap.begin(); it != exprMap.end(); ++it) {
+    delete it->second;
+  }
+  return;
 }
 
 class FuncTable
@@ -27,8 +27,8 @@ class FuncTable
 
  public:
   bool addFunc(string funcName, Expression * funcExpr) {
-    if (funcTableMap.find(funcName) != funcTableMap.end()){
-      std::cerr << "Function "<< funcName << " already exists.\n";
+    if (funcTableMap.find(funcName) != funcTableMap.end()) {
+      std::cerr << "Function " << funcName << " already exists.\n";
       //!!
       delete funcExpr;
       //      exit(EXIT_FAILURE);
@@ -38,10 +38,8 @@ class FuncTable
     return true;
   }
   Expression * operator[](string funcName) { return funcTableMap[funcName]; }
-  
-  int countOpNum(string op) const{
-    return funcTableMap.find(op)->second->CountParaNum();
-  }
+
+  int countOpNum(string op) const { return funcTableMap.find(op)->second->CountParaNum(); }
   ~FuncTable() {
     for (map<string, Expression *>::iterator it = funcTableMap.begin(); it != funcTableMap.end();
          ++it) {
@@ -62,38 +60,38 @@ Expression * makeExpr(FuncTable & funcTable, string op, vector<Expression *> & v
   if (op == "+") {
     return new PlusExpression(varVec[0]->clone(), varVec[1]->clone());
   }
-  else if (op == "-"){
+  else if (op == "-") {
     return new MinusExpression(varVec[0]->clone(), varVec[1]->clone());
   }
-  else if (op == "*"){
+  else if (op == "*") {
     return new TimesExpression(varVec[0]->clone(), varVec[1]->clone());
   }
-  else if (op == "/"){
+  else if (op == "/") {
     return new DivExpression(varVec[0]->clone(), varVec[1]->clone());
   }
-  else if (op == "%"){
+  else if (op == "%") {
     return new ModExpression(varVec[0]->clone(), varVec[1]->clone());
   }
-  else if (op == "pow"){
+  else if (op == "pow") {
     return new PowExpression(varVec[0]->clone(), varVec[1]->clone());
   }
-  else if (op == "sin"){
+  else if (op == "sin") {
     return new SinExpression(varVec[0]->clone());
   }
-  else if (op == "cos"){
+  else if (op == "cos") {
     return new CosExpression(varVec[0]->clone());
   }
-  else if (op == "sqrt"){
+  else if (op == "sqrt") {
     return new SqrtExpression(varVec[0]->clone());
   }
-  else if (op == "ln"){
+  else if (op == "ln") {
     return new LnExpression(varVec[0]->clone());
   }
 
   if (funcTable.funcTableMap.find(op) != funcTable.funcTableMap.end()) {
     Expression * temp = funcTable[op]->clone();
     map<string, Expression *> varMap;
-    for (size_t i = 0; i < varVec.size();++i){
+    for (size_t i = 0; i < varVec.size(); ++i) {
       std::stringstream out;
       out << i;
       varMap.insert(pair<string, Expression *>(out.str(), varVec[i]->clone()));
@@ -127,19 +125,19 @@ Expression * parseOp(FuncTable & functable, const char ** strp) {
   opMap.insert(pair<string, int>("sqrt", 1));
   opMap.insert(pair<string, int>("ln", 1));
   int opNum;
-  if (opMap.find(op) != opMap.end()){
+  if (opMap.find(op) != opMap.end()) {
     opNum = opMap.find(op)->second;
   }
-  else{
+  else {
     opNum = functable.countOpNum(op);
   }
   *strp = endp + 1;
-  vector <Expression *> varVec;
-  for (int i = 0; i < opNum; ++i){
+  vector<Expression *> varVec;
+  for (int i = 0; i < opNum; ++i) {
     Expression * temp = parse(functable, strp);
     varVec.push_back(temp);
   }
-  
+
   skipSpace(strp);
   Expression * temp2 = NULL;
   if (**strp == ')') {
@@ -149,7 +147,7 @@ Expression * parseOp(FuncTable & functable, const char ** strp) {
   else {
     std::cerr << "Expected ) but found " << *strp << "\n";
   }
-  for (size_t i = 0; i < varVec.size(); ++i){
+  for (size_t i = 0; i < varVec.size(); ++i) {
     delete varVec[i];
   }
 
@@ -157,6 +155,7 @@ Expression * parseOp(FuncTable & functable, const char ** strp) {
 }
 
 Expression * parse(FuncTable & functable, const char ** strp) {
+  //  std::cout << *strp << std::endl;
   skipSpace(strp);
   if (**strp == '\0') {
     std::cerr << "End of line found mid expression!\n";
@@ -189,5 +188,3 @@ Expression * parse(FuncTable & functable, const char ** strp) {
     return new NumExpression(num);
   }
 }
-
-

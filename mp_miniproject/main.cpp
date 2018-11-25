@@ -126,13 +126,13 @@ double calcVolumn(FuncTable &funcTable, string funcName, double step, vector<dou
   //check range is consistant with func
   double vol = 0.0;
   if (funcTable.countOpNum(funcName) == 1){
-    for (double i = range[0]; i < range[1]; i += step){
+    for (int i = 0; i < (int)((range[1]-range[0])/step); ++i){
       stringstream ss;
-      ss << "(" << funcName << " " << i << ")";
+      ss << "(" << funcName << " " << i*step+range[0] << ")";
       const char *temp_1 = ss.str().c_str();
       Expression *curr_1 = parse(funcTable, &temp_1);
       ss.str("");
-      ss << "(" << funcName << " " << i+step << ")";
+      ss << "(" << funcName << " " << i*(step+1)+range[0] << ")";
       const char *temp_2 = ss.str().c_str();
       Expression *curr_2 = parse(funcTable, &temp_2);
       vol += (curr_1->evaluate()+curr_2->evaluate())/2*step;
@@ -141,24 +141,24 @@ double calcVolumn(FuncTable &funcTable, string funcName, double step, vector<dou
     }
   }
   else if (funcTable.countOpNum(funcName) == 2){
-    for (double i = range[0]; i < range[1]; i += step){
+    for (int i = 0; i < (int)((range[1]-range[0])/step); ++i){
       //      std::cout << "i: " << i << std::endl;
-      for (double j = range[2]; j < range[3]; j += step){
+      for (int j = 0; j < (int)((range[3]-range[2])/step); ++j){
 	//	std::cout << "j: " << j << std::endl;
 	stringstream ss;
-	ss << "(" << funcName << " " << i  << " " << j << ")";
+	ss << "(" << funcName << " " << i*step+range[0]  << " " <<  j*step+range[2] << ")";
 	const char *temp_1 = ss.str().c_str();
 	Expression *curr_1 = parse(funcTable, &temp_1);
 	ss.str("");
-	ss << "(" << funcName << " " << i+step << " " << j << ")";
+	ss << "(" << funcName << " " <<  i*step+range[0]+step << " " << j*step+range[2] << ")";
 	const char *temp_2 = ss.str().c_str();
 	Expression *curr_2 = parse(funcTable, &temp_2);
 	ss.str("");
-	ss << "(" << funcName << " " << i+step << " " << j+step << ")";
+	ss << "(" << funcName << " " <<  i*step+range[0]+step << " " << j*step+range[2]+step << ")";
 	const char *temp_3 = ss.str().c_str();
 	Expression *curr_3 = parse(funcTable, &temp_3);
 	ss.str("");
-	ss << "(" << funcName << " " << i << " " << j+step << ")";
+	ss << "(" << funcName << " " <<  i*step+range[0] << " " << j*step+range[2]+step << ")";
 	const char *temp_4 = ss.str().c_str();
 	Expression *curr_4 = parse(funcTable, &temp_4);
 

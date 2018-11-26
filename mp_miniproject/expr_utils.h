@@ -387,8 +387,73 @@ double FuncTable::calcVolumn(string funcName, double step, vector<double> & rang
       }
     }
   }
+  else if (countOpNum(funcName) == 3) {
+    for (double i = range[0]; i < range[1]; i += step) {
+      //      std::cout << "i: " << i << std::endl;
+      for (double j = range[2]; j < range[3]; j += step) {
+        //std::cout << "j: " << j << std::endl;
+        for (double k = range[4]; k < range[5]; k += step) {
+          stringstream ss;
+          double a = i + step;
+          double b = j + step;
+          double c = k + step;
+          ss << "(" << funcName << " " << i << " " << j << " " << k << ")";
+          string tempStr_1(ss.str());
+          const char * temp_1 = tempStr_1.c_str();
+          Expression * curr_1 = parse(&temp_1);
+          ss.str("");
+          ss << "(" << funcName << " " << a << " " << j << " " << k << ")";
+          string tempStr_2(ss.str());
+          const char * temp_2 = tempStr_2.c_str();
+          Expression * curr_2 = parse(&temp_2);
+          ss.str("");
+          ss << "(" << funcName << " " << a << " " << b << " " << k << ")";
+          string tempStr_3(ss.str());
+          const char * temp_3 = tempStr_3.c_str();
+          Expression * curr_3 = parse(&temp_3);
+          ss.str("");
+          ss << "(" << funcName << " " << i << " " << b << " " << k << ")";
+          string tempStr_4(ss.str());
+          const char * temp_4 = tempStr_4.c_str();
+          Expression * curr_4 = parse(&temp_4);
+          ss << "(" << funcName << " " << i << " " << j << " " << c << ")";
+          string tempStr_5(ss.str());
+          const char * temp_5 = tempStr_5.c_str();
+          Expression * curr_5 = parse(&temp_5);
+          ss.str("");
+          ss << "(" << funcName << " " << a << " " << j << " " << c << ")";
+          string tempStr_6(ss.str());
+          const char * temp_6 = tempStr_6.c_str();
+          Expression * curr_6 = parse(&temp_6);
+          ss.str("");
+          ss << "(" << funcName << " " << a << " " << b << " " << c << ")";
+          string tempStr_7(ss.str());
+          const char * temp_7 = tempStr_7.c_str();
+          Expression * curr_7 = parse(&temp_7);
+          ss.str("");
+          ss << "(" << funcName << " " << i << " " << b << " " << c << ")";
+          string tempStr_8(ss.str());
+          const char * temp_8 = tempStr_8.c_str();
+          Expression * curr_8 = parse(&temp_8);
+
+          vol +=
+              (curr_1->evaluate() + curr_2->evaluate() + curr_3->evaluate() + curr_4->evaluate() +
+               curr_5->evaluate() + curr_6->evaluate() + curr_7->evaluate() + curr_8->evaluate()) /
+              8 * step * step * step;
+          delete curr_1;
+          delete curr_2;
+          delete curr_3;
+          delete curr_4;
+          delete curr_5;
+          delete curr_6;
+          delete curr_7;
+          delete curr_8;
+        }
+      }
+    }
+  }
   else {
-    std::cout << "too complex..\n";
+    std::cout << "Only able to cope with up to 3 parameters.\n";
   }
   return vol;
 }

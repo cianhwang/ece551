@@ -12,6 +12,7 @@ define (T a b) (+ a b)
 define (T4 a b ) = (+ a b)
 define (4T a b) = (+ a b)
 define (T a2 b2) = (+ a2 b2)
+define ( T x x) = (* 2 x)
 #test (f 1 2 3) = 1
 #test (f 1 2 3)
 #define (T a b) =

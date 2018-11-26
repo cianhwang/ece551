@@ -9,6 +9,7 @@
 #include <ctime>
 #include <iostream>
 #include <limits>
+#include <set>
 #include <sstream>
 #include <stack>
 
@@ -16,6 +17,7 @@
 
 using std::map;
 using std::pair;
+using std::set;
 using std::stack;
 using std::string;
 using std::stringstream;
@@ -58,9 +60,21 @@ class FuncTable
     funcTableMap.insert(pair<string, Expression *>(funcName, funcExpr));
     return true;
   }
-  Expression * operator[](string funcName) { return funcTableMap[funcName]; }
+  Expression * operator[](string funcName) {
+    if (funcTableMap.find(funcName) != funcTableMap.end()) {
+      return funcTableMap[funcName];
+    }
+    std::cerr << "cannot find definition of the function.\n";
+    return NULL;
+  }
 
-  int countOpNum(string op) const { return funcTableMap.find(op)->second->CountParaNum(); }
+  int countOpNum(string op) const {
+    if (funcTableMap.find(op) != funcTableMap.end()) {
+      return funcTableMap.find(op)->second->CountParaNum();
+    }
+    std::cerr << "cannot find definition of the function.\n";
+    exit(EXIT_FAILURE);
+  }
   ~FuncTable() {
     for (map<string, Expression *>::iterator it = funcTableMap.begin(); it != funcTableMap.end();
          ++it) {
@@ -133,6 +147,10 @@ Expression * FuncTable::makeExpr(string op, vector<Expression *> & varVec) {
   }
 
   if (funcTableMap.find(op) != funcTableMap.end()) {
+    if ((int)varVec.size() != countOpNum(op)) {
+      std::cerr << "Number of parameters not match.\n";
+      return NULL;
+    }
     Expression * temp = funcTableMap[op]->clone();
     map<string, Expression *> varMap;
     for (size_t i = 0; i < varVec.size(); ++i) {
@@ -275,6 +293,11 @@ void FuncTable::defineFunc(const char * deftemp, const char * temp) {
       }
     }
     // error handling: each para are unique.
+    set<string> paraSet(paraVec.begin(), paraVec.end());
+    if (paraSet.size() != paraVec.size()) {
+      std::cerr << "Names of parameter should be unique.\n";
+      return;
+    }
   }
   Expression * expr = parse(&temp);
   if (expr == NULL) {
@@ -282,6 +305,7 @@ void FuncTable::defineFunc(const char * deftemp, const char * temp) {
     return;
   }
   // error handing: expression contains parameters that not belong to function.
+  // TOUGH.
   Expression * func = new FuncExpression(expr, paraVec);
   if (addFunc(funcName, func)) {
     std::cout << "defined " << funcName << "(";
@@ -578,7 +602,7 @@ double FuncTable::gradientMethod(bool type,
   }
   ss << ")";
   string tempStr(ss.str());
-  std::cout << tempStr << std::endl;
+  //  std::cout << tempStr << std::endl;
   const char * temp = tempStr.c_str();
   Expression * curr = parse(&temp);
   double value = curr->evaluate();
@@ -656,7 +680,8 @@ void FuncTable::readInput(const char ** strp) {
     while (numintss >> rangeTemp) {
       rangeVec.push_back(rangeTemp);
     }
-    std::cout << "Volume: " << calcVolumn(funcName, width, rangeVec) << std::endl;
+    std::cout << "Numerics Integral volume of " << funcName << ": "
+              << calcVolumn(funcName, width, rangeVec) << std::endl;
   }
   else if (command == "mcint") {
     string numintStr(*strp);
@@ -670,7 +695,8 @@ void FuncTable::readInput(const char ** strp) {
     while (numintss >> rangeTemp) {
       rangeVec.push_back(rangeTemp);
     }
-    std::cout << "Volume: " << mcVolume(funcName, times, rangeVec) << std::endl;
+    std::cout << "MCIntegral volume of " << funcName << ": " << mcVolume(funcName, times, rangeVec)
+              << std::endl;
   }
   else if (command == "min" || command == "max") {
     string gdStr(*strp);
@@ -690,12 +716,12 @@ void FuncTable::readInput(const char ** strp) {
     }
 
     if (command == "min") {
-      std::cout << "Minimum: "
+      std::cout << funcName << " Minimum: "
                 << gradientMethod(true, funcName, gamma, convergedDistance, steps, startPosVec)
                 << std::endl;
     }
     else {
-      std::cout << "Maximum: "
+      std::cout << funcName << " Maximum: "
                 << gradientMethod(false, funcName, gamma, convergedDistance, steps, startPosVec)
                 << std::endl;
     }

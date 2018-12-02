@@ -14,6 +14,8 @@
     defined k(x s zt)
     k(0.2324221 -32.1 0.99999) = -3884.65 [INCORRECT: expected -38.8465]
 
+    which is correct because all the test cases follow the rule, and corresponding message given by the program is reasonable.
+
 (2) Run ./numerics < ./testcase/input2.txt
     You will see that it prints:
 
@@ -35,24 +37,41 @@
     defined T(x y)
     T Minimum: -4.99991
 
+    which is correct because all the test cases follow the rule, and corresponding message given by the program is reasonable.
+
 # error cases
 (1) Run ./numerics < ./testcase/errcase/err1.txt
-    You will see that it prints 
-(1) Run ./numerics < ./testcase/errcase/err2.txt
-    You will see that it prints 
-(1) Run ./numerics < ./testcase/errcase/err3.txt
-    You will see that it prints 
-(1) Run ./numerics < ./testcase/errcase/err4.txt
-    You will see that it prints 
-(1) Run ./numerics < ./testcase/errcase/err5.txt
-    You will see that it prints 
-(1) Run ./numerics < ./testcase/errcase/err6.txt
-    You will see that it prints 
-(1) Run ./numerics < ./testcase/errcase/err7.txt
-    You will see that it prints 
-(1) Run ./numerics < ./testcase/errcase/err8.txt
-    You will see that it prints 
-(1) Run ./numerics < ./testcase/errcase/err9.txt
-    You will see that it prints 
-(1) Run ./numerics < ./testcase/errcase/err10.txt
-    You will see that it prints 
+    You will see that it prints: Cannot recognize the command.
+    which is correct because the input command is not described.
+(2) Run ./numerics < ./testcase/errcase/err2.txt
+    You will see that it prints: Expect = but failed to find.
+    which is correct because the input doesnt follow the rule of definition.
+(3) Run ./numerics < ./testcase/errcase/err3.txt
+    You will see that it prints: Id should be all letters.
+    which is correct because id contains non-letter character(s).
+(4) Run ./numerics < ./testcase/errcase/err4.txt
+    You will see that it prints: Names of parameter should be unique.
+    which is correct because the parameters' names are not unique.
+(5) Run ./numerics < ./testcase/errcase/err5.txt
+    You will see that it prints: 
+
+    defined f(a b)
+    Function f already exists.
+
+    which is correct because it redefine the function f.
+
+(6) Run ./numerics < ./testcase/errcase/err6.txt
+    You will see that it prints: cannot find definition of the function.
+    which is correct because it doesnt follow the test rule.
+(7) Run ./numerics < ./testcase/errcase/err7.txt
+    You will see that it prints: cannot find definition of the function.
+    which is correct because it doesnt follow the test rule.
+(8) Run ./numerics < ./testcase/errcase/err8.txt
+    You will see that it prints: End of line found mid expression!
+    which is correct because the definition is not complete.
+(9) Run ./numerics < ./testcase/errcase/err9.txt
+    You will see that it prints: cannot find definition of the function.
+    which is correct because test contains varible(s).
+(10) Run ./numerics < ./testcase/errcase/err10.txt
+    You will see that it prints: At least one parameter.
+    which is correct because function should have at least one parameter.

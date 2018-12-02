@@ -1,0 +1,2 @@
+# wrong format
+define (f) = 1.0

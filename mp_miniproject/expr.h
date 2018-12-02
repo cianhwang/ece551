@@ -14,13 +14,21 @@ using std::vector;
 
 class Expression
 {
+  // 5 type of Expression:
+  // 1. NumberExpr. Denotes number.
+  // 2. VarExpr. Denotes variable in function. have variable name(string) and value(expression).
+  // 3. FuncExpression. Denotes function. Have 'calculation law', naming how to deal with the variables. (expression)
+  //                                       and mapping from varibles to value.
+  // 4. UnaryExpression. built-in operator which takes one parameter.
+  // 5. DoubleExpression. built-in operator which takes two parameters.
  public:
   virtual ~Expression() {}
   virtual double evaluate() const = 0;
-  virtual Expression * clone() const = 0;
-  virtual void assign(map<string, Expression *> & mapping) = 0;
-  virtual int checkType() const = 0;
-  virtual int CountParaNum() const = 0;
+  virtual Expression * clone() const = 0; // dynamic dispatch copy
+  // assign expression to the corresponding variable. string: name fo variable. Expression *: the assigned expression.
+  virtual void assign(map<string, Expression *> & mapping) = 0; 
+  virtual int checkType() const = 0; // check expression type. NumExpr: 1, VarExpr: 2, FuncExpr: 3, others: 0
+  virtual int CountParaNum() const = 0; // count number of parameters. Eg. +: 2  sin: 1
 };
 
 class NumExpression : public Expression
@@ -63,14 +71,14 @@ class VarExpression : public Expression
       varExpr = NULL;
     }
   }
-  /*  VarExpression & operator=(const VarExpression & rhs) {
+  VarExpression & operator=(const VarExpression & rhs) {
     if (this != &rhs) {
-      // delete
+      delete varExpr;
       varName = rhs.varName;
       varExpr = rhs.varExpr->clone();
     }
     return *this;
-    }*/
+  }
   virtual ~VarExpression() {
     delete varExpr;
     //std::cout << "~Varexpression.\n";
@@ -78,10 +86,10 @@ class VarExpression : public Expression
   virtual double evaluate() const { return varExpr->evaluate(); }
   virtual Expression * clone() const { return new VarExpression(*this); }
   virtual void assign(map<string, Expression *> & mapping) {
-    //    if (varExpr == NULL) {
     if (varExpr != NULL){
       delete varExpr;
     }
+    // search the map by its own name and find the corresponding value.
     varExpr = mapping.find(varName)->second->clone();
       //}
       //else if (varExpr->checkType() != 1) {
@@ -158,13 +166,12 @@ class DoubleExpression : public Expression {
 
  public:
  DoubleExpression(Expression *_lhs, Expression *_rhs):lhs(_lhs), rhs(_rhs){}
-  // DoubleExpression(const DoubleExpression &dExpr):lhs(dExpr->clone()),rhs(dExpr->clone()){}
-  //=
+
   virtual ~DoubleExpression() {
     delete lhs;
     delete rhs;
   }
-  //  virtual Expression * clone() const { return new PlusExpression(*this); }
+
   virtual void assign(map<string, Expression *> & mapping) {
     lhs->assign(mapping);
     rhs->assign(mapping);
@@ -254,9 +261,15 @@ class FuncExpression : public Expression
       funcMap.insert(pair<string, Expression *>(it->first, it->second->clone()));
     }
   }
-  /*  FuncExpression & operator=(const FuncExpression & rhs) {
+  FuncExpression & operator=(const FuncExpression & rhs) {
     if (this != &rhs) {
-      //delete!
+      delete funcExpr;
+      for (map<string, Expression *>::const_iterator it = rhs.funcMap.begin();
+	   it != rhs.funcMap.end();
+	   ++it) {
+	delete it->second;
+      }
+
       funcExpr = rhs.funcExpr->clone();
       for (map<string, Expression *>::const_iterator it = rhs.funcMap.begin();
            it != rhs.funcMap.end();
@@ -265,7 +278,7 @@ class FuncExpression : public Expression
       }
     }
     return *this;
-    }*/
+  }
   virtual ~FuncExpression() {
     delete funcExpr;
     for (map<string, Expression *>::iterator it = funcMap.begin(); it != funcMap.end(); ++it) {
@@ -275,13 +288,13 @@ class FuncExpression : public Expression
   virtual double evaluate() const { return funcExpr->evaluate(); }
   virtual Expression * clone() const { return new FuncExpression(*this); }
   virtual void assign(map<string, Expression *> & mapping) {
-    if (mapping.find("0") != mapping.end()){ //initialize, first step
+    if (mapping.find("0") != mapping.end()){ //initialize, first step, only requires the value(expression)
       for (map<string, Expression *>::iterator it = funcMap.begin(), it2 = mapping.begin(); it != funcMap.end(); ++it, ++it2) {
 	  delete it->second;
 	it->second = it2->second->clone();
       }
     }
-    else{ //non-init
+    else{ //non-init, meaning giving the value to the parameters by the name.
       for (map<string, Expression *>::iterator it = funcMap.begin(); it != funcMap.end(); ++it){
 	if (it->second != NULL){
 	  it->second->assign(mapping);

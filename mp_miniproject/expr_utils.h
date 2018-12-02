@@ -30,11 +30,13 @@ void deleteMap(map<string, Expression *> & exprMap) {
   return;
 }
 
-class FuncTable
+class FuncTable //manage the add/test/integral/extremum of functions.
 {
  private:
-  map<string, Expression *> funcTableMap;
-  map<string, int> opMap;
+  map<string, Expression *> funcTableMap; // record all the functions added.
+  // string: function name. Expression: function expression.
+  map<string, int> opMap; // record built-in functions.
+  // string: built-in function sign. int: operator number.
 
  public:
   FuncTable() {
@@ -50,9 +52,8 @@ class FuncTable
     opMap.insert(pair<string, int>("ln", 1));
   }
   bool addFunc(string funcName, Expression * funcExpr) {
-    if (funcTableMap.find(funcName) != funcTableMap.end()) {
+    if (funcTableMap.find(funcName) != funcTableMap.end()) { // avoid reload.
       std::cerr << "Function " << funcName << " already exists.\n";
-      
       delete funcExpr;
       exit(EXIT_FAILURE);
       return false;
@@ -69,7 +70,7 @@ class FuncTable
     exit(EXIT_FAILURE);
   }
 
-  int countOpNum(string op) const {
+  int countOpNum(string op) const { // count the parameters number of a function.
     if (funcTableMap.find(op) != funcTableMap.end()) {
       return funcTableMap.find(op)->second->CountParaNum();
     }
@@ -82,25 +83,26 @@ class FuncTable
       delete it->second;
     }
   }
+  // parse expression
   Expression * makeExpr(string op, vector<Expression *> & varVec);
   Expression * parseOp(const char ** strp);
   Expression * parse(const char ** strp);
 
-  void skipSpace(const char ** strp) {
-    while (isspace(**strp)) {
-      *strp = *strp + 1;
-    }
-  }
-
-  void parseDef(const char ** strp, string & name, vector<string> & vec);
-  bool checkID(const string & id);
-  void defineFunc(const char * deftemp, const char * temp);
-  bool test(Expression * lexpr, Expression * rexpr);
-  void testFunc(const char * ltemp, const char * rtemp);
-  double calcVolumn(string funcName, double step, vector<double> & range);
-  double mcVolume(string funcName, int times, vector<double> & range);
+  // read line and check which branch (define/test/int/grad) to go to.
   void readInput(const char ** strp);
+
+  // define a function
+  void parseDef(const char ** strp, string & name, vector<string> & vec);
+  void defineFunc(const char * deftemp, const char * temp);
+  // test a expression
+  bool test(Expression * lexpr, Expression * rexpr);
   void printTest(const string & lstr, const string & rstr);
+  void testFunc(const char * ltemp, const char * rtemp);
+  // numeric integral
+  double calcVolumn(string funcName, double step, vector<double> & range);
+  // Monte Carlo integral
+  double mcVolume(string funcName, int times, vector<double> & range);
+  // Gradient Ascent/Descent
   void generateRandNum(vector<double> & vec, vector<double> & range);
   void gradUpdate(bool type,
                   string funcName,
@@ -115,7 +117,15 @@ class FuncTable
                         vector<double> & startPosVec);
 };
 
+void skipSpace(const char ** strp) {
+  while (isspace(**strp)) {
+    *strp = *strp + 1;
+  }
+}
+
+
 Expression * FuncTable::makeExpr(string op, vector<Expression *> & varVec) {
+  // check if is a built-in function.
   if (op == "+") {
     return new PlusExpression(varVec[0]->clone(), varVec[1]->clone());
   }
@@ -146,7 +156,7 @@ Expression * FuncTable::makeExpr(string op, vector<Expression *> & varVec) {
   else if (op == "ln") {
     return new LnExpression(varVec[0]->clone());
   }
-
+  // add self-defined function.
   if (funcTableMap.find(op) != funcTableMap.end()) {
     if ((int)varVec.size() != countOpNum(op)) {
       std::cerr << "Number of parameters not match.\n";
@@ -186,7 +196,7 @@ Expression * FuncTable::parseOp(const char ** strp) {
     opNum = countOpNum(op);
   }
   *strp = endp + 1;
-  vector<Expression *> varVec;
+  vector<Expression *> varVec; // store sub-expression.
   for (int i = 0; i < opNum; ++i) {
     Expression * temp = parse(strp);
     varVec.push_back(temp);
@@ -222,7 +232,7 @@ Expression * FuncTable::parse(const char ** strp) {
     return parseOp(strp);
   }
   else if (isalpha(**strp)) {
-    //variable
+    //if encounter a variable
     const char * endp = *strp;
     while (isalpha(*endp)) {
       ++endp;
@@ -232,7 +242,7 @@ Expression * FuncTable::parse(const char ** strp) {
     return new VarExpression(tempStr);
   }
   else {
-    //number
+    //if encounter a number
     char * endp;
     double num = strtod(*strp, &endp);
     if (endp == *strp) {
@@ -264,13 +274,13 @@ void FuncTable::parseDef(const char ** strp, string & name, vector<string> & vec
   std::stringstream ss(str);
   ss >> str;
 
-  name = str;
+  name = str; // function name
   while (ss >> str) {
-    vec.push_back(str);
+    vec.push_back(str); // parameters.
   }
 }
 
-bool FuncTable::checkID(const string & id) {
+bool checkID(const string & id) { // check id is valid or not
   for (size_t i = 0; i < id.size(); ++i) {
     if (!isalpha(id[i])) {
       return false;
@@ -316,7 +326,9 @@ void FuncTable::defineFunc(const char * deftemp, const char * temp) {
     //    return;
   }
   // error handing: expression contains parameters that not belong to function.
-  // TOUGH.
+  // havent realize yet.
+
+  // print info to std::in
   Expression * func = new FuncExpression(expr, paraVec);
   if (addFunc(funcName, func)) {
     std::cout << "defined " << funcName << "(";
@@ -353,6 +365,7 @@ void FuncTable::testFunc(const char * ltemp, const char * rtemp) {
   Expression * rExpr = parse(&rtemp);
   // error handling: check no variables
   //                 and all ids refer to function.
+  // not realized yet.
   printTest(lstr, rstr);
   if (test(lExpr, rExpr)) {
     std::cout << " [correct]\n";
@@ -367,6 +380,7 @@ void FuncTable::testFunc(const char * ltemp, const char * rtemp) {
 double FuncTable::calcVolumn(string funcName, double step, vector<double> & range) {
   //check range is consistant with func
   double vol = 0.0;
+  // if one para
   if (countOpNum(funcName) == 1) {
     for (double i = range[0]; i < range[1]; i += step) {
       double a = i + step;
@@ -385,6 +399,7 @@ double FuncTable::calcVolumn(string funcName, double step, vector<double> & rang
       delete curr_2;
     }
   }
+  // if two paras
   else if (countOpNum(funcName) == 2) {
     for (double i = range[0]; i < range[1]; i += step) {
       //      std::cout << "i: " << i << std::endl;
@@ -422,6 +437,7 @@ double FuncTable::calcVolumn(string funcName, double step, vector<double> & rang
       }
     }
   }
+  // if 3...
   else if (countOpNum(funcName) == 3) {
     for (double i = range[0]; i < range[1]; i += step) {
       //      std::cout << "i: " << i << std::endl;
@@ -488,7 +504,7 @@ double FuncTable::calcVolumn(string funcName, double step, vector<double> & rang
     }
   }
   else {
-    std::cout << "Only able to cope with up to 3 parameters.\n";
+    std::cout << "Too complex. Volume cannot be calculate: ";
   }
   return vol;
 }
@@ -529,6 +545,7 @@ double FuncTable::mcVolume(string funcName, int times, vector<double> & range) {
 }
 
 double calcDis(const vector<double> & v1, const vector<double> & v2) {
+  // calculate the euclid distance of two points.
   double dist = 0.0;
   assert(v1.size() == v2.size());
   for (size_t i = 0; i < v1.size(); ++i) {
@@ -542,6 +559,7 @@ void FuncTable::gradUpdate(bool type,
                            double gamma,
                            vector<double> & currVec,
                            vector<double> & newVec) {
+  // type: true: descent/false: ascent
   vector<double> gradVec;
   for (size_t i = 0; i < currVec.size(); ++i) {
     double gradient;
@@ -562,7 +580,7 @@ void FuncTable::gradUpdate(bool type,
         ss << currVec[j] << " ";
       }
       else {
-        double deltaX = currVec[i] + 0.001;
+        double deltaX = currVec[i] + 0.001; // delta = 0.001
         ss << deltaX << " ";
       }
     }

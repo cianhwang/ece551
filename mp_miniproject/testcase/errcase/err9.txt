@@ -1,0 +1,2 @@
+# wrong define/test format
+test (hh 1 2 3)

@@ -1,0 +1,2 @@
+# wrong define/test format
+define (T a b) =

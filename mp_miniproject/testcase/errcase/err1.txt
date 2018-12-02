@@ -1,0 +1,2 @@
+# use wrong command "deFine"
+deFine (T a b) = (+ a b)

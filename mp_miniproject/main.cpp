@@ -4,8 +4,6 @@
 
 #include "expr_utils.h"
 
-
-
 int main(void) {
   FuncTable funcTable;
   char * line = NULL;

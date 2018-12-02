@@ -1,0 +1,2 @@
+# id should only contain letters.
+define (T4 a b) = (+ a b2)

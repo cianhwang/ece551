@@ -52,9 +52,9 @@ class FuncTable
   bool addFunc(string funcName, Expression * funcExpr) {
     if (funcTableMap.find(funcName) != funcTableMap.end()) {
       std::cerr << "Function " << funcName << " already exists.\n";
-      //!!
+      
       delete funcExpr;
-      //      exit(EXIT_FAILURE);
+      exit(EXIT_FAILURE);
       return false;
     }
     funcTableMap.insert(pair<string, Expression *>(funcName, funcExpr));
@@ -65,7 +65,8 @@ class FuncTable
       return funcTableMap[funcName];
     }
     std::cerr << "cannot find definition of the function.\n";
-    return NULL;
+    //return NULL;
+    exit(EXIT_FAILURE);
   }
 
   int countOpNum(string op) const {
@@ -149,7 +150,8 @@ Expression * FuncTable::makeExpr(string op, vector<Expression *> & varVec) {
   if (funcTableMap.find(op) != funcTableMap.end()) {
     if ((int)varVec.size() != countOpNum(op)) {
       std::cerr << "Number of parameters not match.\n";
-      return NULL;
+      exit(EXIT_FAILURE);
+      //return NULL;
     }
     Expression * temp = funcTableMap[op]->clone();
     map<string, Expression *> varMap;
@@ -198,6 +200,7 @@ Expression * FuncTable::parseOp(const char ** strp) {
   }
   else {
     std::cerr << "Expected ) but found " << *strp << "\n";
+    exit(EXIT_FAILURE);
   }
   for (size_t i = 0; i < varVec.size(); ++i) {
     delete varVec[i];
@@ -210,7 +213,8 @@ Expression * FuncTable::parse(const char ** strp) {
   skipSpace(strp);
   if (**strp == '\0') {
     std::cerr << "End of line found mid expression!\n";
-    return NULL;
+    exit(EXIT_FAILURE);
+    //return NULL;
   }
   else if (**strp == '(') {
     // (op id ...)
@@ -233,7 +237,8 @@ Expression * FuncTable::parse(const char ** strp) {
     double num = strtod(*strp, &endp);
     if (endp == *strp) {
       std::cerr << "Expected a number, but found " << *strp << "\n";
-      return NULL;
+      //return NULL;
+      exit(EXIT_FAILURE);
     }
     *strp = endp;
     return new NumExpression(num);
@@ -244,6 +249,7 @@ void FuncTable::parseDef(const char ** strp, string & name, vector<string> & vec
   skipSpace(strp);
   if (**strp == '\0') {
     std::cerr << "End of line found mid expression!\n";
+    exit(EXIT_FAILURE);
   }
   if (**strp == '(') {
     // (id id ...)
@@ -279,30 +285,35 @@ void FuncTable::defineFunc(const char * deftemp, const char * temp) {
   parseDef(&deftemp, funcName, paraVec);
   if (!checkID(funcName)) {
     std::cerr << "Id should be all letters.\n";
-    return;
+    exit(EXIT_FAILURE);
+    //    return;
   }
   if (paraVec.empty()) {
     std::cerr << "At least one parameter.\n";
-    return;
+    exit(EXIT_FAILURE);
+    //    return;
   }
   else {
     for (size_t i = 0; i < paraVec.size(); ++i) {
       if (!checkID(paraVec[i])) {
         std::cerr << "Id should be all letters.\n";
-        return;
+	exit(EXIT_FAILURE);
+	//  return;
       }
     }
     // error handling: each para are unique.
     set<string> paraSet(paraVec.begin(), paraVec.end());
     if (paraSet.size() != paraVec.size()) {
       std::cerr << "Names of parameter should be unique.\n";
-      return;
+      exit(EXIT_FAILURE);
+      //      return;
     }
   }
   Expression * expr = parse(&temp);
   if (expr == NULL) {
-    std::cout << "Could not parse expression, please try again.\n";
-    return;
+    std::cerr << "Could not parse expression, please try again.\n";
+    exit(EXIT_FAILURE);
+    //    return;
   }
   // error handing: expression contains parameters that not belong to function.
   // TOUGH.
@@ -347,7 +358,7 @@ void FuncTable::testFunc(const char * ltemp, const char * rtemp) {
     std::cout << " [correct]\n";
   }
   else {
-    std::cout << " [INCORRECT: expected " << lExpr->evaluate() << "]\n";
+    std::cout << " [INCORRECT: expected " <<  lExpr->evaluate() << "]\n";
   }
   delete lExpr;
   delete rExpr;
@@ -614,7 +625,8 @@ void FuncTable::readInput(const char ** strp) {
   skipSpace(strp);
   if (**strp == '\0') {
     std::cerr << "End of line found mid expression!\n";
-    return;
+    exit(EXIT_FAILURE);
+    //    return;
   }
   if (**strp == '#') {
     return;
@@ -623,7 +635,8 @@ void FuncTable::readInput(const char ** strp) {
   while (*endp != ' ') {
     if (*endp == '\0') {
       std::cerr << "Invalid expression.\n";
-      return;
+      exit(EXIT_FAILURE);
+      //      return;
     }
     ++endp;
   }
@@ -635,7 +648,8 @@ void FuncTable::readInput(const char ** strp) {
     while (*endp != '=') {
       if (*endp == '\0') {
         std::cerr << "Expect = but failed to find.\n";
-        return;
+	exit(EXIT_FAILURE);
+	//        return;
       }
       ++endp;
     }
@@ -728,6 +742,7 @@ void FuncTable::readInput(const char ** strp) {
   }
   else {
     std::cerr << "Cannot recognize the command.\n";
+    exit(EXIT_FAILURE);
   }
   return;
 }

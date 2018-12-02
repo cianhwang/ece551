@@ -1,0 +1,2 @@
+# wrong define/test format
+test (f 1 2 3)

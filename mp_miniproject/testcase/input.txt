@@ -1,0 +1,18 @@
+# INPUT.TXT: test correct cases of step 1
+########################################
+# TESTCASE 1: test all the built-in function: F(x y z) = (z/((x^3 + √y)*ln(5)) % sin(7.7) - cos(10)
+define (F x y z) = (- (% (/ z (* (ln 5) (+ (sqrt y) (pow x 3)))) (sin 7.7)) (cos 10))
+test (F 1.1 2.2 3.3) 10  # wrong case
+test (F 1.1 2.2 3.3) 1.5676538477493 # right case
+# TESTCASE 2: test on another form of legal input
+define  (  f x  y   zt) = (* (/ x -12.33) (pow zt y))
+ define (g   s S   )=( *   s  S ) # case sensitive
+define (fx y z t) = 5.55 # f and fx are different functions.
+test (g 1 2.0) (f 7 8 9) # the second test expr is func expr.
+# TESTCASE 3: test on mixture of number and function expression
+define (h x) = (/ 1 x)
+     # test on func expr in func expr
+test (f (h -0.25) 0.5 (g 2.25 2.0))  (f -4 (h 2) (g 2.25 2.0))
+     # test on mixture of paras and numbers
+define (k x s zt)= (/ (g s (f x zt 2.0)) (h x))
+test (k 0.2324221 -32.1 0.99999) -3884.65

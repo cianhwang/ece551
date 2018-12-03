@@ -21,13 +21,13 @@
 
     defined f(x y)
     Numerics Integral volume of f: 9.5025
-    MCIntegral volume of f: 8.99766
+    MCIntegral volume of f: 8.99766 #depends on random number
     defined g(x)
     Numerics Integral volume of g: 1.3888
-    MCIntegral volume of g: 1.38817
+    MCIntegral volume of g: 1.38817 #depends on random number
     defined h(xx yy zz)
     Numerics Integral volume of h: 32
-    MCIntegral volume of h: 30.9988
+    MCIntegral volume of h: 30.9988 #depends on random number
     defined Func(x y z p)
     Numerics Integral volume of Func: Too complex. Volume cannot be calculate: 0
     defined ff(x)

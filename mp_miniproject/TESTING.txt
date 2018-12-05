@@ -1,6 +1,6 @@
 # correct cases
 (1) Run ./numerics < ./testcase/input.txt
-    You will see that it prints:
+    You will see that it prints: (please check input.txt for reasons of choosing these test cases.)
 
     defined F(x y z)
     F(1.1 2.2 3.3) = 10  [INCORRECT: expected 1.56765]
@@ -17,7 +17,7 @@
     which is correct because all the test cases follow the rule, and corresponding message given by the program is reasonable.
 
 (2) Run ./numerics < ./testcase/input2.txt
-    You will see that it prints:
+    You will see that it prints: (please check input2.txt for reasons of choosing these test cases.)
 
     defined f(x y)
     Numerics Integral volume of f: 9.5025

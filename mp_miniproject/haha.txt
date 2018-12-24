@@ -1,0 +1,17 @@
+defined f(x y)
+Numerics Integral volume of f: 9.5025
+MCIntegral volume of f: 8.99766
+defined g(x)
+Numerics Integral volume of g: 1.3888
+MCIntegral volume of g: 1.38817
+defined h(xx yy zz)
+Numerics Integral volume of h: 32
+MCIntegral volume of h: 30.9988
+defined Func(x y z p)
+Numerics Integral volume of Func: Too complex. Volume cannot be calculate: 0
+defined ff(x)
+ff(-0.5) = 0.125 [correct]
+ff Minimum: 8.15284e-05
+ff Maximum: 0.148082
+defined T(x y)
+T Minimum: -4.99991
